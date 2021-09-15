@@ -1,19 +1,17 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!--
+  The v-btn component replaces the standard html button with a material design theme and
+   a multitude of options. Any color helper class can be used to alter the background or text color.
+   -->
+    <v-btn color="primary" depressed elevation="5" large outlined plain></v-btn>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+};
 </script>
 
 <style>
