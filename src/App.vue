@@ -1,5 +1,15 @@
 <template>
   <v-app>
+    <v-container>
+        <v-img
+        contain
+          src="./assets/output-onlinepngtools.png"
+          max-height="150"
+        ></v-img>
+    </v-container>
+    <v-navigation-drawer app></v-navigation-drawer>
+
+    <v-app-bar app></v-app-bar>
     <v-app-bar
       app
       color="primary"
@@ -37,21 +47,24 @@
       </v-btn>
     </v-app-bar>
 
+
     <v-main>
-      <HelloWorld/>
+      
     </v-main>
+
+    <v-footer app> </v-footer>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-
+// import HelloWorld from './components/HelloWorld';
 export default {
-  name: 'App',
+  name: "App",
 
-  components: {
-    HelloWorld,
-  },
+
+  // components: {
+  // //   HelloWorld,
+  // // },
 
   data: () => ({
     //
