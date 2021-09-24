@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>destacados</v-row>
+    <v-row><p class="font-weight-black">destacados</p></v-row>
     <v-row>
 
       <v-col
@@ -13,7 +13,7 @@
                 color="blue lighten-3"></v-card>
       </v-col>
     </v-row>
-    <v-row>mis rutinas</v-row>
+    <v-row><p class="font-weight-black">mis rutinas</p></v-row>
     <v-row>
 
       <v-col
@@ -26,7 +26,7 @@
                 color="blue lighten-3"></v-card>
       </v-col>
     </v-row>
-    <v-row>rutinas realizadas</v-row>
+    <v-row><p class="font-weight-black">rutinas realizadas</p></v-row>
     <v-row>
 
       <v-col
