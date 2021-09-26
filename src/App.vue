@@ -3,7 +3,7 @@
 
     <v-app-bar
         app
-        color="blue lighten-3"
+        color="primary"
 
     >
 <!-- aca arriba podemos agregarle la siguiente cosa pero queda muy grueso al principio:  shrink-on-scroll-->
@@ -72,6 +72,7 @@
 
     <v-main>
     <home-page></home-page>
+<!--      <log-in></log-in>-->
     </v-main>
   </v-app>
 </template>
@@ -79,16 +80,13 @@
 
 <script>
 import HomePage from "./components/homePage";
+
+//import LogIn from "./components/logIn";
 export default {
   name: 'App',
+  //aca deberia ir varios components, ej components: {LogIn, HomePage}, pero como todavia estoy
+  //armando distintas vistas sin comportamiento tonces le dejo solo una
   components: {HomePage},
-  theme: {
-    themes: {
-      light: {
-        primary: '#a1d7d3'
-      },
-    },
-  },
   data: () => ({
     //
   }),

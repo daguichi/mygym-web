@@ -36,7 +36,7 @@
       >
         <v-card height="200"
                 outlined
-                color="blue lighten-3"></v-card>
+                color="primary"></v-card>
       </v-col>
     </v-row>
   </v-container>
