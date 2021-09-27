@@ -1,18 +1,19 @@
 <template>
   <v-app>
-    <!-- <div class="fivepeople"> </div> -->
+    
     <div class="fivepeople">
       <v-container fluid class="fill-height pa-0 ma-0">
-        <v-row align="center" justify="center">
-          <v-img
-            max-height="150"
-            max-width="250"
-            src="../assets/output-onlinepngtools.png"
-          ></v-img>
-        </v-row>
-        <register-card></register-card>
-      </v-container>
+      <v-row align="center" justify="center">
+        <v-img
+          max-height="150"
+          max-width="250"
+          src="../assets/output-onlinepngtools.png"
+        ></v-img>
+      </v-row>
+      <register-card></register-card>
+    </v-container>
     </div>
+    
   </v-app>
 </template>
 
@@ -35,10 +36,8 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-color: rgb(153,102,153,40);
   opacity: 1;
-}
-.background {
-  opacity: 0.6;
 }
 
 </style>
