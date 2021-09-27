@@ -13,20 +13,22 @@
 
     <v-row>
       <v-col>
-        <v-btn
+        <router-link to="/Register">
+          <v-btn
 
-            elevation="2"
-            rounded
-            x-large
-            outlined
-        >
-          <router-link to="/Register">Register</router-link>
-          home
-          <v-icon>
-            right
-            mdi-home</v-icon>
+              elevation="2"
+              rounded
+              x-large
+              outlined
+          >
+            
+            home
+            <v-icon>
+              right
+              mdi-home</v-icon>
 
-        </v-btn>
+          </v-btn>
+        </router-link>
       </v-col>
       <v-col>
         <v-btn

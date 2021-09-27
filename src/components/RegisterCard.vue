@@ -53,8 +53,6 @@
                             :type="show1 ? 'text' : 'password'"
                             name="input-10-1"
                             placeholder="Contraseña"
-                            hint="At least 8 characters"
-                            counter
                             @click:append="show1 = !show1"
                             background-color="rgb(244, 249, 252)"
                             elevation="2"
@@ -78,8 +76,6 @@
                             :type="show1 ? 'text' : 'password'"
                             name="input-10-1"
                             placeholder="Confirmar contraseña"
-                            hint="At least 8 characters"
-                            counter
                             @click:append="show1 = !show1"
                             background-color="rgb(244, 249, 252)"
                             elevation="2"
