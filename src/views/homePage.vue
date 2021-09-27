@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <navBar></navBar>
     <v-row><p class="font-weight-black">destacados</p></v-row>
     <v-row>
 
@@ -43,8 +44,10 @@
 </template>
 
 <script>
+import navBar from "../components/navBar";
 export default {
-  name: "homePage"
+  name: "homePage",
+  components:{navBar}
 }
 </script>
 
