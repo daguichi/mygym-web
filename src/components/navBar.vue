@@ -20,6 +20,7 @@
             x-large
             outlined
         >
+          <router-link to="/Register">Register</router-link>
           home
           <v-icon>
             right

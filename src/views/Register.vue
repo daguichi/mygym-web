@@ -1,20 +1,23 @@
 <template>
-  <div class="bg fivepeople " >
+  <v-app>
+    <div class="bg fivepeople " >
     <v-container fluid class="fill-height pa-0 ma-0">
       <v-row align="center" justify="center" >
             <v-img
             max-height="150"
             max-width="250"
-            src="../assets/MyGymLogo.png"
+            src="../assets/output-onlinepngtools.png"
             ></v-img>
       </v-row>
       <register-card></register-card>
     </v-container>
   </div>
+  </v-app>
 </template>
 
 <script>
-import RegisterCard from '../components/RegisterCard.vue'
+import RegisterCard from '../components/RegisterCard.vue';
+
 export default {
   name: "Register",
   components: {RegisterCard}
