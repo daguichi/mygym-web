@@ -71,22 +71,24 @@
     </v-app-bar>
 
     <v-main>
-    <home-page></home-page>
-<!--      <log-in></log-in>-->
+    <!-- <home-page></home-page> -->
+    <!-- <log-in></log-in>-->
+   <register></register> 
     </v-main>
   </v-app>
 </template>
 
 
 <script>
-import HomePage from "./components/homePage";
+import Register from './views/Register.vue';
+//import HomePage from "./components/homePage";
 
 //import LogIn from "./components/logIn";
 export default {
   name: 'App',
   //aca deberia ir varios components, ej components: {LogIn, HomePage}, pero como todavia estoy
   //armando distintas vistas sin comportamiento tonces le dejo solo una
-  components: {HomePage},
+  components: {Register},
   data: () => ({
     //
   }),
