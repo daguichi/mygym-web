@@ -36,7 +36,7 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: rgb(153,102,153,40);
+  background-color: rgba(0, 0, 0, 0.315);
   opacity: 1;
 }
 
