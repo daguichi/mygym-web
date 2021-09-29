@@ -16,7 +16,7 @@
       </v-col>
     </v-row>
     <v-row><p class="font-weight-black">mis rutinas</p></v-row>
-    <v-row>
+      <v-row>
 
       <v-col
           v-for="n in 3"
