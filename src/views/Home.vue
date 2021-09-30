@@ -1,18 +1,20 @@
 <template>
   <v-app>
+      <navBar></navBar>
+<!--      no se pq pero hay que meter un br aca pq sino la lavbar tapa la palabra destacados-->
+    <br>
+    <br>
+    <br>
     <v-container>
-    <navBar></navBar>
+
     <v-row><p class="font-weight-black">destacados</p></v-row>
     <v-row>
-
       <v-col
           v-for="n in 3"
           :key="n"
           cols="4"
       >
-        <v-card height="200"
-        outlined
-                color="blue lighten-3"></v-card>
+        <ExcercisesCard></ExcercisesCard>
       </v-col>
     </v-row>
     <v-row><p class="font-weight-black">mis rutinas</p></v-row>
@@ -23,9 +25,8 @@
           :key="n"
           cols="4"
       >
-        <v-card height="200"
-                outlined
-                color="blue lighten-3"></v-card>
+        <ExcercisesCard></ExcercisesCard>
+
       </v-col>
     </v-row>
     <v-row><p class="font-weight-black">rutinas realizadas</p></v-row>
@@ -36,9 +37,8 @@
           :key="n"
           cols="4"
       >
-        <v-card height="200"
-                outlined
-                color="primary"></v-card>
+        <ExcercisesCard></ExcercisesCard>
+
       </v-col>
     </v-row>
   </v-container>
@@ -47,9 +47,10 @@
 
 <script>
 import navBar from "../components/navBar";
+import ExcercisesCard from "../components/ExcercisesCard";
 export default {
   name: "Home",
-  components:{navBar}
+  components:{navBar,ExcercisesCard}
 }
 </script>
 
