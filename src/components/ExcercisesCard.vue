@@ -1,7 +1,7 @@
 <template>
   <div >
     <v-card
-        class="rounded-xl"
+        class="rounded-xl imagen"
         height="200"
         outlined
         color="blue lighten-3">
@@ -10,11 +10,11 @@
         <v-card-title
             class="text-h5"
             align="center"
-            v-text="item.title"
+            v-text= item.title
 
         ></v-card-title>
 
-        <v-card-subtitle v-text="item.artist"></v-card-subtitle>
+        <v-card-subtitle class="font-italic font-weight-thin microText">rutina creada por: {{item.title}}</v-card-subtitle>
 
          <v-icon
          v-for="n in 4"
@@ -66,7 +66,7 @@ export default {
   data(){
     return{
       item:{
-        title:"hola",
+        title:"Titulo Rutina",
         artist:"pedro"
 
       }
@@ -77,8 +77,11 @@ export default {
 
 <style scoped>
 .imagen{
-  margin-left: 250px;
-  margin-top: 25px;
+  background: rgb(55,43,255);
+  background: linear-gradient(43deg, rgba(55,43,255,1) 0%, rgba(28,109,173,1) 58%, rgba(0,212,255,1) 100%);
+}
+.microText{
+  font-size: 0.65em;
 }
 
 </style>
