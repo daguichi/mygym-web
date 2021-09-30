@@ -14,7 +14,7 @@
 
         ></v-card-title>
 
-        <v-card-subtitle class="font-italic font-weight-thin microText">rutina creada por: {{item.title}}</v-card-subtitle>
+        <v-card-subtitle class="font-italic font-weight-thin microText">rutina creada por: {{item.name}}</v-card-subtitle>
 
          <v-icon
          v-for="n in 4"
@@ -67,7 +67,7 @@ export default {
     return{
       item:{
         title:"Titulo Rutina",
-        artist:"pedro"
+        name:"pedro"
 
       }
     }
