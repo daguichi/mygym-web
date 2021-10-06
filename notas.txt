@@ -1,0 +1,62 @@
+Para enviar información del padre al hijo lo hago a través de props.
+Para enviar información del hijo al padre lo hago a través de eventos.
+
+En mi componente puedo poner:
+<template>
+	.......
+	<button @click="notify">{{msg}}</button>
+	............
+</template>
+
+<script>
+export default {
+	name: 'boton'
+	props: {
+		msg: String
+	},
+	data() {
+		return {
+			counter: 1
+		}
+	}
+	methods: {
+		notify() {
+			this.$emit('notify', this.counter); // esto es para emitir eventos
+            counter++; 
+		}
+	}
+}
+</script>
+
+---------------------------------------------------------------------------------------------------
+En el padre el código sería
+
+<template>
+	<div id="app">
+		<boton msg="nombreboton" @notify="onNotify"/>
+	</div>
+</template>
+
+<script>
+export default {
+	name: 'App',
+	components: {
+		boton
+	},
+	methods: {
+		onNotify: (event) => {
+			// hacer algo
+		}
+	}
+}
+</script>
+
+
+- Para las comunicaciones que son mas complicadas es preferible que usemos Vuex porque esto de eventos no es muy reutilizable.
+
+
+VUEX maneja el estado de nuestro sitio. Maneja toda la información del sitio. Como beneficio es centralizado, va a estar todo junto en un store. (aca va a estar toda la lógica de que cuando uno elimina o agrega una rutina tiene que salir de una lista por ejemplo).
+
+
+
+

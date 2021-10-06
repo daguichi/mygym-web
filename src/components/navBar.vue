@@ -9,8 +9,12 @@
     <v-row>
       <v-col>
         <router-link to="/home">
-          <v-btn elevation="2" rounded x-large outlined>
+        
+          <v-btn v-if="actualPage === 'home'" elevation="2" outlined rounded x-large  class="darkBackground">
             home
+            <v-icon> right mdi-home</v-icon>
+          </v-btn>
+          <v-btn v-else elevation="2" rounded x-large outlined>home
             <v-icon> right mdi-home</v-icon>
           </v-btn>
         </router-link>
@@ -44,8 +48,15 @@
 <script>
 export default {
   name: "navBar",
+  props: {
+    actualPage: String
+  },
 };
 </script>
 
 <style scoped>
+.darkBackground{
+  background-color: #518A83,
+
+}
 </style>

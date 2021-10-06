@@ -8,8 +8,8 @@ export default new Vuetify({
         themes: {
             light: {
                 primary: colors.blue.lighten3,
-                secondary: colors.red.lighten4,
-                accent: colors.indigo.base,
+                secondary: colors.blue.lighten2,
+                accent: "#518A83",
             },
         },
     },

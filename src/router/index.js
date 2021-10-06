@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 import Register from '../views/Register.vue'
 import LogIn from '../views/LogIn.vue'
 import NotFound from "../views/NotFound";
-
+import Create from "../views/Create.vue"
 Vue.use(VueRouter)
 
 const routes = [
@@ -27,6 +27,11 @@ const routes = [
     path: "*",
     name: "NotFound",
     component: NotFound
+  },
+  {
+    path: "/create",
+    name: "Create",
+    component: Create
   }
 ]
 
