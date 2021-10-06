@@ -1,7 +1,7 @@
 <template>
   <v-app>
       <navBar></navBar>
-<!--      no se pq pero hay que meter un br aca pq sino la lavbar tapa la palabra destacados-->
+      <!--      no se pq pero hay que meter un br aca pq sino la lavbar tapa la palabra destacados-->
     <br>
     <br>
     <br>
