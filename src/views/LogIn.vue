@@ -12,9 +12,11 @@
                 src="../assets/output-onlinepngtools.png"
               ></v-img>
             </v-row>
-            <v-btn elevation="2" color="#2679CC" dark x-large rounded
-              >Registrarme
-            </v-btn>
+            <router-link to="/register">
+              <v-btn elevation="2" color="#2679CC" dark x-large rounded
+                >Registrarme
+              </v-btn>
+            </router-link>
           </v-col>
           <v-col></v-col>
           <v-col md="3">
@@ -60,9 +62,12 @@
                 ></v-text-field>
               </v-row>
               <v-row class="text-center" justify="center">
-                <v-btn elevation="2" color="#2679CC" dark x-large rounded
+                 <router-link
+        to="/home"
+      >
+                <v-btn  elevation="2" color="#2679CC" dark x-large rounded
                   >Iniciar sesión
-                </v-btn>
+                </v-btn></router-link>
               </v-row>
             </v-container>
           </v-col>

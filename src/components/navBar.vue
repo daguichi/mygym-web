@@ -8,7 +8,7 @@
 
     <v-row>
       <v-col>
-        <router-link to="/Register">
+        <router-link to="/home">
           <v-btn elevation="2" rounded x-large outlined>
             home
             <v-icon> right mdi-home</v-icon>
@@ -16,7 +16,7 @@
         </router-link>
       </v-col>
       <v-col>
-        <router-link to="/LogIn">
+        <router-link to="/home">
           <v-btn elevation="2" rounded outlined x-large>
             rutinas
             <v-icon> right mdi-weight-lifter</v-icon>
@@ -24,10 +24,12 @@
         </router-link>
       </v-col>
       <v-col>
-        <v-btn elevation="2" rounded outlined x-large>
-          favoritos
-          <v-icon> right mdi-heart </v-icon>
-        </v-btn>
+        <router-link to="/home">
+          <v-btn elevation="2" rounded outlined x-large>
+            favoritos
+            <v-icon> right mdi-heart </v-icon>
+          </v-btn>
+        </router-link>
       </v-col>
     </v-row>
     <v-spacer></v-spacer>
