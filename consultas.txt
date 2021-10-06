@@ -1,0 +1,5 @@
+1) Es lo mismo usar el v-router 
+  opc A) <router-link> to="/login> <v-button/> </router-link>
+  opc B) <v-button to="/login> </v-button>
+
+2) Cómo ubicar bien la foto de fondo del log in

@@ -8,20 +8,16 @@
 
     <v-row>
       <v-col>
-        <router-link to="/Register">
-          <v-btn elevation="2" rounded x-large outlined>
-            home
-            <v-icon> right mdi-home</v-icon>
-          </v-btn>
-        </router-link>
+        <v-btn elevation="2" rounded x-large outlined>
+          home
+          <v-icon> right mdi-home</v-icon>
+        </v-btn>
       </v-col>
       <v-col>
-        <router-link to="/LogIn">
-          <v-btn elevation="2" rounded outlined x-large>
-            rutinas
-            <v-icon> right mdi-weight-lifter</v-icon>
-          </v-btn>
-        </router-link>
+        <v-btn elevation="2" rounded outlined x-large>
+          rutinas
+          <v-icon> right mdi-weight-lifter</v-icon>
+        </v-btn>
       </v-col>
       <v-col>
         <v-btn elevation="2" rounded outlined x-large>
