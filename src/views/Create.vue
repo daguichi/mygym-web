@@ -3,14 +3,48 @@
         <v-row>
         <navBar></navBar>
         </v-row>
+        
+        <v-row></v-row>
+
         <v-row>    
             <v-col>
             <h1 align="center">¿Qué desea crear?</h1>
             </v-col>
         </v-row>
         <v-row>
-            <div class="rcorners1"></div> 
+        <v-spacer/>
+          <v-col>
+            <v-btn  
+            class="rcorners1"
+            x-large 
+            fab
+            >
+            <v-img
+                max-height="400"
+                max-width="400"
+                src="../assets/output-onlinepngtools.png"
+              ></v-img>
+            </v-btn>
+            <h2>ejercicio</h2>
+          </v-col>
+          <v-col>
+            <v-btn  
+            class="rcorners1"
+            x-large 
+            fab
+            >
+            <v-img
+                max-height="400"
+                max-width="400"
+                src="../assets/output-onlinepngtools.png"
+            ></v-img>
+              </v-btn>
+            <h2>rutina</h2>
+          </v-col>
+        <v-spacer/>
+
         </v-row>
+        
     </v-app>
 </template>
 <script>
@@ -26,11 +60,9 @@ export default {
 .rcorners1 {
   border-radius: 25px;
   background: rgb(55,43,255);
-  background-position: right top;
-  padding: 20px;
-  width: 400px;
-  height: 400px;
-  margin-left: 100px;
+  height:400px;
+  width:400px;
+  margin: 50px;
 }
 
 </style>

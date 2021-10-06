@@ -2,15 +2,13 @@
   <v-app-bar app color="primary">
     <!-- aca arriba podemos agregarle la siguiente cosa pero queda muy grueso al principio:  shrink-on-scroll-->
     <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
     <v-spacer></v-spacer>
     <v-spacer></v-spacer>
 
     <v-row>
       <v-col>
         <router-link to="/home">
-        
-          <v-btn v-if="actualPage === 'home'" elevation="2" outlined rounded x-large  class="darkBackground">
+          <v-btn v-if="actualPage === 'home'" elevation="2" flat outlined rounded x-large class="darkBackground" >
             home
             <v-icon> right mdi-home</v-icon>
           </v-btn>
@@ -20,16 +18,24 @@
         </router-link>
       </v-col>
       <v-col>
-        <router-link to="/home">
-          <v-btn elevation="2" rounded outlined x-large>
+        <router-link to="/routines">
+          <v-btn v-if="actualPage === 'rutinas'" elevation="2" rounded outlined x-large class="darkBackground">
+            rutinas
+            <v-icon> right mdi-weight-lifter</v-icon>
+          </v-btn>
+          <v-btn v-else elevation="2" rounded outlined x-large>
             rutinas
             <v-icon> right mdi-weight-lifter</v-icon>
           </v-btn>
         </router-link>
       </v-col>
       <v-col>
-        <router-link to="/home">
-          <v-btn elevation="2" rounded outlined x-large>
+        <router-link to="/favorites">
+          <v-btn v-if="actualPage === 'favoritos'" elevation="2" rounded outlined x-large class="darkBackground">
+            favoritos
+            <v-icon> right mdi-heart </v-icon>
+          </v-btn>
+          <v-btn v-else elevation="2" rounded outlined x-large>
             favoritos
             <v-icon> right mdi-heart </v-icon>
           </v-btn>
@@ -56,7 +62,6 @@ export default {
 
 <style scoped>
 .darkBackground{
-  background-color: #518A83,
-
+  background-color: #518A83;
 }
 </style>

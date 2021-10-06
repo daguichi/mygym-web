@@ -38,9 +38,10 @@
           cols="4"
       >
         <ExcercisesCard></ExcercisesCard>
-
+        
       </v-col>
     </v-row>
+    <create-button></create-button>
   </v-container>
   </v-app>
 </template>
@@ -48,9 +49,10 @@
 <script>
 import navBar from "../components/navBar";
 import ExcercisesCard from "../components/ExcercisesCard";
+import CreateButton from "../components/CreateButton";
 export default {
   name: "Home",
-  components:{navBar,ExcercisesCard}
+  components:{navBar,ExcercisesCard, CreateButton}
 }
 </script>
 

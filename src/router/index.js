@@ -5,6 +5,10 @@ import Register from '../views/Register.vue'
 import LogIn from '../views/LogIn.vue'
 import NotFound from "../views/NotFound";
 import Create from "../views/Create.vue"
+import Profile from "../views/Profile.vue"
+import Routines from "../views/Routines.vue"
+import Favorites from "../views/Favorites.vue"
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -12,6 +16,16 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/favorites',   
+    name: 'Favorites',
+    component: Favorites
+  },
+  {
+    path: '/routines',   
+    name: 'Routines',
+    component: Routines
   },
   {
     path: '/home',   
@@ -32,6 +46,11 @@ const routes = [
     path: "/create",
     name: "Create",
     component: Create
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: Profile
   }
 ]
 

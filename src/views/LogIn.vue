@@ -6,7 +6,7 @@
           <v-col md="4">
             <v-row align="center" justify="center">
               <v-img
-                class="borders"
+                class="border1"
                 max-height="250"
                 max-width="450"
                 src="../assets/output-onlinepngtools.png"
@@ -18,9 +18,9 @@
               </v-btn>
             </router-link>
           </v-col>
-          <v-col></v-col>
-          <v-col md="3">
-            <v-container class="borders">
+          <v-col />
+          <v-col md="4">
+            <v-container class="border2">
               <v-row>
                 <v-text-field
                   background-color="rgb(244, 249, 252)"
@@ -62,12 +62,11 @@
                 ></v-text-field>
               </v-row>
               <v-row class="text-center" justify="center">
-                 <router-link
-        to="/home"
-      >
-                <v-btn  elevation="2" color="#2679CC" dark x-large rounded
-                  >Iniciar sesión
-                </v-btn></router-link>
+                <router-link to="/home">
+                  <v-btn elevation="2" color="#2679CC" dark x-large rounded
+                    >Iniciar sesión
+                  </v-btn></router-link
+                >
               </v-row>
             </v-container>
           </v-col>
@@ -99,7 +98,7 @@ export default {
 <style scoped>
 .fondo {
   width: auto;
-  height: 700px;
+  height: 100vh;
   overflow: visible;
   background-image: url("../assets/fondo.png");
   background-size: cover;
@@ -108,7 +107,11 @@ export default {
   background-color: rgba(0, 0, 0, 0.315);
   opacity: 1;
 }
-.borders {
+.border1 {
   margin-top: 50px;
+}
+.border2 {
+  margin-top: 150px;
+  margin-right: 30px;
 }
 </style>
