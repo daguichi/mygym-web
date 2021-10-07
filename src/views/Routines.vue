@@ -34,15 +34,33 @@
                   ></v-text-field>
         </v-col>
       </v-row>
+      <v-row>
+        <!--
+        <h1>Exercises List</h1>
+        <ul>
+          <li v-for="exercise in exercises" :key="exercise.id">{{ exercise.title}}</li>
+        </ul>
+        -->
+      </v-row>
     </v-container>
   </v-app>
 </template>
 
 <script>
 import navBar from "../components/navBar";
+import {mapState, mapActions} from 'vuex'
+
 export default {
   name: "Routines",
   components: { navBar },
+  methods: {
+    ...mapActions('mockstore', ['fetchExercises']),
+  },
+  computed: {
+    ...mapState('mockstore', {
+        exercises: state => state.items
+    }),
+  },
 };
 </script>
 
