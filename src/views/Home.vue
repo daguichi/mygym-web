@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <navBar actualPage="home"></navBar>
     <!--      no se pq pero hay que meter un br aca pq sino la lavbar tapa la palabra destacados-->
     <br />
     <br />
@@ -26,11 +25,11 @@
       </v-row>
       <create-button></create-button>
     </v-container>
+    <router-view :key="$route.path" />
   </v-app>
 </template>
 
 <script>
-import navBar from "../components/navBar";
 import ExcercisesCard from "../components/ExcercisesCard";
 import CreateButton from "../components/CreateButton";
 export default {
@@ -38,7 +37,7 @@ export default {
   data() {
     return {};
   },
-  components: { navBar, ExcercisesCard, CreateButton },
+  components: {ExcercisesCard, CreateButton },
 };
 </script>
 

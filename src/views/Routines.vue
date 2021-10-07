@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <navBar actualPage="rutinas"></navBar>
     <br /><br /><br /><br />
     <v-container>
       <v-row align="center" justify="center">
@@ -35,22 +34,27 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols ="3">a</v-col>
-        <v-col cols ="3">a</v-col>
-        <v-col cols ="3">a</v-col>
-        <v-col cols ="3">a</v-col>
-        <v-col cols ="3">a</v-col>
-        <v-col cols ="3">a</v-col>
-        <v-col cols ="3">a</v-col>
+        <v-col cols ="4"><category-card class="card"/></v-col>
+        <v-col cols ="4"><category-card class="card"/></v-col>
+        <v-col cols ="4"><category-card class="card"/></v-col>
+        <v-col cols ="4"><category-card class="card"/></v-col>
+        <v-col cols ="4"><category-card class="card"/></v-col>
+        <v-col cols ="4"><category-card class="card"/></v-col>
+        <v-col cols ="4"><category-card class="card"/></v-col>
+        <v-col cols ="4"><category-card class="card"/></v-col>
+        <v-col cols ="4"><category-card class="card"/></v-col>
+        <v-col cols ="4"><category-card class="card"/></v-col>
+        
         
       </v-row>
     </v-container>
+    <router-view :key="$route.path" />
   </v-app>
 </template>
 
 <script>
-import navBar from "../components/navBar";
 import {mapState, mapActions} from 'vuex'
+import CategoryCard from '../components/CategoryCard.vue';
 
 export default {
   name: "Routines",
@@ -59,7 +63,7 @@ export default {
       loading: false,
     }
   },
-  components: { navBar },
+  components: {CategoryCard },
   methods: {
     ...mapActions('exercises', ['fetchExercises']),
   },
@@ -84,6 +88,10 @@ export default {
 }
 .primary {
   background-color: #92D9D3;
+}
+
+.card {
+  margin: 30px;
 }
 
 .text {
