@@ -55,7 +55,14 @@ export default {
 - Para las comunicaciones que son mas complicadas es preferible que usemos Vuex porque esto de eventos no es muy reutilizable.
 
 
-VUEX maneja el estado de nuestro sitio. Maneja toda la información del sitio. Como beneficio es centralizado, va a estar todo junto en un store. (aca va a estar toda la lógica de que cuando uno elimina o agrega una rutina tiene que salir de una lista por ejemplo).
+VUEX maneja el estado de nuestro sitio. Maneja toda la información del sitio. 
+Como beneficio es centralizado, va a estar todo junto en un store. 
+(aca va a estar toda la lógica de que cuando uno elimina o agrega una rutina tiene que salir
+ de una lista por ejemplo).
+
+ ejemplos de acciones --> agregar rutina, eliminar rutina, agregar ejercicio, etc.
+ ejemplos de estados ---> luego de agregar una rutina, en la lista de rutinas debe aparecer la nueva rutina.
+ las mutaciones cambian los estados.
 
 
 

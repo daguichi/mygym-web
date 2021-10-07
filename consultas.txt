@@ -3,3 +3,5 @@
   opc B) <v-button to="/login> </v-button>
 
 2) Aparecen subrayados los botones
+
+3) por qué van los br abajo de los navbar

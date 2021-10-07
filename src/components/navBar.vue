@@ -9,10 +9,10 @@
       <v-col>
         <router-link to="/home">
           <v-btn v-if="actualPage === 'home'" elevation="2" flat outlined rounded x-large class="darkBackground" >
-            home
+            Home
             <v-icon> right mdi-home</v-icon>
           </v-btn>
-          <v-btn v-else elevation="2" rounded x-large outlined>home
+          <v-btn v-else elevation="2" rounded x-large outlined>Home
             <v-icon> right mdi-home</v-icon>
           </v-btn>
         </router-link>
@@ -20,11 +20,11 @@
       <v-col>
         <router-link to="/routines">
           <v-btn v-if="actualPage === 'rutinas'" elevation="2" rounded outlined x-large class="darkBackground">
-            rutinas
+            Rutinas
             <v-icon> right mdi-weight-lifter</v-icon>
           </v-btn>
           <v-btn v-else elevation="2" rounded outlined x-large>
-            rutinas
+            Rutinas
             <v-icon> right mdi-weight-lifter</v-icon>
           </v-btn>
         </router-link>
@@ -32,11 +32,11 @@
       <v-col>
         <router-link to="/favorites">
           <v-btn v-if="actualPage === 'favoritos'" elevation="2" rounded outlined x-large class="darkBackground">
-            favoritos
+            Favoritos
             <v-icon> right mdi-heart </v-icon>
           </v-btn>
           <v-btn v-else elevation="2" rounded outlined x-large>
-            favoritos
+            Favoritos
             <v-icon> right mdi-heart </v-icon>
           </v-btn>
         </router-link>
