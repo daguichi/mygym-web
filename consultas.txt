@@ -5,3 +5,7 @@
 2) Aparecen subrayados los botones
 
 3) por qué van los br abajo de los navbar
+
+4) cuando utilizar lazy loading?
+
+5) autenticacion, como hago para que me lleve la pagina que solicite desp de loguear

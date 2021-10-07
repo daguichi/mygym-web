@@ -38,7 +38,8 @@ const routes = [
     component: LogIn
   },
   {
-    path: "*",
+    path: "notFound",
+    alias: "*",
     name: "NotFound",
     component: NotFound
   },

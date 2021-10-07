@@ -2,6 +2,7 @@ Para enviar información del padre al hijo lo hago a través de props.
 Para enviar información del hijo al padre lo hago a través de eventos.
 
 En mi componente puedo poner:
+
 <template>
 	.......
 	<button @click="notify">{{msg}}</button>
@@ -28,8 +29,7 @@ export default {
 }
 </script>
 
----------------------------------------------------------------------------------------------------
-En el padre el código sería
+En el padre el código sería:
 
 <template>
 	<div id="app">
@@ -52,6 +52,10 @@ export default {
 </script>
 
 
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+
 - Para las comunicaciones que son mas complicadas es preferible que usemos Vuex porque esto de eventos no es muy reutilizable.
 
 
@@ -63,6 +67,13 @@ Como beneficio es centralizado, va a estar todo junto en un store.
  ejemplos de acciones --> agregar rutina, eliminar rutina, agregar ejercicio, etc.
  ejemplos de estados ---> luego de agregar una rutina, en la lista de rutinas debe aparecer la nueva rutina.
  las mutaciones cambian los estados.
+
+Un ejemplo concreto: Supongamos que el usuario está en la página de crear un ejercicio, llena el formulario
+y apreta en el botón de confirmación para crear el ejercicio. En ese momento se genera una acción que es la
+de agregar un ejercicio, esa acción lo primero que hace es comunicarse con la API para que la API lo agregue
+en la base de datos (Hace sus chequeos) y si la API contesta que se agregó bien, entonces la mutación agrega
+en la lista local de ejercicios el nuevo ejercicio, y al cambiar el estado se renderea de nuevo la lista de 
+ejercicios.
 
 
 
