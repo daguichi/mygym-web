@@ -11,12 +11,12 @@
           </v-col>
         </v-row>
         <v-row>
-            <v-card class="mx-auto rounded-xl main-card"
+            <v-card class="mx-auto rounded-xl main-card "
                     max-width="800"
                     color="primary"
             >
               <div class="left-components" >
-                <v-col cols="4">
+                <v-col>
                   <v-text-field
                     label="Nombre de tu rutina"
                     placeholder="Nombre de tu rutina"
@@ -28,8 +28,8 @@
                     hide-no-data
                     hide-selected
                   ></v-text-field>
-                </v-col>
-                  <v-col cols="4">
+
+
                     <v-text-field
                         label="Duración"
                         outlined
@@ -40,11 +40,11 @@
                         hide-details
 
                     ></v-text-field>
-                  </v-col>
-                <v-col cols="4">
+
+
                   <v-autocomplete
                       v-model="selected"
-                      :items="items"
+                      :items="grupos"
                       chips
                       label="Grupos musculares"
                       outlined
@@ -55,8 +55,8 @@
                       multiple
                       single-line
                   ></v-autocomplete>
-                </v-col>
-                <v-col cols="4">
+
+
                   <v-autocomplete
                       ref="Color"
                       outlined
@@ -68,8 +68,9 @@
                       placeholder="Seleccione un color..."
                       required
                   ></v-autocomplete>
-                </v-col>
+               </v-col>
               </div>
+                <v-col>
               <div class="right-components" >
                 <v-col  cols="7" offset="5">
                   <v-card rounded
@@ -77,6 +78,7 @@
                   > hola</v-card>
                 </v-col>
               </div>
+              </v-col>
             </v-card>
         </v-row>
       </v-container>
@@ -86,13 +88,19 @@
 </template>
 
 <script>
+import mockapi from "../api/mockapi";
 export default {
   name: "CreateRoutine",
   data(){
     return{
-      items:['Gluteos','Gemelos'],
+      grupos:[],
       coloresDeFondo:['Amarillo']
     }
+  },
+  created() {
+    mockapi.getGrupos(grupos =>{
+      this.grupos=grupos
+    })
   }
 }
 </script>
@@ -116,7 +124,7 @@ export default {
 }
 .left-components{
   padding-left: 1%;
-  padding-top: 5%;
+  padding-top: 1%;
   padding-bottom: 2%;
 }
 .right-components{
