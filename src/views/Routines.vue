@@ -34,12 +34,14 @@
                   ></v-text-field>
         </v-col>
       </v-row>
-      <v-row v-if="!loading">
-        
-        <h1>Exercises List</h1>
-        <ul>
-          <li v-for="exercise in exercises" :key="exercise.id">{{ exercise.title}}</li>
-        </ul>
+      <v-row>
+        <v-col cols ="3">a</v-col>
+        <v-col cols ="3">a</v-col>
+        <v-col cols ="3">a</v-col>
+        <v-col cols ="3">a</v-col>
+        <v-col cols ="3">a</v-col>
+        <v-col cols ="3">a</v-col>
+        <v-col cols ="3">a</v-col>
         
       </v-row>
     </v-container>
@@ -66,11 +68,13 @@ export default {
         exercises: state => state.exercises
     }),
   },
+  /*
   async created() {
     this.loading = true;
     await this.fetchExercises()
     this.loading = false;
   }
+  */
 };
 </script>
 

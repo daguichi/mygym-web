@@ -7,7 +7,7 @@
 
     <v-row>
       <v-col>
-        <router-link to="/home">
+        <router-link :to="{path: '/home',}">
           <v-btn v-if="actualPage === 'home'" elevation="2" flat outlined rounded x-large class="darkBackground" >
             Home
             <v-icon> right mdi-home</v-icon>
@@ -18,7 +18,7 @@
         </router-link>
       </v-col>
       <v-col>
-        <router-link to="/routines">
+        <router-link :to="{path: '/routines',}">
           <v-btn v-if="actualPage === 'rutinas'" elevation="2" rounded outlined x-large class="darkBackground">
             Rutinas
             <v-icon> right mdi-weight-lifter</v-icon>
@@ -30,7 +30,7 @@
         </router-link>
       </v-col>
       <v-col>
-        <router-link to="/favorites">
+        <router-link :to="{path: '/favorites',}">
           <v-btn v-if="actualPage === 'favoritos'" elevation="2" rounded outlined x-large class="darkBackground">
             Favoritos
             <v-icon> right mdi-heart </v-icon>
