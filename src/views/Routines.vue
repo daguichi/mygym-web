@@ -34,7 +34,7 @@
                   ></v-text-field>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row v-if="loading">
         <!--
         <h1>Exercises List</h1>
         <ul>
@@ -52,6 +52,11 @@ import {mapState, mapActions} from 'vuex'
 
 export default {
   name: "Routines",
+  data() {
+    return {
+      loading: false,
+    }
+  },
   components: { navBar },
   methods: {
     ...mapActions('mockstore', ['fetchExercises']),
@@ -61,6 +66,11 @@ export default {
         exercises: state => state.items
     }),
   },
+  async created() {
+    this.loading = true;
+    await this.fetchExercises()
+    this.loading = false;
+  }
 };
 </script>
 

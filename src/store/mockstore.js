@@ -5,19 +5,6 @@ export default {
     state: {
         items: [],
     },
-    getters: {
-        /* por ahora no pondria ninguno pero dejo estos de ejemplo
-        availableProducts(state) {
-            return state.items.filter(product =>
-                product.inventory > 0)
-        },
-        productIsInStock() {
-            return (product) => {
-                return product.inventory > 0
-            }
-        }
-        */
-    },
     mutations: {
         setExercises(state, exercises) {
             state.items = exercises
