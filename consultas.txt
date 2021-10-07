@@ -1,11 +1,12 @@
-1) Es lo mismo usar el v-router 
-  opc A) <router-link> to="/login> <v-button/> </router-link>
-  opc B) <v-button to="/login> </v-button>
+1) Aparecen subrayados los botones.
 
-2) Aparecen subrayados los botones
+2) por qué van los br abajo de los navbar.
 
-3) por qué van los br abajo de los navbar
+3) cuando utilizar lazy loading?.
 
-4) cuando utilizar lazy loading?
+4.1) autenticacion, como hago para que me lleve la pagina que solicite desp de loguear.
+4.2) por que cuando cambio de home a rutinas no refresca?
 
-5) autenticacion, como hago para que me lleve la pagina que solicite desp de loguear
+5) problema con las cards al hacer zoom.
+
+6) como hacer el popup para crear ejercicios y rutinas.

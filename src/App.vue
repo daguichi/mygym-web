@@ -1,11 +1,14 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <nav-bar-2></nav-bar-2>
+    <router-view :key="$route.path"></router-view>
   </div>
 </template>
 
 <script>
+import navBar2 from './components/navBar2.vue'
 export default {
+  components: { navBar2 },
   name: 'App'
 }
 </script>

@@ -8,22 +8,15 @@
     <v-row>
       <v-col>
         <router-link :to="{path: '/home',}">
-          <v-btn v-if="actualPage === 'home'" elevation="2" flat outlined rounded x-large class="darkBackground" >
+          <v-btn elevation="2" flat outlined rounded x-large >
             Home
-            <v-icon> right mdi-home</v-icon>
-          </v-btn>
-          <v-btn v-else elevation="2" rounded x-large outlined>Home
             <v-icon> right mdi-home</v-icon>
           </v-btn>
         </router-link>
       </v-col>
       <v-col>
         <router-link :to="{path: '/routines',}">
-          <v-btn v-if="actualPage === 'rutinas'" elevation="2" rounded outlined x-large class="darkBackground">
-            Rutinas
-            <v-icon> right mdi-weight-lifter</v-icon>
-          </v-btn>
-          <v-btn v-else elevation="2" rounded outlined x-large>
+          <v-btn elevation="2" rounded outlined x-large>
             Rutinas
             <v-icon> right mdi-weight-lifter</v-icon>
           </v-btn>
@@ -31,11 +24,7 @@
       </v-col>
       <v-col>
         <router-link :to="{path: '/favorites',}">
-          <v-btn v-if="actualPage === 'favoritos'" elevation="2" rounded outlined x-large class="darkBackground">
-            Favoritos
-            <v-icon> right mdi-heart </v-icon>
-          </v-btn>
-          <v-btn v-else elevation="2" rounded outlined x-large>
+          <v-btn  elevation="2" rounded outlined x-large >
             Favoritos
             <v-icon> right mdi-heart </v-icon>
           </v-btn>
@@ -53,10 +42,7 @@
 
 <script>
 export default {
-  name: "navBar",
-  props: {
-    actualPage: String
-  },
+  name: "navBar2",
 };
 </script>
 

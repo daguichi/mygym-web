@@ -1,42 +1,40 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Register from '../views/Register.vue'
-import LogIn from '../views/LogIn.vue'
-import NotFound from "../views/NotFound";
 import Create from "../views/Create.vue"
-import Profile from "../views/Profile.vue"
-import Routines from "../views/Routines.vue"
-import Favorites from "../views/Favorites.vue"
 import CreateRoutine from "../views/CreateRoutine";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/',
+    name: 'LogIn',
+    component: () =>
+        import(/* webpackChunkName: "login" */ "@/views/LogIn.vue"),
+  },
+  {
     path: '/register',
     name: 'Register',
-    component: Register
+    component: () =>
+        import(/* webpackChunkName: "Register" */ "@/views/Register.vue"),
   },
   {
-    path: '/favorites',   
-    name: 'Favorites',
-    component: Favorites
-  },
-  {
-    path: '/routines',   
-    name: 'Routines',
-    component: Routines
-  },
-  {
-    path: '/home',   
+    path: '/home',
     name: 'Home',
     component: Home
   },
   {
-    path: '/',
-    name: 'LogIn',
-    component: LogIn
+    path: '/favorites',   
+    name: 'Favorites',
+    component: () =>
+        import(/* webpackChunkName: "Favorites" */ "@/views/Favorites.vue"),
+  },
+  {
+    path: '/routines',   
+    name: 'Routines',
+    component: () =>
+        import(/* webpackChunkName: "Routines" */ "@/views/Routines.vue"),
   },
   {
     path: "/create",
@@ -51,20 +49,23 @@ const routes = [
   {
     path: "/profile",
     name: "Profile",
-    component: Profile
+    component: () =>
+        import(/* webpackChunkName: "Profile" */ "@/views/Profile.vue"),
   },
   {
     path: "notFound",
     alias: "*",
     name: "NotFound",
-    component: NotFound
+    component: () =>
+        import(/* webpackChunkName: "notfound" */ "@/views/NotFound.vue"),
   }
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
+ // base: process.env.BASE_URL,
   routes
-})
+});
 
-export default router
+
+export default router;

@@ -1,13 +1,13 @@
-import mockapi from "../api/mockapi"
+import mockapi from '@/api/mockapi'
 
 export default {
     namespaced: true,
     state: {
-        items: [],
+        exercises: [],
     },
     mutations: {
         setExercises(state, exercises) {
-            state.items = exercises
+            state.exercises = exercises
         },
     },
     actions: {
