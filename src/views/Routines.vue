@@ -34,13 +34,13 @@
                   ></v-text-field>
         </v-col>
       </v-row>
-      <v-row v-if="loading">
-        <!--
+      <v-row v-if="!loading">
+        
         <h1>Exercises List</h1>
         <ul>
           <li v-for="exercise in exercises" :key="exercise.id">{{ exercise.title}}</li>
         </ul>
-        -->
+        
       </v-row>
     </v-container>
   </v-app>
@@ -59,11 +59,11 @@ export default {
   },
   components: { navBar },
   methods: {
-    ...mapActions('mockstore', ['fetchExercises']),
+    ...mapActions('exercises', ['fetchExercises']),
   },
   computed: {
-    ...mapState('mockstore', {
-        exercises: state => state.items
+    ...mapState('exercises', {
+        exercises: state => state.exercises
     }),
   },
   async created() {
