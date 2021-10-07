@@ -88,19 +88,15 @@
 </template>
 
 <script>
-import mockapi from "../api/mockapi";
 export default {
   name: "CreateRoutine",
-  data(){
-    return{
-      grupos:[],
-      coloresDeFondo:['Amarillo']
+  computed: {
+    grupos(){
+      return this.$store.getters.state.availableGroups
     }
   },
   created() {
-    mockapi.getGrupos(grupos =>{
-      this.grupos=grupos
-    })
+
   }
 }
 </script>

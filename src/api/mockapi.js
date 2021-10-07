@@ -3,16 +3,16 @@ const _exercises = [
     { "id": 2, "title": "Ex 2", "duration": 200},
     { "id": 3, "title": "Ex 3", "duration": 300}
 ]
-const _gruposMusculares=[
-    {Nombre:"gluteos"},
-    {Nombre:"Gemelos"},
-    {Nombre:"Biceps"},
+const _grupos=[
+    "gluteos",
+    "Gemelos",
+    "Biceps"
 ]
 export default {
     getExercises(okCallback) {
         setTimeout(() => okCallback(_exercises), 100)
     },
     getGrupos(okCallback) {
-        setTimeout(() => okCallback(_gruposMusculares), 100)
+        setTimeout(() => okCallback(_grupos), 100)
     },
 }
