@@ -1,17 +1,17 @@
 export { Api }
 
 class Api {
-  static token
+  static token; // variable que se guarda al loguear a la api para que desp me quede logueado
 
   static get baseUrl() {
-    return 'http://127.0.0.1:8080/api'
+    return 'http://127.0.0.1:8080/api';
   }
 
-  static get timeout() {
-    return 60 * 1000
+  static get timeout() { // tiempo maximo de espera de la respuesta de la api (lo podemos cambiar obvio)
+    return 60 * 1000;
   }
 
-  static async fetch(url, secure, init = {}, controller) {
+  static async fetch(url, secure, init = {}, controller) { // este metodo es generico, es el que usan post, get, etc
     if (secure && Api.token) {
       if (!init.headers)
         init.headers = {}
