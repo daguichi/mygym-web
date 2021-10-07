@@ -6,7 +6,6 @@
     <br>
     <br>
     <v-container>
-
     <v-row><p class="font-weight-black">destacados</p></v-row>
     <v-row>
       <v-col

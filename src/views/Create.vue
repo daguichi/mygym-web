@@ -28,6 +28,7 @@
             <h2>ejercicio</h2>
           </v-col>
           <v-col>
+            <router-link to="/createRoutine">
             <v-btn  
             class="rcorners1"
             x-large 
@@ -39,6 +40,7 @@
                 src="../assets/output-onlinepngtools.png"
             ></v-img>
               </v-btn>
+            </router-link>
             <h2>rutina</h2>
           </v-col>
         <v-spacer/>

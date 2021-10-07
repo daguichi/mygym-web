@@ -1,7 +1,8 @@
 <template>
   <div >
     <v-card
-        class="rounded-xl imagen"
+        class="rounded-xl imagen mx-auto"
+        max-width="400"
         height="200"
         outlined
         color="blue lighten-3">

@@ -8,6 +8,7 @@ import Create from "../views/Create.vue"
 import Profile from "../views/Profile.vue"
 import Routines from "../views/Routines.vue"
 import Favorites from "../views/Favorites.vue"
+import CreateRoutine from "../views/CreateRoutine";
 
 Vue.use(VueRouter)
 
@@ -38,20 +39,25 @@ const routes = [
     component: LogIn
   },
   {
-    path: "notFound",
-    alias: "*",
-    name: "NotFound",
-    component: NotFound
-  },
-  {
     path: "/create",
     name: "Create",
     component: Create
   },
   {
+    path: "/createRoutine",
+    name: CreateRoutine,
+    component: CreateRoutine
+  },
+  {
     path: "/profile",
     name: "Profile",
     component: Profile
+  },
+  {
+    path: "notFound",
+    alias: "*",
+    name: "NotFound",
+    component: NotFound
   }
 ]
 
