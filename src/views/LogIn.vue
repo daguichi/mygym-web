@@ -23,6 +23,7 @@
             <v-container class="border2">
               <v-row>
                 <v-text-field
+                  v-model="username"
                   background-color="rgb(244, 249, 252)"
                   placeholder="Usuario"
                   elevation="2"
@@ -62,11 +63,10 @@
                 ></v-text-field>
               </v-row>
               <v-row class="text-center" justify="center">
-                <router-link to="/home">
-                  <v-btn elevation="2" color="#2679CC" dark x-large rounded
+        
+                  <v-btn @click="logIn" elevation="2" color="#2679CC" dark x-large rounded
                     >Iniciar sesión
-                  </v-btn></router-link
-                >
+                  </v-btn>
               </v-row>
             </v-container>
           </v-col>
@@ -77,6 +77,8 @@
 </template>
 
 <script>
+import UserStore from "../store/userStore"
+import router from "../router/index"
 export default {
   name: "LogIn",
   data() {
@@ -85,13 +87,26 @@ export default {
       show2: true,
       show3: false,
       show4: false,
+      username: "",
       password: "",
       rules: {
         required: (value) => !!value || "Requerido.",
         emailMatch: () => `The email and password you entered don't match`,
       },
+      store: UserStore,
     };
   },
+  methods: {
+    async logIn() {
+      let res;
+      try {
+        res = await this.store.logIn(this.username, this.password);
+      } catch (err) {
+        return ;
+      }
+      if (res) router.push('Home');
+    }
+  }
 };
 </script>
 
