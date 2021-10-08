@@ -1,31 +1,41 @@
 <template>
 
-    <v-card>
+  <v-container>
+    <v-row>
+      <v-card class="card">
         <v-img
-            src="https://picsum.photos/350/165?random"
-            height="125"
+            :src="imgUrl"
+            height="100%"
             class="grey darken-4"
         ></v-img>
-        <v-card-title class="text-h6">
-            Pecho
-        </v-card-title>
     </v-card>
+    </v-row>
+    <v-row align="center" justify="center">
+      <h2>{{title}}</h2>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
 export default {
   name: "CategoryCard",
-  data() {
-    return {
-      item: {
-        title: "Categoría",
-      },
-    };
+  props: {
+    title: String,
+    imgUrl: URL
   },
-};
+  data() {
+    return {};
+  }
+}
 </script>
 
 <style scoped>
+.card {
+  width: 153px;
+  height: 141px;
+  overflow: visible;
+  border-radius: 20px;
+}
 .imagen {
   background: rgb(55, 43, 255);
   background: linear-gradient(
@@ -38,4 +48,5 @@ export default {
 .microText {
   font-size: 0.65em;
 }
+
 </style>

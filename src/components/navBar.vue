@@ -9,7 +9,7 @@
       <v-row>
         <v-col>
           <router-link to='/home'>
-            <v-btn v-if="actualPage === 'home'" elevation="2" flat outlined rounded x-large class="darkBackground" >
+            <v-btn v-if="actualPage === 'home'" elevation="2" flat rounded x-large class="darkBackground" >
               Home
               <v-icon> right mdi-home</v-icon>
             </v-btn>
@@ -45,10 +45,12 @@
       </v-row>
       <v-spacer></v-spacer>
       <v-spacer></v-spacer>
-      <v-btn x-large>
-        <v-icon> left mdi-account-circle </v-icon>
-        username
-      </v-btn>
+      <router-link to='/profile'>
+        <v-btn x-large>
+          <v-icon> left mdi-account-circle </v-icon>
+          username
+        </v-btn>
+      </router-link>
     </v-app-bar>
   </nav>
 </template>

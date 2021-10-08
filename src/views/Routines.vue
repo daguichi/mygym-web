@@ -1,6 +1,6 @@
 <template>
   <div>
-    <br /><br /><br /><br />
+    <br/>
     <v-container>
       <v-row align="center" justify="center">
         <v-col></v-col>
@@ -34,18 +34,12 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols ="4"><category-card class="card"/></v-col>
-        <v-col cols ="4"><category-card class="card"/></v-col>
-        <v-col cols ="4"><category-card class="card"/></v-col>
-        <v-col cols ="4"><category-card class="card"/></v-col>
-        <v-col cols ="4"><category-card class="card"/></v-col>
-        <v-col cols ="4"><category-card class="card"/></v-col>
-        <v-col cols ="4"><category-card class="card"/></v-col>
-        <v-col cols ="4"><category-card class="card"/></v-col>
-        <v-col cols ="4"><category-card class="card"/></v-col>
-        <v-col cols ="4"><category-card class="card"/></v-col>
+        <v-col cols ="3"><category-card class="card" title="Espalda" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" /></v-col>
+        <v-col cols ="3"><category-card class="card" title="Espalda" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" /></v-col>
+        <v-col cols ="3"><category-card class="card" title="Espalda" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" /></v-col>
+        <v-col cols ="3"><category-card class="card" title="Espalda" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" /></v-col>
         
-        
+          
       </v-row>
     </v-container>
   </div>

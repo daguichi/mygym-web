@@ -11,16 +11,16 @@
         <v-card-title
             class="text-h5"
             align="center"
-            v-text= item.title
+            v-text="titulo"
 
         ></v-card-title>
 
-        <v-card-subtitle class="font-italic font-weight-thin microText">rutina creada por: {{item.name}}</v-card-subtitle>
+        <v-card-subtitle class="font-italic font-weight-thin microText">rutina creada por: {{author}}</v-card-subtitle>
 
          <v-icon
-         v-for="n in 4"
+          v-for='n in stars'
          :key="n"
-         cols="4">mdi-star</v-icon>
+        >mdi-star</v-icon>
         <v-card-actions class="mt-4" >
           <v-btn
               class="ml-2 mt-3"
@@ -52,8 +52,7 @@
       >
         <v-img
             class="rounded-xl"
-
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"></v-img>
+            :src="imgUrl"></v-img>
       </v-avatar>
     </div>
     </v-card>
@@ -66,13 +65,15 @@ export default {
   name: "ExcercisesCard",
   data(){
     return{
-      item:{
-        title:"Titulo Rutina",
-        name:"pedro"
-
-      }
     }
-  }
+  },
+  props: 
+    [
+    'titulo',
+    'imgUrl',
+    'author',
+    'stars',
+    ]
 }
 </script>
 
