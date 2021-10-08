@@ -33,13 +33,11 @@
                   ></v-text-field>
         </v-col>
       </v-row>
-      <v-row>
-        <v-col cols ="3"><category-card class="card" title="Espalda" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" /></v-col>
-        <v-col cols ="3"><category-card class="card" title="Espalda" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" /></v-col>
-        <v-col cols ="3"><category-card class="card" title="Espalda" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" /></v-col>
-        <v-col cols ="3"><category-card class="card" title="Espalda" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" /></v-col>
-        
-          
+      <v-row :v-if="!loading">
+        <v-col cols="3"  v-for="sport in exercises" :key="sport">
+          <category-card class="card" :title="sport.title" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg">
+          </category-card>
+        </v-col> 
       </v-row>
     </v-container>
   </div>
@@ -56,7 +54,7 @@ export default {
       loading: false,
     }
   },
-  components: {CategoryCard },
+  components: {CategoryCard},
   methods: {
     ...mapActions('exercises', ['fetchExercises']),
   },
@@ -65,13 +63,13 @@ export default {
         exercises: state => state.exercises
     }),
   },
-  /*
+  
   async created() {
     this.loading = true;
-    await this.fetchExercises()
+    await this.fetchExercises();
     this.loading = false;
   }
-  */
+
 };
 </script>
 
