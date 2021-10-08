@@ -1,4 +1,4 @@
-import {UserApi, Credentials} from "@/backend/user";
+import {UserApi, Credentials} from "@/api/user";
 
 const UserStore = {
     async logIn(username, password) {
