@@ -4,9 +4,21 @@
     <v-container>
       <v-row><p class="font-weight-black">destacados</p></v-row>
       <v-row>
-        <v-col v-for="n in 3" :key="n" cols="4">
-          <ExcercisesCard titulo="Abdominales" author="dax" stars="iii" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"></ExcercisesCard>
-        </v-col>
+        <v-slide-group
+            v-model="model"
+            class="pa-4"
+            active-class="success"
+            show-arrows
+        >
+          <v-slide-item
+              v-for="n in 15"
+              :key="n"
+          >
+            <ExcercisesCard titulo="Abdominales" author="dax" stars="iiiii" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"></ExcercisesCard>
+
+          </v-slide-item>
+        </v-slide-group>
+
       </v-row>
       <v-row><p class="font-weight-black">mis rutinas</p></v-row>
       <v-row>

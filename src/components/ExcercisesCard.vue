@@ -63,6 +63,7 @@ export default {
     rgba(0, 212, 255, 1) 100%
   );
 }
+
 .microText {
   font-size: 0.65em;
 }

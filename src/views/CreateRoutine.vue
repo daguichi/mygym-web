@@ -3,69 +3,80 @@
     <div>
       <div class="bg">
         <v-container class="body-container">
-          <v-row>
+          <v-row >
             <v-col cols="8">
               <h2 class="text-center">tu nueva rutina</h2>
             </v-col>
           </v-row>
-          <v-row>
+
             <v-card
               class="mx-auto rounded-xl main-card"
               max-width="800"
               color="primary"
             >
-              <div class="left-components">
+              <div class="left-components" >
+                <v-row>
                 <v-col>
-                  <v-text-field
-                    label="Nombre de tu rutina"
-                    placeholder="Nombre de tu rutina"
-                    outlined
-                    class="rounded-xl"
-                    required
-                    single-line
-                    hide-details
-                    hide-no-data
-                    hide-selected
-                  ></v-text-field>
+                  <v-row>
+                    <v-text-field
+                      label="Nombre de tu rutina"
+                      placeholder="Nombre de tu rutina"
+                      outlined
+                      class="rounded-xl"
+                      required
+                      single-line
+                      hide-details
+                      hide-no-data
+                      hide-selected
+                    ></v-text-field>
+                  </v-row>
 
-                  <v-text-field
-                    label="Duración"
-                    outlined
-                    rounded
-                    value="00:00:00"
-                    type="time"
-                    required
-                    hide-details
-                  ></v-text-field>
+                  <v-row>
+                    <v-text-field
+                      label="Duración"
+                      outlined
+                      rounded
+                      value="00:00:00"
+                      type="time"
+                      required
+                      hide-details
+                    ></v-text-field>
+                  </v-row>
+                  <v-row> </v-row>
+                  <v-row>
+                    <v-autocomplete
+                        v-model="selected"
+                        chips
+                        label="Grupos musculares"
+                        outlined
+                        rounded
+                        hide-details
+                        hide-no-data
+                        hide-selected
+                        multiple
+                        single-line
+                    ></v-autocomplete>
+                  </v-row>
+                  <v-row> </v-row>
 
-                  <v-autocomplete
-                    v-model="selected"
-                    :items="grupos"
-                    chips
-                    label="Grupos musculares"
-                    outlined
-                    rounded
-                    hide-details
-                    hide-no-data
-                    hide-selected
-                    multiple
-                    single-line
-                  ></v-autocomplete>
-
-                  <v-autocomplete
-                    ref="Color"
-                    outlined
-                    rounded
-                    v-model="ColorDeFondo"
-                    :rules="[
-                      () => !!coloresDeFondo || 'Este campo es obligatorio',
-                    ]"
-                    :items="coloresDeFondo"
-                    label="Color de fondo"
-                    placeholder="Seleccione un color..."
-                    required
-                  ></v-autocomplete>
+                  <v-row>
+                    <v-autocomplete
+                      ref="Color"
+                      outlined
+                      rounded
+                      v-model="ColorDeFondo"
+                      :rules="[
+                        () => !!coloresDeFondo || 'Este campo es obligatorio',
+                      ]"
+                      :items="coloresDeFondo"
+                      label="Color de fondo"
+                      placeholder="Seleccione un color..."
+                      required
+                    ></v-autocomplete>
+                  </v-row>
                 </v-col>
+                  <v-col>hola</v-col>
+                </v-row>
               </div>
               <v-col>
                 <div class="right-components">
@@ -75,7 +86,7 @@
                 </div>
               </v-col>
             </v-card>
-          </v-row>
+
         </v-container>
       </div>
     </div>
@@ -114,9 +125,7 @@ export default {
   height: 1%;
 }
 .left-components {
-  padding-left: 1%;
-  padding-top: 1%;
-  padding-bottom: 2%;
+  padding: 2%;
 }
 .right-components {
   padding-right: 1%;
