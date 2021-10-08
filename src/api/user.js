@@ -8,7 +8,8 @@ class UserApi {
     }
 
     static async login(credentials, controller) {
-        return await Api.post(UserApi.getUrl('login'), false, credentials, controller)
+        let res = await Api.post(UserApi.getUrl('login'), false, credentials, controller)
+        Api.token = res.token;
     }
 
     static async logout(controller) {
