@@ -19,6 +19,7 @@
         <v-col v-for="n in 3" :key="n" cols="4">
           <ExcercisesCard titulo="Abdominales" author="dax" stars="ii" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"></ExcercisesCard>
         </v-col>
+        <create/>
       </v-row>
     </v-container>
   </div>
@@ -26,12 +27,13 @@
 
 <script>
 import ExcercisesCard from "../components/ExcercisesCard";
+import Create from "../components/Create";
 export default {
   name: "Home",
   data() {
     return {};
   },
-  components: { ExcercisesCard },
+  components: { ExcercisesCard, Create },
 };
 </script>
 

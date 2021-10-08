@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from "../views/Home.vue"
-import Create from "../views/Create.vue"
 import CreateRoutine from "../views/CreateRoutine";
 import LogIn from "../views/LogIn";
 import NotFound from "../views/NotFound";
@@ -38,11 +37,6 @@ const routes = [
     path: '/routines',   
     name: 'Routines',
     component: Routines,
-  },
-  {
-    path: "/create",
-    name: "Create",
-    component: Create
   },
   {
     path: "/createRoutine",
