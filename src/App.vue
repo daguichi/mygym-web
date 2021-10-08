@@ -16,7 +16,7 @@ export default {
   },
   computed: {
     shouldShowBar(){
-      return this.$route.path === '/routines' || this.$route.path === '/favorites' || this.$route.path === '/home';
+      return this.$route.path === '/routines' || this.$route.path === '/favorites' || this.$route.path === '/home' || this.$route.path === '/profile';
     },
     showNavBar(){
       return this.shouldShowBar;
