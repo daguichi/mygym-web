@@ -15,8 +15,7 @@
               color="primary"
             >
               <div class="left-components" >
-                <v-col md="1">col1</v-col>
-                <v-col>col2</v-col>
+                <v-row>
                 <v-col>
                   <v-row>
                     <v-text-field
@@ -76,6 +75,8 @@
                     ></v-autocomplete>
                   </v-row>
                 </v-col>
+                  <v-col>hola</v-col>
+                </v-row>
               </div>
               <v-col>
                 <div class="right-components">
