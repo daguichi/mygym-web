@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <div>
         <v-row>
         <navBar></navBar>
         </v-row>
@@ -47,7 +47,7 @@
 
         </v-row>
         
-    </v-app>
+    </div>
 </template>
 <script>
 import navBar from "../components/navBar";

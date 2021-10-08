@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <div>
     <v-spacer></v-spacer>
     <h1>Not Found</h1>
     <v-row align="center" justify="center">
@@ -10,7 +10,7 @@
         src="../assets/mancuerna-rota.jpg"
     ></v-img>
     </v-row>
-  </v-app>
+  </div>
 </template>
 
 <script>

@@ -1,7 +1,5 @@
 <template>
-  <v-app>
-    <navBar></navBar>
-
+  <div>
     <v-main class="grey lighten-3">
       <v-container>
         <v-row>
@@ -70,11 +68,10 @@
         </v-row>
       </v-container>
     </v-main>
-  </v-app>
+  </div>
 </template>
 
 <script>
-import navBar from "../components/navBar";
 import store from "@/store/profile";
 
 export default {
@@ -88,6 +85,6 @@ export default {
     historial: Boolean,
     editarperfil: Boolean,
   },
-  components: { navBar },
+  components: { },
 };
 </script>

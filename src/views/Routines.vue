@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <div>
     <br /><br /><br /><br />
     <v-container>
       <v-row align="center" justify="center">
@@ -48,8 +48,7 @@
         
       </v-row>
     </v-container>
-    <router-view :key="$route.path" />
-  </v-app>
+  </div>
 </template>
 
 <script>

@@ -1,9 +1,6 @@
 <template>
-  <v-app>
-    <!--      no se pq pero hay que meter un br aca pq sino la lavbar tapa la palabra destacados-->
-    <br />
-    <br />
-    <br />
+  <div>
+    <br/><br/><br/>
     <v-container>
       <v-row><p class="font-weight-black">destacados</p></v-row>
       <v-row>
@@ -23,21 +20,18 @@
           <ExcercisesCard></ExcercisesCard>
         </v-col>
       </v-row>
-      <create-button></create-button>
     </v-container>
-    <router-view :key="$route.path" />
-  </v-app>
+  </div>
 </template>
 
 <script>
 import ExcercisesCard from "../components/ExcercisesCard";
-import CreateButton from "../components/CreateButton";
 export default {
   name: "Home",
   data() {
     return {};
   },
-  components: {ExcercisesCard, CreateButton },
+  components: { ExcercisesCard },
 };
 </script>
 

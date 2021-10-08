@@ -1,16 +1,28 @@
 <template>
-  <div id="app">
-    <nav-bar-2></nav-bar-2>
-    <router-view :key="$route.path"></router-view>
-  </div>
-</template>
+<v-app>
+  <nav-bar v-if="showNavBar"></nav-bar>
+  <v-main>
+    <router-view :key="$route.fullPath"></router-view>
+  </v-main>
+</v-app>
 
+</template>
 <script>
-import navBar2 from './components/navBar2.vue'
+import NavBar from './components/navBar.vue';
 export default {
-  components: { navBar2 },
-  name: 'App'
-}
+  name: 'App',
+  components: {
+    NavBar
+  },
+  computed: {
+    shouldShowBar(){
+      return this.$route.path === '/routines' || this.$route.path === '/favorites' || this.$route.path === '/home';
+    },
+    showNavBar(){
+      return this.shouldShowBar;
+    }
+  },
+};
 </script>
 
 <style lang="scss">
@@ -24,7 +36,6 @@ export default {
 
 #nav {
   padding: 30px;
-
   a {
     font-weight: bold;
     color: #2c3e50;

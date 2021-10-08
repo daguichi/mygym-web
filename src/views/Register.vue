@@ -1,8 +1,6 @@
 <template>
-  <v-app>
-    
-    <div class="fivepeople">
-      <v-container fluid class="fill-height pa-0 ma-0">
+  <div class="fivepeople">
+    <v-container fluid class="fill-height pa-0 ma-0">
       <v-row align="center" justify="center">
         <v-img
           max-height="150"
@@ -12,9 +10,7 @@
       </v-row>
       <register-card></register-card>
     </v-container>
-    </div>
-    
-  </v-app>
+  </div>
 </template>
 
 <script>

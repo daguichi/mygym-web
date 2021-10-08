@@ -1,10 +1,9 @@
 <template>
-  <v-app>
+  <div>
     <br><br><br><br>
     <GoBack />
       <!--      no se pq pero hay que meter un br aca pq sino la lavbar tapa la palabra destacados-->
-    <router-view :key="$route.path" />
-  </v-app>
+  </div>
 </template>
 
 <script>

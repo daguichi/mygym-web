@@ -4,7 +4,8 @@ import vuetify from './plugins/vuetify'
 import router from './router'
 import store from './store'
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = false; // investigar que es esto
+//Vue.config.silent = true          y esto que es
 
 new Vue({
   vuetify,

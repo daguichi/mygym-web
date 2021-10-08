@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-app>
+    <div>
       <div class="bg">
         <v-container class="body-container">
           <v-row>
@@ -78,7 +78,7 @@
           </v-row>
         </v-container>
       </div>
-    </v-app>
+    </div>
   </v-container>
 </template>
 
