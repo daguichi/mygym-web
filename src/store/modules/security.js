@@ -1,5 +1,5 @@
-import {UserApi} from "../../../api/user";
-import {Api} from "../../../api/api";
+import {UserApi} from "../../api/user";
+import {Api} from "../../api/api";
 
 const SECURITY_TOKEN_KEY = 'security-token'
 
@@ -43,6 +43,7 @@ export default {
         },
         async login({dispatch}, {credentials, rememberMe}) {
             const result = await UserApi.login(credentials)
+            console.log(result)
             dispatch('updateToken', { token: result.token, rememberMe })
         },
         async logout({dispatch}) {

@@ -82,8 +82,9 @@
 </template>
 
 <script>
-import UserStore from "../store/userStore";
-import router from "../router/index";
+import {mapState, mapGetters, mapActions} from 'vuex';
+import {Credentials} from "../api/user";
+import router from "../router/index"
 export default {
   name: "LogIn",
   data() {
@@ -94,22 +95,74 @@ export default {
       show4: false,
       username: "",
       password: "",
+      result: null,
+      controller: null,
       rules: {
         required: (value) => !!value || "Requerido.",
         emailMatch: () => `The email and password you entered don't match`,
       },
-      store: UserStore,
     };
   },
-  methods: {
-    async logIn() {
-      this.store.logIn(this.username, this.password).then((user) => {
-         console.log(user);
-      });
-
-      if (this.store.isLoggedIn()) router.push("Home");
-      console.log(localStorage.getItem("user"))
+  computed: {
+    ...mapState('security', {
+      $user: state => state.user,
+    }),
+    ...mapGetters('security', {
+      $isLoggedIn: 'isLoggedIn'
+    }),
+    canCreate() {
+      return this.$isLoggedIn && !this.sport
     },
+    canOperate() {
+      return this.$isLoggedIn && this.sport
+    },
+    canAbort() {
+      return this.$isLoggedIn && this.controller
+    }
+  },
+  methods: {
+    ...mapActions('security', {
+      $getCurrentUser: 'getCurrentUser',
+      $login: 'login',
+      $logout: 'logout',
+    }),
+    ...mapActions('sport', {
+      $createSport: 'create',
+      $modifySport: 'modify',
+      $deleteSport: 'delete',
+      $getSport: 'get',
+      $getAllSports: 'getAll'
+    }),
+    setResult(result){
+      this.result = JSON.stringify(result, null, 2)
+    },
+    clearResult() {
+      this.result = null
+    },
+    async logIn() {
+      try {
+        const credentials = new Credentials(this.username, this.password)
+        this.$login({credentials, rememberMe: true }).then(() => {console.log(this.$isLoggedIn)})
+        this.clearResult()
+      } catch (e) {
+        this.setResult(e)
+      }
+      
+      if (this.$isLoggedIn) router.push("Home")
+    },
+    async logout() {
+      await this.$logout()
+      this.clearResult()
+    },
+    async getCurrentUser() {
+      await this.$getCurrentUser()
+      this.setResult(this.$user)
+    },
+
+    abort() {
+      this.controller.abort()
+    }
+
   },
 };
 </script>

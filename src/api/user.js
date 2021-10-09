@@ -15,6 +15,7 @@ class UserApi {
       controller
     );
     Api.token = res.token;
+    return res;
   }
 
   static async logout(controller) {
