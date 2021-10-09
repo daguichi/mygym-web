@@ -64,34 +64,3 @@ const router = new VueRouter({
 
 
 export default router;
-
-/*
-export const router = new VueRouter({
-  routes: [
-    {path:'/', component: LandingPage3},
-    {path:'/MisRutinas', component: MisRutinas, meta: {requiresAuth: true}},
-    {path:'/MisEjercicios', component: MisEjercicios, meta: {requiresAuth: true}},
-    {path:'/Favoritos', component: Favoritos, meta: {requiresAuth: true}},
-    {path:'/Descubrir', component: Descubrir, meta: {requiresAuth: true}},
-    {path:'/ConfirmacionMail',component: ConfirmacionMail},
-    {path:'/routines/:id',component: RutinaCompartida},
-    {path:'*', component: NotFound}
-  ]
-})
-
-router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresAuth)){
-    if (! Api.getToken()){
-      next({
-        path: '/'
-      });
-    }else{
-      next();
-    }
-  }else{
-    next();
-  }
-});
-
-Api.restoreToken();
-*/

@@ -1,5 +1,5 @@
-import {UserApi} from "../../../api/user";
-import {Api} from "../../../api/api";
+import {UserApi} from "../../api/user";
+import {Api} from "../../api/api";
 
 const SECURITY_TOKEN_KEY = 'security-token'
 
