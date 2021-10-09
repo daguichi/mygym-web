@@ -50,9 +50,8 @@ export default {
             await UserApi.logout()
             dispatch('removeToken')
         },
-        async register(credentials) {
-            console.log(credentials);
-            await UserApi.register(credentials)
+        async register({regcredentials}) {
+            await UserApi.register(regcredentials)
         },
         async getCurrentUser({state, commit}) {
             if (state.user)

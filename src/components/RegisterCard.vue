@@ -174,9 +174,9 @@ export default {
     },
     
     async register() {
-      let credentials = new RegisterCredentials(this.username, this.password1, this.email);
-      console.log(credentials);
-      await this.$register(credentials);
+      let regcredentials = new RegisterCredentials(this.username, this.password1, this.email);
+      console.log(regcredentials);
+      await this.$register({regcredentials});
       router.push("Verification")
     }
   },
