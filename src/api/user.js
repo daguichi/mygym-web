@@ -1,6 +1,6 @@
 import { Api } from "./api.js";
 
-export { UserApi, Credentials, RegisterCredentials };
+export { UserApi, Credentials, RegisterCredentials, Verification };
 
 class UserApi {
   static getUrl(slug) {
@@ -27,7 +27,11 @@ class UserApi {
   }
 
   static async register(credentials, controller) {
-    return await Api.post(UserApi.getUrl(""), false, credentials, controller);
+    await Api.post(UserApi.getUrl(""), false, credentials, controller);
+  }
+
+  static async verifyEmail(verification, controller) {
+    await Api.post(UserApi.getUrl("/verify_email"), false, verification, controller);
   }
 }
 
@@ -45,5 +49,12 @@ class RegisterCredentials {
     this.email = email;
     this.avatar =
       "https://cdn0.iconfinder.com/data/icons/handsome-man-avatars/283/stock_man_avatar-17-1024.png";
+  }
+}
+
+class Verification {
+  constructor(email, code) {
+    this.email = email;
+    this.code = code;
   }
 }

@@ -126,13 +126,6 @@ export default {
       $login: 'login',
       $logout: 'logout',
     }),
-    ...mapActions('sport', {
-      $createSport: 'create',
-      $modifySport: 'modify',
-      $deleteSport: 'delete',
-      $getSport: 'get',
-      $getAllSports: 'getAll'
-    }),
     setResult(result){
       this.result = JSON.stringify(result, null, 2)
     },

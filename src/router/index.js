@@ -8,7 +8,7 @@ import Profile from "../views/Profile";
 import Favorites from "../views/Favorites";
 import Routines from "../views/Routines";
 import Register from "../views/Register";
-
+import Verification from "../views/Verification";
 
 Vue.use(VueRouter)
 
@@ -47,6 +47,11 @@ const routes = [
     path: "/profile",
     name: "Profile",
     component: Profile,
+  },
+  {
+    path: "/verification",
+    name: "Verification",
+    component: Verification,
   },
   {
     path: "notFound",

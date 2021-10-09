@@ -15,7 +15,7 @@
               <v-container>
                 <v-row>
                   <v-text-field
-                  v-model="username"
+                    v-model="username"
                     background-color="rgb(244, 249, 252)"
                     placeholder="Usuario"
                     elevation="2"
@@ -33,7 +33,7 @@
                 </v-row>
                 <v-row>
                   <v-text-field
-                  v-model="email"
+                    v-model="email"
                     background-color="rgb(244, 249, 252)"
                     placeholder="Correo electrónico"
                     elevation="2"
@@ -110,13 +110,17 @@
 </template>
 
 <script>
-import UserStore from "../store/userStore"
-import { UserApi, RegisterCredentials } from "../api/user"
+import {RegisterCredentials } from "../api/user"
+
+import {mapState, mapGetters, mapActions} from 'vuex';
+import router from '../router';
+
+
 export default {
   name: "RegisterCard",
   data() {
     return {
-      store: UserStore,
+
       show1: false,
       show2: true,
       show3: false,
@@ -132,18 +136,48 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapState('security', {
+      $user: state => state.user,
+    }),
+    ...mapGetters('security', {
+      $isLoggedIn: 'isLoggedIn'
+    }),
+    canCreate() {
+      return this.$isLoggedIn && !this.sport
+    },
+    canOperate() {
+      return this.$isLoggedIn && this.sport
+    },
+    canAbort() {
+      return this.$isLoggedIn && this.controller
+    }
+  },
   methods: {
+     ...mapActions('security', {
+       $register: 'register'
+    }),
+    setResult(result){
+      this.result = JSON.stringify(result, null, 2)
+    },
+    clearResult() {
+      this.result = null
+    },
+    
+    async getCurrentUser() {
+      await this.$getCurrentUser()
+      this.setResult(this.$user)
+    },
+
+    abort() {
+      this.controller.abort()
+    },
+    
     async register() {
-      let fullUserStr;
-      let credentials = new RegisterCredentials(this.username, this.password, this.email);
-      UserApi.register(credentials).then((fullUser) => {
-        fullUserStr = fullUser;
-        alert(JSON.stringify(fullUserStr));
-        return fullUser;
-      }).catch((error) => {
-        return error.description;
-      });
-      
+      let credentials = new RegisterCredentials(this.username, this.password1, this.email);
+      console.log(credentials);
+      await this.$register(credentials);
+      router.push("Verification")
     }
   },
 };

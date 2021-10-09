@@ -43,12 +43,16 @@ export default {
         },
         async login({dispatch}, {credentials, rememberMe}) {
             const result = await UserApi.login(credentials)
-            console.log(result)
+            console.log(result.token)
             dispatch('updateToken', { token: result.token, rememberMe })
         },
         async logout({dispatch}) {
             await UserApi.logout()
             dispatch('removeToken')
+        },
+        async register(credentials) {
+            console.log(credentials);
+            await UserApi.register(credentials)
         },
         async getCurrentUser({state, commit}) {
             if (state.user)
@@ -56,6 +60,9 @@ export default {
 
             const result = await UserApi.get()
             commit('setUser', result)
+        },
+        async verifyEmail({verification}) {
+            await UserApi.verifyEmail(verification);
         }
     },
 }
