@@ -45,10 +45,9 @@
 </template>
 
 <script>
-import {Verification } from "../api/user"
 import {mapActions} from 'vuex';
-
-
+import router from '../router';
+import {Verification} from '../api/user'
 export default {
   name: "Verification",
   data() {
@@ -74,9 +73,9 @@ export default {
     },
     
     async check() {
-        this.$verify( new Verification(this.email, this.code)).then((res) => {
-          console.log(res);
-        })
+      const credentials = new Verification(this.email, this.code);
+      await this.$verify({credentials, rememberMe: true })
+      router.push("LogIn")
     }
   },
 };

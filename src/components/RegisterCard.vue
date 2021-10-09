@@ -110,12 +110,9 @@
 </template>
 
 <script>
-import {RegisterCredentials } from "../api/user"
-
 import {mapState, mapGetters, mapActions} from 'vuex';
 import router from '../router';
-
-
+import {RegisterCredentials} from "../api/user"
 export default {
   name: "RegisterCard",
   data() {
@@ -174,10 +171,9 @@ export default {
     },
     
     async register() {
-      let regcredentials = new RegisterCredentials(this.username, this.password1, this.email);
-      console.log(regcredentials);
-      await this.$register({regcredentials});
-      router.push("Verification")
+      const credentials = new RegisterCredentials(this.username, this.password1, this.email);
+      await this.$register({credentials, rememberMe: true});
+      router.push("Verification");
     }
   },
 };

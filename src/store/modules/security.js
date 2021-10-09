@@ -1,6 +1,5 @@
 import {UserApi} from "../../api/user";
 import {Api} from "../../api/api";
-
 const SECURITY_TOKEN_KEY = 'security-token'
 
 export default {
@@ -50,9 +49,13 @@ export default {
             await UserApi.logout()
             dispatch('removeToken')
         },
-        async register({regcredentials}) {
-            await UserApi.register(regcredentials)
+
+        async register({dispatch}, {credentials, rememberMe}) {
+            await UserApi.register(credentials);
+            console.log(rememberMe);
+            dispatch();
         },
+
         async getCurrentUser({state, commit}) {
             if (state.user)
                 return state.user
@@ -60,8 +63,11 @@ export default {
             const result = await UserApi.get()
             commit('setUser', result)
         },
-        async verifyEmail({verification}) {
-            await UserApi.verifyEmail(verification);
-        }
+
+        async verifyEmail({dispatch}, {credentials, rememberMe}) {
+            await UserApi.verifyEmail(credentials);
+            console.log(rememberMe);
+            dispatch();
+        },
     },
 }
