@@ -75,7 +75,7 @@ export default {
     async check() {
       const credentials = new Verification(this.email, this.code);
       this.$verify({credentials, rememberMe: true })
-      router.push("LogIn")
+      router.push("/")
     }
   },
 };
