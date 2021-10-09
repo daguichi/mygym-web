@@ -63,10 +63,15 @@
                 ></v-text-field>
               </v-row>
               <v-row class="text-center" justify="center">
-        
-                  <v-btn @click="logIn" elevation="2" color="#2679CC" dark x-large rounded
-                    >Iniciar sesión
-                  </v-btn>
+                <v-btn
+                  @click="logIn"
+                  elevation="2"
+                  color="#2679CC"
+                  dark
+                  x-large
+                  rounded
+                  >Iniciar sesión
+                </v-btn>
               </v-row>
             </v-container>
           </v-col>
@@ -77,8 +82,8 @@
 </template>
 
 <script>
-import UserStore from "../store/userStore"
-import router from "../router/index"
+import UserStore from "../store/userStore";
+import router from "../router/index";
 export default {
   name: "LogIn",
   data() {
@@ -98,15 +103,14 @@ export default {
   },
   methods: {
     async logIn() {
-      let res;
-      try {
-        res = await this.store.logIn(this.username, this.password);
-      } catch (err) {
-        return ;
-      }
-      if (res) router.push('Home');
-    }
-  }
+      this.store.logIn(this.username, this.password).then((user) => {
+         console.log(user);
+      });
+
+      if (this.store.isLoggedIn()) router.push("Home");
+      console.log(localStorage.getItem("user"))
+    },
+  },
 };
 </script>
 

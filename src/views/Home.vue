@@ -34,16 +34,26 @@
         <create/>
       </v-row>
     </v-container>
+    <v-btn @click='logOut'>
+      Log Out
+    </v-btn>
   </div>
+
 </template>
 
 <script>
 import ExcercisesCard from "../components/ExcercisesCard";
 import Create from "../components/Create";
+import userStore from "../store/userStore";
 export default {
   name: "Home",
   data() {
     return {};
+  },
+  methods: {
+    logOut() {
+      userStore.logOut();
+    }
   },
   components: { ExcercisesCard, Create },
 };
