@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-main class="grey lighten-3">
+    <v-main class="grey lighten-3" >
       <v-container>
         <v-row>
           <v-col cols="3">
@@ -8,19 +8,21 @@
               <v-list>
                 <v-list-item>
                   <v-list-item-avatar>
+
                     <v-img
                       class="ml-auto"
                       src="https://cdn.vuetifyjs.com/images/john.png"
                     ></v-img>
+
                   </v-list-item-avatar>
                 </v-list-item>
 
                 <v-list-item link>
                   <v-list-item-content>
                     <v-list-item-title class="text-h6">
-                      John Doe
+                      {{user.nombre}}
                     </v-list-item-title>
-                    <v-list-item-subtitle>john@doe.com</v-list-item-subtitle>
+                    <v-list-item-subtitle>{{ user.email }}</v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
               </v-list>
@@ -58,19 +60,19 @@
             </v-sheet>
           </v-col>
           <v-col v-else>
-            <v-sheet min-height="70vh" rounded="lg">
-              <h1 class="pa-6 font-weight-bold">Ficha tecnica</h1>
-              <v-list-item v-for="data in fichaTecnica" :key="data" two-line>
-                <v-list-item-content>
-                  <v-list-item-title class="font-weight-bold">{{
-                    data.title
-                  }}</v-list-item-title>
-                  <v-list-item-subtitle>{{
-                    data.content
-                  }}</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-            </v-sheet>
+              <v-sheet min-height="70vh" rounded="lg">
+                <h1 class="pa-6 font-weight-bold">Ficha tecnica</h1>
+                <v-list-item v-for="data in fichaTecnica" :key="data" two-line>
+                  <v-list-item-content>
+                    <v-list-item-title class="font-weight-bold">{{
+                      data.title
+                    }}</v-list-item-title>
+                    <v-list-item-subtitle>{{
+                      data.content
+                    }}</v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-sheet>
           </v-col>
         </v-row>
       </v-container>
@@ -86,6 +88,14 @@ export default {
     profileSections: store.sections,
     fichaTecnica: store.fichaTecnica,
     estadisticas: store.estadisticas,
+    user:{
+      nombre:"jhon doe",
+      email:"john@doe.com",
+      peso:"70",
+      edad:"22",
+      fechaNacimiento:"30/08/1999"
+
+    }
   }),
   props: {
     fichatecnica: Boolean,

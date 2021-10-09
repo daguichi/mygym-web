@@ -76,23 +76,29 @@
                       required
                     ></v-autocomplete>
                   </v-row>
+
                 </v-col>
                   <v-col>
                     <v-card class="pr-6 mr-3 mt-">
                       <v-card class="flex-grow-0">
-                        <v-virtual-scroll
-                            :items="Array.from({length: 100}).map((_, index) => index)"
-                            :item-height="50"
-                            height="300"
-                        >
-                          <template v-slot="{ item }">
-                            <v-list-item>
-                              <v-list-item-content>
-                                <v-list-item-title><v-img :src="item.image"></v-img></v-list-item-title>
-                              </v-list-item-content>
-                            </v-list-item>
-                          </template>
-                        </v-virtual-scroll>
+                        <v-file-input  :rules="rules"
+                                       accept="image/png, image/jpeg, image/bmp"
+                                       placeholder="Pick an avatar"
+                                       prepend-icon="mdi-camera"
+                                       label="Avatar"></v-file-input>
+<!--                        <v-virtual-scroll-->
+<!--                            :items="Array.from({length: 100}).map((_, index) => index)"-->
+<!--                            :item-height="50"-->
+<!--                            height="300"-->
+<!--                        >-->
+<!--                          <template v-slot="{ item }">-->
+<!--                            <v-list-item>-->
+<!--                              <v-list-item-content>-->
+<!--                                <v-list-item-title><v-img :src="item.image"></v-img></v-list-item-title>-->
+<!--                              </v-list-item-content>-->
+<!--                            </v-list-item>-->
+<!--                          </template>-->
+<!--                        </v-virtual-scroll>-->
                       </v-card>
                     </v-card>
                   </v-col>
@@ -130,6 +136,9 @@ export default {
       { name: 'Bar', image: 'https://www.gravatar.com/avatar/b17065ea1655f1e3283aac8d8fc16019?s=48&d=identicon&r=PG'},
       { name: 'Hoo', image: 'https://www.gravatar.com/avatar/b17065ea1655f1e3283aac8d8fc16019?s=48&d=identicon&r=PG'},
       { name: 'Coo', image: 'https://www.gravatar.com/avatar/b17065ea1655f1e3283aac8d8fc16019?s=48&d=identicon&r=PG'}],
+    rules: [
+      value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!',
+    ],
   }),
   computed: {
     grupos(){
