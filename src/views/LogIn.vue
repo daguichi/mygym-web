@@ -140,8 +140,7 @@ export default {
       } catch (e) {
         this.setResult(e)
       }
-      
-      if (this.$isLoggedIn) router.push("Home")
+      router.push("Home")
     },
     async logout() {
       await this.$logout()

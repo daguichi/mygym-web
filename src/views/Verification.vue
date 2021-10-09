@@ -74,7 +74,7 @@ export default {
     
     async check() {
       const credentials = new Verification(this.email, this.code);
-      await this.$verify({credentials, rememberMe: true })
+      this.$verify({credentials, rememberMe: true })
       router.push("LogIn")
     }
   },
