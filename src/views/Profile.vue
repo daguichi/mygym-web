@@ -33,7 +33,7 @@
                   :key="item.title"
                   link
                   :to="{
-                    name: 'Ficha tecnica',
+                    name: item.title,
                   }"
                 >
                   <v-list-item-icon>
@@ -50,39 +50,7 @@
 
           <!-- columna derecha -->
           <router-view :key="$route.path" />
-          <!-- <v-col v-if="editarperfil">
-            <v-sheet min-height="70vh" rounded="lg"> </v-sheet>
-          </v-col>
-          <v-col v-if="estadisticas">
-            <v-sheet min-height="70vh" rounded="lg">
-              <h1 class="pa-6 font-weight-bold">Estadisticas</h1>
-              <v-list-item v-for="stat in estadisticas" :key="stat" two-line>
-                <v-list-item-content>
-                  <v-list-item-title class="font-weight-bold">
-                    {{ stat.title }}
-                  </v-list-item-title>
-                  <v-list-item-subtitle>
-                    {{ stat.content }}
-                  </v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-            </v-sheet>
-          </v-col> -->
-          <!-- <v-col v-else>
-              <v-sheet min-height="70vh" rounded="lg">
-                <h1 class="pa-6 font-weight-bold">Ficha tecnica</h1>
-                <v-list-item v-for="data in fichaTecnica" :key="data" two-line>
-                  <v-list-item-content>
-                    <v-list-item-title class="font-weight-bold">{{
-                      data.title
-                    }}</v-list-item-title>
-                    <v-list-item-subtitle>{{
-                      data.content
-                    }}</v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-sheet>
-          </v-col> -->
+      
         </v-row>
       </v-container>
     </v-main>

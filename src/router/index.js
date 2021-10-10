@@ -8,8 +8,12 @@ import Profile from "../views/Profile";
 import Favorites from "../views/Favorites";
 import Routines from "../views/Routines";
 import Register from "../views/Register";
-import { MisRutinas, Historial, EditarPerfil} from "../components/profile/sections"
+
 import FichaTecnica from "../components/profile/FichaTecnica"
+import MisRutinas from "../components/profile/MisRutinas"
+import Historial from "../components/profile/Historial"
+import EditarPerfil from "../components/profile/EditarPerfil"
+
 Vue.use(VueRouter)
 
 const routes = [
