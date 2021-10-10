@@ -6,18 +6,13 @@
           <v-col cols="3">
             <v-sheet rounded="lg">
               <v-list>
-                <v-list-item>
-                  <v-list-item-avatar>
-
+                <v-list-item link>
+                  <v-list-item-avatar >
                     <v-img
                       class="ml-auto"
                       src="https://cdn.vuetifyjs.com/images/john.png"
                     ></v-img>
-
                   </v-list-item-avatar>
-                </v-list-item>
-
-                <v-list-item link>
                   <v-list-item-content>
                     <v-list-item-title class="text-h6">
                       {{user.nombre}}
@@ -26,6 +21,7 @@
                   </v-list-item-content>
                 </v-list-item>
               </v-list>
+              
               <v-divider></v-divider>
 
               <v-list color="transparent">
@@ -89,7 +85,7 @@ export default {
     fichaTecnica: store.fichaTecnica,
     estadisticas: store.estadisticas,
     user:{
-      nombre:"jhon doe",
+      nombre:"johndoe",
       email:"john@doe.com",
       peso:"70",
       edad:"22",
