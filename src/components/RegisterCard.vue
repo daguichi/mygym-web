@@ -96,7 +96,13 @@
                   ></v-text-field>
                 </v-row>
                 <v-row class="text-center" justify="center">
-                  <v-btn @click="register" elevation="2" color="#2679CC" dark x-large rounded
+                  <v-btn
+                    @click="Register"
+                    elevation="2"
+                    color="#2679CC"
+                    dark
+                    x-large
+                    rounded
                     >REGISTRARSE
                   </v-btn>
                 </v-row>
@@ -117,7 +123,6 @@ export default {
   name: "RegisterCard",
   data() {
     return {
-
       show1: false,
       show2: true,
       show3: false,
@@ -126,6 +131,7 @@ export default {
       email: "",
       password1: "",
       password2: "",
+      controller: null,
       rules: {
         required: (value) => !!value || "Requerido.",
         min: (v) => v.length >= 8 || "Minimo 8 caracteres",
@@ -134,40 +140,40 @@ export default {
     };
   },
   computed: {
-    ...mapState('security', {
-      $user: state => state.user,
+    ...mapState("security", {
+      $user: (state) => state.user,
     }),
-    ...mapGetters('security', {
-      $isLoggedIn: 'isLoggedIn'
+    ...mapGetters("security", {
+      $isLoggedIn: "isLoggedIn",
     }),
     canCreate() {
-      return this.$isLoggedIn && !this.sport
+      return this.$isLoggedIn && !this.sport;
     },
     canOperate() {
-      return this.$isLoggedIn && this.sport
+      return this.$isLoggedIn && this.sport;
     },
     canAbort() {
-      return this.$isLoggedIn && this.controller
-    }
+      return this.$isLoggedIn && this.controller;
+    },
   },
   methods: {
-     ...mapActions('security', {
-       $register: 'register'
+    ...mapActions('security', {
+      $register: 'register',
     }),
-    setResult(result){
-      this.result = JSON.stringify(result, null, 2)
+    setResult(result) {
+      this.result = JSON.stringify(result, null, 2);
     },
     clearResult() {
-      this.result = null
+      this.result = null;
     },
-    
+
     async getCurrentUser() {
-      await this.$getCurrentUser()
-      this.setResult(this.$user)
+      await this.$getCurrentUser();
+      this.setResult(this.$user);
     },
 
     abort() {
-      this.controller.abort()
+      this.controller.abort();
     },
     
     async register() {

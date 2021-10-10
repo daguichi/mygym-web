@@ -41,6 +41,7 @@ export default {
             Api.token = null
         },
         async login({dispatch}, {credentials, rememberMe}) {
+            console.log('en login', credentials);
             const result = await UserApi.login(credentials)
             console.log(result.token)
             dispatch('updateToken', { token: result.token, rememberMe })
