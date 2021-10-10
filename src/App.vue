@@ -1,6 +1,6 @@
 <template>
 <v-app>
-  <nav-bar v-if="showNavBar"></nav-bar>
+  <nav-bar ></nav-bar>
   <v-main>
     <router-view :key="$route.fullPath"></router-view>
   </v-main>
@@ -13,14 +13,6 @@ export default {
   name: 'App',
   components: {
     NavBar
-  },
-  computed: {
-    shouldShowBar(){
-      return this.$route.path === '/routines' || this.$route.path === '/favorites' || this.$route.path === '/home' || this.$route.path === '/profile';
-    },
-    showNavBar(){
-      return this.shouldShowBar;
-    }
   },
 };
 </script>

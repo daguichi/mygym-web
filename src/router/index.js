@@ -8,8 +8,8 @@ import Profile from "../views/Profile";
 import Favorites from "../views/Favorites";
 import Routines from "../views/Routines";
 import Register from "../views/Register";
-
-
+import { MisRutinas, Historial, EditarPerfil} from "../components/profile/sections"
+import FichaTecnica from "../components/profile/FichaTecnica"
 Vue.use(VueRouter)
 
 const routes = [
@@ -44,9 +44,31 @@ const routes = [
     component: CreateRoutine
   },
   {
-    path: "/profile",
+    path: "/profile/",
     name: "Profile",
     component: Profile,
+    children: [
+      {
+        path: 'fichatecnica',
+        name: 'Ficha tecnica',
+        component: FichaTecnica,
+      },
+      {
+        path: 'misrutinas',
+        name: 'Mis rutinas',
+        component: MisRutinas,
+      },
+      { 
+        path: 'historial',
+        name: 'Historial',
+        component: Historial,
+      },
+      {
+        path: 'editarperfil',
+        name: 'Editar perfil',
+        component: EditarPerfil,
+      }
+    ],
   },
   {
     path: "notFound",
