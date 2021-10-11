@@ -34,8 +34,14 @@
         </v-col>
       </v-row>
       <v-row :v-if="!loading">
-        <v-col cols="3"  v-for="sport in exercises" :key="sport">
-          <category-card class="card" :title="sport.title" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg">
+        <v-col cols="3"  v-for="ex in exercises" :key="ex">
+          <category-card class="card" :title="ex.title" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg">
+          </category-card>
+        </v-col> 
+      </v-row>
+      <v-row :v-if="!loading">
+        <v-col cols="3"  v-for="s in sport" :key="s">
+          <category-card class="card" :title="s.name" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg">
           </category-card>
         </v-col> 
       </v-row>
@@ -57,16 +63,21 @@ export default {
   components: {CategoryCard},
   methods: {
     ...mapActions('exercises', ['fetchExercises']),
+    ...mapActions('sport', ['getAll']),
   },
   computed: {
     ...mapState('exercises', {
         exercises: state => state.exercises
+    }),
+    ...mapState('items', {
+        sport: state => state.items
     }),
   },
   
   async created() {
     this.loading = true;
     await this.fetchExercises();
+    await this.getAll();
     this.loading = false;
   }
 

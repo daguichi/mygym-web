@@ -1,26 +1,22 @@
 <template>
-<v-app>
-  <nav-bar v-if="showNavBar"></nav-bar>
-  <v-main>
-    <router-view :key="$route.fullPath"></router-view>
-  </v-main>
-</v-app>
-
+  <v-app>
+    <nav-bar v-if='!hide'></nav-bar>
+    <v-main>
+      <router-view :key="$route.fullPath"></router-view>
+    </v-main>
+  </v-app>
 </template>
 <script>
-import NavBar from './components/navBar.vue';
+import NavBar from "./components/navBar.vue";
 export default {
-  name: 'App',
-  components: {
-    NavBar
-  },
+  name: "App",
   computed: {
-    shouldShowBar(){
-      return this.$route.path === '/routines' || this.$route.path === '/favorites' || this.$route.path === '/home' || this.$route.path === '/profile';
+    hide() {
+      return this.$route.path === "/" || this.$route.path === "/register";
     },
-    showNavBar(){
-      return this.shouldShowBar;
-    }
+  },
+  components: {
+    NavBar,
   },
 };
 </script>

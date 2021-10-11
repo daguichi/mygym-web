@@ -10,6 +10,11 @@ import Routines from "../views/Routines";
 import Register from "../views/Register";
 import Verification from "../views/Verification";
 
+import FichaTecnica from "../components/profile/FichaTecnica"
+import MisRutinas from "../components/profile/MisRutinas"
+import Historial from "../components/profile/Historial"
+import EditarPerfil from "../components/profile/EditarPerfil"
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -44,9 +49,31 @@ const routes = [
     component: CreateRoutine
   },
   {
-    path: "/profile",
+    path: "/profile/",
     name: "Profile",
     component: Profile,
+    children: [
+      {
+        path: 'fichatecnica',
+        name: 'Ficha tecnica',
+        component: FichaTecnica,
+      },
+      {
+        path: 'misrutinas',
+        name: 'Mis rutinas',
+        component: MisRutinas,
+      },
+      { 
+        path: 'historial',
+        name: 'Historial',
+        component: Historial,
+      },
+      {
+        path: 'editarperfil',
+        name: 'Editar perfil',
+        component: EditarPerfil,
+      }
+    ],
   },
   {
     path: "/verification",
@@ -69,34 +96,3 @@ const router = new VueRouter({
 
 
 export default router;
-
-/*
-export const router = new VueRouter({
-  routes: [
-    {path:'/', component: LandingPage3},
-    {path:'/MisRutinas', component: MisRutinas, meta: {requiresAuth: true}},
-    {path:'/MisEjercicios', component: MisEjercicios, meta: {requiresAuth: true}},
-    {path:'/Favoritos', component: Favoritos, meta: {requiresAuth: true}},
-    {path:'/Descubrir', component: Descubrir, meta: {requiresAuth: true}},
-    {path:'/ConfirmacionMail',component: ConfirmacionMail},
-    {path:'/routines/:id',component: RutinaCompartida},
-    {path:'*', component: NotFound}
-  ]
-})
-
-router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresAuth)){
-    if (! Api.getToken()){
-      next({
-        path: '/'
-      });
-    }else{
-      next();
-    }
-  }else{
-    next();
-  }
-});
-
-Api.restoreToken();
-*/
