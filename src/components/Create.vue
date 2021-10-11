@@ -114,21 +114,7 @@
                   </template>
                 </v-col>
                 <v-col>
-                  <v-dialog
-                    v-model="createRoutineDialog"
-                    persistent
-                    max-width="600px"
-                  >
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                        Rutina
-                      </v-btn>
-                    </template>
-                    <CreateRoutinePopUp
-                      createRoutineDialog="createRoutineDialog"
-                    >
-                    </CreateRoutinePopUp>
-                  </v-dialog>
+                  <CreateRoutinePopUp> </CreateRoutinePopUp>
                 </v-col>
               </v-row>
             </v-container>
