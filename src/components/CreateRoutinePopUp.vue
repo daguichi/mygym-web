@@ -97,6 +97,7 @@
                 text
                 @click="createRoutineDialog = false"
               >
+                <!-- LLAMAR METODOS PARA CANCELAR RUTINA -->
                 Cancelar
               </v-btn>
             </v-col>
@@ -371,6 +372,7 @@
                               </v-row>
                             </template>
                           </v-list-item-group>
+                          <v-btn color="primary">guardar</v-btn>
                         </v-list>
                       </v-card>
                     </v-stepper-content>
