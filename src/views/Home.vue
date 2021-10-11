@@ -25,7 +25,7 @@
               </v-slide-item>
             </v-slide-group>
           </v-row>
-            
+          <br><br>
         </v-row>
         <create />
       </v-container>

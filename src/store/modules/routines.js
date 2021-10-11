@@ -1,3 +1,11 @@
+// {
+//   name: "Abdominales",
+//   autor: "Dax",
+//   score: "iiii",
+//   img: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
+  
+// }
+
 export default {
   destacadas: [
     {
@@ -9,7 +17,7 @@ export default {
     {
       titulo: "Calistenia",
       autor: "Dagos",
-      stars: "iiiii",
+      stars: "iii",
       img:
         "https://pbs.twimg.com/media/E5lSGN6WEAM7VZz?format=jpg&name=900x900",
     },
@@ -22,7 +30,7 @@ export default {
     {
       titulo: "Piernas",
       autor: "Sol",
-      stars: "iiiii",
+      stars: "iii",
       img: "https://i.blogs.es/42c0e8/peso-muerto-entrenamiento/1366_2000.jpeg",
     },
   ],
@@ -30,7 +38,7 @@ export default {
     {
       titulo: "Calistenia",
       autor: "Dagos",
-      stars: "iiiii",
+      stars: "iii",
       img:
         "https://pbs.twimg.com/media/E5lSGN6WEAM7VZz?format=jpg&name=900x900",
     },
@@ -57,7 +65,7 @@ export default {
     {
       titulo: "Calistenia",
       autor: "Dagos",
-      stars: "iiiii",
+      stars: "iii",
       img:
         "https://pbs.twimg.com/media/E5lSGN6WEAM7VZz?format=jpg&name=900x900",
     },
