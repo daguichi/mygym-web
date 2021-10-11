@@ -1,6 +1,5 @@
 import {UserApi} from "../../api/user";
 import {Api} from "../../api/api";
-
 const SECURITY_TOKEN_KEY = 'security-token'
 
 export default {
@@ -42,19 +41,34 @@ export default {
             Api.token = null
         },
         async login({dispatch}, {credentials, rememberMe}) {
+            console.log('en login', credentials);
             const result = await UserApi.login(credentials)
+            console.log(result.token)
             dispatch('updateToken', { token: result.token, rememberMe })
         },
         async logout({dispatch}) {
             await UserApi.logout()
             dispatch('removeToken')
         },
+
+        async register({dispatch}, {credentials, rememberMe}) {
+            await UserApi.register(credentials);
+            console.log(rememberMe);
+            dispatch();
+        },
+
         async getCurrentUser({state, commit}) {
             if (state.user)
                 return state.user
 
             const result = await UserApi.get()
             commit('setUser', result)
-        }
+        },
+
+        async verifyEmail({dispatch}, {credentials, rememberMe}) {
+            await UserApi.verifyEmail(credentials);
+            console.log(rememberMe);
+            dispatch();
+        },
     },
 }

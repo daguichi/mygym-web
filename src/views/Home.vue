@@ -31,6 +31,7 @@
       </v-container>
     </v-main>
   </div>
+
 </template>
 
 <script>
@@ -47,6 +48,9 @@ export default {
         { title: "Historial", arr: store.historial },
       ],
     };
+  },
+  methods: {
+    
   },
   components: { ExcercisesCard, Create },
 };

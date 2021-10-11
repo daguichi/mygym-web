@@ -23,6 +23,7 @@
             <v-container class="border2">
               <v-row>
                 <v-text-field
+                  v-model="username"
                   background-color="rgb(244, 249, 252)"
                   placeholder="Usuario"
                   elevation="2"
@@ -62,11 +63,15 @@
                 ></v-text-field>
               </v-row>
               <v-row class="text-center" justify="center">
-                <router-link to="/home">
-                  <v-btn elevation="2" color="#2679CC" dark x-large rounded
-                    >Iniciar sesión
-                  </v-btn></router-link
-                >
+                <v-btn
+                  @click="logIn"
+                  elevation="2"
+                  color="#2679CC"
+                  dark
+                  x-large
+                  rounded
+                  >Iniciar sesión
+                </v-btn>
               </v-row>
             </v-container>
           </v-col>
@@ -77,6 +82,9 @@
 </template>
 
 <script>
+import {mapState, mapGetters, mapActions} from 'vuex';
+import {Credentials} from "../api/user";
+import router from "../router/index"
 export default {
   name: "LogIn",
   data() {
@@ -85,12 +93,68 @@ export default {
       show2: true,
       show3: false,
       show4: false,
+      username: "",
       password: "",
+      result: null,
+      controller: null,
       rules: {
         required: (value) => !!value || "Requerido.",
         emailMatch: () => `The email and password you entered don't match`,
       },
     };
+  },
+  computed: {
+    ...mapState('security', {
+      $user: state => state.user,
+    }),
+    ...mapGetters('security', {
+      $isLoggedIn: 'isLoggedIn'
+    }),
+    canCreate() {
+      return this.$isLoggedIn && !this.sport
+    },
+    canOperate() {
+      return this.$isLoggedIn && this.sport
+    },
+    canAbort() {
+      return this.$isLoggedIn && this.controller
+    }
+  },
+  methods: {
+    ...mapActions('security', {
+      $getCurrentUser: 'getCurrentUser',
+      $login: 'login',
+      $logout: 'logout',
+    }),
+    setResult(result){
+      this.result = JSON.stringify(result, null, 2)
+    },
+    clearResult() {
+      this.result = null
+    },
+    async logIn() {
+      try {
+        const credentials = new Credentials(this.username, this.password)
+        this.$login({credentials, rememberMe: true }).then(() => {console.log(this.$isLoggedIn)})
+        this.clearResult()
+      } catch (e) {
+        this.setResult(e)
+      }
+      router.push("Home")
+    },
+    async logout() {
+      await this.$logout()
+      this.clearResult()
+    },
+    async getCurrentUser() {
+      await this.$getCurrentUser()
+      this.setResult(this.$user)
+    },
+
+    abort() {
+      this.controller.abort()
+    }
+
   },
 };
 </script>

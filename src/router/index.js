@@ -8,6 +8,7 @@ import Profile from "../views/Profile";
 import Favorites from "../views/Favorites";
 import Routines from "../views/Routines";
 import Register from "../views/Register";
+import Verification from "../views/Verification";
 
 import FichaTecnica from "../components/profile/FichaTecnica"
 import MisRutinas from "../components/profile/MisRutinas"
@@ -73,6 +74,11 @@ const routes = [
         component: EditarPerfil,
       }
     ],
+  },
+  {
+    path: "/verification",
+    name: "Verification",
+    component: Verification,
   },
   {
     path: "notFound",

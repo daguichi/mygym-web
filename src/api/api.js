@@ -1,10 +1,12 @@
 export { Api }
 
+const url = 'http://127.0.0.1:8080/api';
+
 class Api {
   static token; // variable que se guarda al loguear a la api para que desp me quede logueado
 
   static get baseUrl() {
-    return 'http://127.0.0.1:8080/api';
+    return url;
   }
 
   static get timeout() { // tiempo maximo de espera de la respuesta de la api (lo podemos cambiar obvio)

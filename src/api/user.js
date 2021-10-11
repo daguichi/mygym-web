@@ -1,28 +1,60 @@
-import { Api } from './api.js'
+import { Api } from "./api.js";
 
-export { UserApi, Credentials }
+export { UserApi, Credentials, RegisterCredentials, Verification };
 
 class UserApi {
-    static getUrl(slug) {
-        return `${Api.baseUrl}/users${ slug ? `/${slug}` : ''}`
-    }
 
-    static async login(credentials, controller) {
-        return await Api.post(UserApi.getUrl('login'), false, credentials, controller)
-    }
+  static getUrl(slug) {
+    return `${Api.baseUrl}/users${slug ? `/${slug}` : ""}`;
+  }
 
-    static async logout(controller) {
-        await Api.post(UserApi.getUrl('logout'), true, controller)
-    }
+  static async login(credentials, controller) {
+    let res = await Api.post(
+      UserApi.getUrl("login"),
+      false,
+      credentials,
+      controller
+    );
+    Api.token = res.token;
+    return res;
+  }
 
-    static async get(controller) {
-        return Api.get(UserApi.getUrl('current'), true, controller)
-    }
+  static async logout(controller) {
+    await Api.post(UserApi.getUrl("logout"), true, controller);
+  }
+
+  static async get(controller) {
+    return Api.get(UserApi.getUrl("current"), true, controller);
+  }
+
+  static async register(credentials, controller) {
+    await Api.post(UserApi.getUrl(), false, credentials, controller);
+  }
+
+  static async verifyEmail(verification, controller) {
+    console.log(verification);
+    await Api.post(UserApi.getUrl("verify_email"), false, verification, controller);
+  }
 }
 
 class Credentials {
-    constructor(username, password) {
-        this.username = username
-        this.password = password
-    }
+  constructor(username, password) {
+    this.username = username;
+    this.password = password;
+  }
+}
+
+class RegisterCredentials {
+  constructor(username, password, email) {
+    this.username = username;
+    this.password = password;
+    this.email = email;
+  }
+}
+
+class Verification {
+  constructor(email, code) {
+    this.email = email;
+    this.code = code;
+  }
 }
