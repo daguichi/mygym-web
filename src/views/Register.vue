@@ -5,7 +5,7 @@
         <v-img
           max-height="150"
           max-width="250"
-          src="../assets/output-onlinepngtools.png"
+          src="../assets/MyGymLogo2.png"
         ></v-img>
       </v-row>
       <register-card></register-card>
