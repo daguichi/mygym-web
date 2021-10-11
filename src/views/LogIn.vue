@@ -12,11 +12,6 @@
                 src="../assets/MyGymLogo2.png"
               ></v-img>
             </v-row>
-            <router-link to="/register">
-              <v-btn elevation="2" color="#2679CC" dark x-large rounded
-                >Registrarme
-              </v-btn>
-            </router-link>
           </v-col>
           <v-col />
           <v-col md="4">
@@ -73,6 +68,13 @@
                   >Iniciar sesión
                 </v-btn>
               </v-row>
+              <v-row class="text-center pa-4" justify="center">
+                <router-link to="/register" style="text-decoration: none">
+                  <v-btn elevation="2" color="#2679CC" dark x-large rounded
+                    >Registrarme
+                  </v-btn>
+                </router-link>
+              </v-row>
             </v-container>
           </v-col>
         </v-row>
@@ -82,9 +84,9 @@
 </template>
 
 <script>
-import {mapState, mapGetters, mapActions} from 'vuex';
-import {Credentials} from "../api/user";
-import router from "../router/index"
+import { mapState, mapGetters, mapActions } from "vuex";
+import { Credentials } from "../api/user";
+import router from "../router/index";
 export default {
   name: "LogIn",
   data() {
@@ -104,57 +106,58 @@ export default {
     };
   },
   computed: {
-    ...mapState('security', {
-      $user: state => state.user,
+    ...mapState("security", {
+      $user: (state) => state.user,
     }),
-    ...mapGetters('security', {
-      $isLoggedIn: 'isLoggedIn'
+    ...mapGetters("security", {
+      $isLoggedIn: "isLoggedIn",
     }),
     canCreate() {
-      return this.$isLoggedIn && !this.sport
+      return this.$isLoggedIn && !this.sport;
     },
     canOperate() {
-      return this.$isLoggedIn && this.sport
+      return this.$isLoggedIn && this.sport;
     },
     canAbort() {
-      return this.$isLoggedIn && this.controller
-    }
+      return this.$isLoggedIn && this.controller;
+    },
   },
   methods: {
-    ...mapActions('security', {
-      $getCurrentUser: 'getCurrentUser',
-      $login: 'login',
-      $logout: 'logout',
+    ...mapActions("security", {
+      $getCurrentUser: "getCurrentUser",
+      $login: "login",
+      $logout: "logout",
     }),
-    setResult(result){
-      this.result = JSON.stringify(result, null, 2)
+    setResult(result) {
+      this.result = JSON.stringify(result, null, 2);
     },
     clearResult() {
-      this.result = null
+      this.result = null;
     },
     async logIn() {
       try {
-        const credentials = new Credentials(this.username, this.password)
-        this.$login({credentials, rememberMe: true }).then(() => {console.log(this.$isLoggedIn)})
-        this.clearResult()
+        const credentials = new Credentials(this.username, this.password);
+        this.$login({ credentials, rememberMe: true }).then(() => {
+          console.log(this.$isLoggedIn);
+        });
+        this.clearResult();
       } catch (e) {
-        this.setResult(e)
+        this.setResult(e);
       }
-      router.push("Home")
+      router.push("Home");
     },
     async logout() {
-      await this.$logout()
-      this.clearResult()
+      await this.$logout();
+      this.clearResult();
     },
     async getCurrentUser() {
-      await this.$getCurrentUser()
-      this.setResult(this.$user)
+      await this.$getCurrentUser();
+      this.setResult(this.$user);
     },
 
     abort() {
-      this.controller.abort()
-    }
-
+      this.controller.abort();
+    },
   },
 };
 </script>

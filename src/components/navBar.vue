@@ -4,16 +4,16 @@
       <!-- aca arriba podemos agregarle la siguiente cosa pero queda muy grueso al principio:  shrink-on-scroll-->
       <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
       <v-row align="center" justify="space-around">
-        <router-link to="/inicio">
+        <router-link to="/inicio" style="text-decoration: none">
           <v-img
             :src="require('../assets/MyGymLogo2.png')"
             max-height="100"
             max-width="140"
           ></v-img>
         </router-link>
-        <router-link to="/inicio">
+        <router-link to="/home">
           <v-btn
-            v-if="actualPage === 'Inicio'"
+            v-if="actualPage === 'Home'"
             elevation="2"
             flat
             rounded
@@ -29,7 +29,7 @@
           </v-btn>
         </router-link>
 
-        <router-link to="/routines">
+        <router-link to="/routines" style="text-decoration: none">
           <v-btn
             v-if="actualPage === 'rutinas'"
             elevation="2"
@@ -47,7 +47,7 @@
           </v-btn>
         </router-link>
 
-        <router-link to="/favorites">
+        <router-link to="/favorites" style="text-decoration: none">
           <v-btn
             v-if="actualPage === 'favoritos'"
             elevation="2"
@@ -65,7 +65,10 @@
           </v-btn>
         </router-link>
 
-        <router-link :to="{ name: 'Ficha tecnica' }">
+        <router-link
+          :to="{ name: 'Ficha tecnica' }"
+          style="text-decoration: none"
+        >
           <v-btn x-large>
             <v-icon> left mdi-account-circle </v-icon>
             username
