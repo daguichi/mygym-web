@@ -97,7 +97,7 @@
                 </v-row>
                 <v-row class="text-center" justify="center">
                   <v-btn
-                    @click="Register"
+                    @click="register"
                     elevation="2"
                     color="#2679CC"
                     dark
@@ -116,9 +116,9 @@
 </template>
 
 <script>
-import {mapState, mapGetters, mapActions} from 'vuex';
-import router from '../router';
-import {RegisterCredentials} from "../api/user"
+import { mapState, mapGetters, mapActions } from "vuex";
+import router from "../router";
+import { RegisterCredentials } from "../api/user";
 export default {
   name: "RegisterCard",
   data() {
@@ -157,8 +157,8 @@ export default {
     },
   },
   methods: {
-    ...mapActions('security', {
-      $register: 'register',
+    ...mapActions("security", {
+      $register: "register",
     }),
     setResult(result) {
       this.result = JSON.stringify(result, null, 2);
@@ -175,12 +175,16 @@ export default {
     abort() {
       this.controller.abort();
     },
-    
+
     async register() {
-      const credentials = new RegisterCredentials(this.username, this.password1, this.email);
-      this.$register({credentials, rememberMe: true});
+      const credentials = new RegisterCredentials(
+        this.username,
+        this.password1,
+        this.email
+      );
+      this.$register({ credentials, rememberMe: true });
       router.push("Verification");
-    }
+    },
   },
 };
 </script>
