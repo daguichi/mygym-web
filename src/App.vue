@@ -1,18 +1,22 @@
 <template>
-<v-app>
-  <nav-bar ></nav-bar>
-  <v-main>
-    <router-view :key="$route.fullPath"></router-view>
-  </v-main>
-</v-app>
-
+  <v-app>
+    <nav-bar v-if='!hide'></nav-bar>
+    <v-main>
+      <router-view :key="$route.fullPath"></router-view>
+    </v-main>
+  </v-app>
 </template>
 <script>
-import NavBar from './components/navBar.vue';
+import NavBar from "./components/navBar.vue";
 export default {
-  name: 'App',
+  name: "App",
+  computed: {
+    hide() {
+      return this.$route.path === "/" || this.$route.path === "/register";
+    },
+  },
   components: {
-    NavBar
+    NavBar,
   },
 };
 </script>

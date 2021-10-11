@@ -7,7 +7,7 @@
           <v-col cols="3">
             <v-sheet rounded="lg">
               <v-list>
-                <v-list-item link>
+                <v-list-item>
                   <v-list-item-avatar>
                     <v-img
                       class="ml-auto"

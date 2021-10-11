@@ -16,7 +16,7 @@
           ></v-card-title>
 
           <v-card-subtitle class="font-italic font-weight-thin microText"
-            >rutina creada por: {{ author }}</v-card-subtitle
+            >rutina creada por: {{ autor }}</v-card-subtitle
           >
 
           <v-icon v-for="n in stars" :key="n">mdi-star</v-icon>
@@ -34,7 +34,7 @@
         </div>
 
         <v-avatar class="ma-6" size="150" tile>
-          <v-img class="rounded-xl" :src="imgUrl"></v-img>
+          <v-img class="rounded-xl" :src="img"></v-img>
         </v-avatar>
       </div>
     </v-card>
@@ -49,7 +49,8 @@ export default {
     return {};
   },
   components: { RoutinePopUp },
-  props: ["titulo", "imgUrl", "author", "stars"],
+  props: 
+    ["titulo", "img", "autor", "stars"],
 };
 </script>
 
