@@ -373,6 +373,7 @@
                             </template>
                           </v-list-item-group>
                           <v-btn color="primary">guardar</v-btn>
+                          <!-- llamar metodo para guardar rutina -->
                         </v-list>
                       </v-card>
                     </v-stepper-content>

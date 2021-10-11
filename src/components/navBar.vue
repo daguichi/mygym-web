@@ -4,26 +4,27 @@
       <!-- aca arriba podemos agregarle la siguiente cosa pero queda muy grueso al principio:  shrink-on-scroll-->
       <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
       <v-row align="center" justify="space-around">
-        <v-img
-          :src="require('../assets/MyGymLogo2.png')"
-          max-height="100"
-          max-width="140"
-        ></v-img>
-
-        <router-link to="/home">
+        <router-link to="/inicio">
+          <v-img
+            :src="require('../assets/MyGymLogo2.png')"
+            max-height="100"
+            max-width="140"
+          ></v-img>
+        </router-link>
+        <router-link to="/inicio">
           <v-btn
-            v-if="actualPage === 'home'"
+            v-if="actualPage === 'Inicio'"
             elevation="2"
             flat
             rounded
             x-large
             class="darkBackground"
           >
-            Home
+            Inicio
             <v-icon> right mdi-home</v-icon>
           </v-btn>
           <v-btn v-else elevation="2" rounded x-large outlined
-            >Home
+            >Inicio
             <v-icon> right mdi-home</v-icon>
           </v-btn>
         </router-link>
