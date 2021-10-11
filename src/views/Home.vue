@@ -27,6 +27,15 @@
           </v-row>
           <br><br>
         </v-row>
+        <v-btn
+                  @click="dale"
+                  elevation="2"
+                  color="#2679CC"
+                  dark
+                  x-large
+                  rounded
+                  >Iniciar sesión
+                </v-btn>
         <create />
       </v-container>
     </v-main>
@@ -38,6 +47,9 @@
 import ExcercisesCard from "../components/ExcercisesCard";
 import Create from "../components/Create";
 import store from "@/store/modules/routines.js";
+import {mapState, mapActions} from 'vuex'
+//import {CategoryApi} from '../api/category'
+
 export default {
   name: "Home",
   data() {
@@ -49,10 +61,26 @@ export default {
       ],
     };
   },
-  methods: {
-    
-  },
   components: { ExcercisesCard, Create },
+  computed: {
+    ...mapState('category', {
+        categories: state => state.categories
+    }),
+  },
+  methods: {
+    ...mapActions('category', {$createCategory: 'create'} ),
+    async dale() {
+    //const initialCategories = [{name:"espalda", detail:"N/A"},{name:"pecho", detail:"N/A"},{name:"biceps", detail:"N/A"}];
+      console.log(this.$createCategory);
+      await this.$createCategory({name:"dasdasd", detail:"N/A"});
+    // for(let category in initialCategories) {
+    // console.log(category)
+    //   await CategoryApi.add(category).then((res) => {console.log(res)}).catch((e) => {return e;})
+    // }
+    }
+  },
+  
+  
 };
 </script>
 
