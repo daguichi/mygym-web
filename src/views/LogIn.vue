@@ -9,7 +9,7 @@
                 class="border1"
                 max-height="250"
                 max-width="450"
-                src="../assets/MyGymLogo2.png"
+                src="../assets/output-onlinepngtools.png"
               ></v-img>
             </v-row>
             <router-link to="/register">

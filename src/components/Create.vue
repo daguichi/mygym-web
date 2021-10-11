@@ -2,10 +2,9 @@
   <div>
   <v-row >
     <v-dialog
-        v-model="createDialog"
+        v-model="dialog"
         persistent
         max-width="600px"
-        overlay-color="primary"
     >
       <template v-slot:activator="{ on, attrs }">
 
@@ -18,7 +17,6 @@
               color="light"
               v-bind="attrs"
               v-on="on"
-              x-large
           >
             <v-icon color="blue">mdi-plus</v-icon>
           </v-btn>
@@ -26,9 +24,9 @@
 
       </template>
 
-      <v-card >
+      <v-card>
         <v-card-title>
-          <span class="text-h5">Qué desea crear:</span>
+          <span class="text-h5">Crear:</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -37,7 +35,7 @@
                 <template>
                   <v-row justify="center">
                     <v-dialog
-                        v-model="ExcerciseDialog"
+                        v-model="dialog"
                         persistent
                         max-width="600px"
                     >
@@ -103,14 +101,14 @@
                           <v-btn
                               color="blue darken-1"
                               text
-                              @click="ExcerciseDialog = false"
+                              @click="dialog = false"
                           >
                             Close
                           </v-btn>
                           <v-btn
                               color="blue darken-1"
                               text
-                              @click="ExcerciseDialog = false"
+                              @click="dialog = false"
                           >
                             Save
                           </v-btn>
@@ -121,37 +119,20 @@
                 </template>
               </v-col>
               <v-col>
-                <v-dialog
-                    v-model="createRoutineDialog"
-                    persistent
-                    max-width="600px"
-                >
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                        color="primary"
-                        dark
-                        v-bind="attrs"
-                        v-on="on"
-                    >
-                      Rutina
-                    </v-btn>
-                  </template>
-                <CreateRoutinePopUp >
-                </CreateRoutinePopUp>
-                </v-dialog>
+                <span class="text-h5">Rutina</span>
+<!--                aca iria lo de daxxxxx-->
               </v-col>
             </v-row>
           </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-
           <v-btn
               color="blue darken-1"
               text
-              @click="createDialog = false"
+              @click="dialog = false"
           >
-            Cancelar
+            Close
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -163,21 +144,6 @@
 
 
 <script>
-import CreateRoutinePopUp from "./CreateRoutinePopUp";
-export default{
-  components: {CreateRoutinePopUp},
-  data:()=>({
-    createDialog:false,
-    ExcerciseDialog:false,
-    createRoutineDialog:false,
-    createRoutineDialogStep2:false,
-  }),
-  methods: {
-    setCreateRoutineDialogFalse(){
-      "createRoutineDialog =false"
-    }
-  }
-}
 </script>
 
 <style scoped>
