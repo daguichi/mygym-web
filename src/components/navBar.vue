@@ -65,9 +65,17 @@
         </router-link>
 
         <router-link :to="{ name: 'Ficha tecnica' }">
-          <v-btn x-large>
-            <v-icon> left mdi-account-circle </v-icon>
-            username
+          <v-btn color="purple" class="white--text" x-large>
+            <v-row align="center" justify="space-around"
+              ><v-avatar left color="purple"
+                ><v-img
+                  contain
+                  src="https://cdn0.iconfinder.com/data/icons/handsome-man-avatars/283/stock_man_avatar-17-1024.png"
+                ></v-img>
+              </v-avatar>
+
+              {{ $user.username }}</v-row
+            >
           </v-btn>
         </router-link>
       </v-row>
@@ -76,11 +84,18 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "navBar",
   props: {
     actualPage: String,
   },
+  computed: {
+    ...mapState("security", {
+      $user: (state) => state.user,
+    }),
+  },
+
 };
 </script>
 

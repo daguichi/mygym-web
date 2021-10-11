@@ -10,16 +10,16 @@
                 <v-list-item>
                   <v-list-item-avatar>
                     <v-img
-                      class="ml-auto"
-                      src="https://cdn.vuetifyjs.com/images/john.png"
+                      contain
+                      src="https://cdn0.iconfinder.com/data/icons/handsome-man-avatars/283/stock_man_avatar-17-1024.png"
                     ></v-img>
                   </v-list-item-avatar>
                   <v-list-item-content>
                     <v-list-item-title class="text-h6">
-                      {{ user.nombre }}
+                      {{ $user.username }}
                     </v-list-item-title>
                     <v-list-item-subtitle>{{
-                      user.email
+                      $user.email
                     }}</v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
@@ -50,7 +50,6 @@
 
           <!-- columna derecha -->
           <router-view :key="$route.path" />
-      
         </v-row>
       </v-container>
     </v-main>
@@ -59,7 +58,7 @@
 
 <script>
 import store from "@/store/profile";
-
+import {mapState} from 'vuex';
 export default {
   data: () => ({
     profileSections: store.sections,
@@ -71,7 +70,11 @@ export default {
       fechaNacimiento: "30/08/1999",
     },
   }),
-
   components: {},
+  computed: {
+    ...mapState("security", {
+      $user: (state) => state.user,
+    }),
+  },
 };
 </script>

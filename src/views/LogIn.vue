@@ -142,6 +142,8 @@ export default {
         console.log(e)
         return 
       }
+      await this.getCurrentUser();
+      console.log(this.$user);
       router.push("Home")
     },
     async logout() {

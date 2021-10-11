@@ -47,6 +47,7 @@ export default {
         { title: "Mis rutinas", arr: store.misrutinas },
         { title: "Historial", arr: store.historial },
       ],
+      
     };
   },
   methods: {

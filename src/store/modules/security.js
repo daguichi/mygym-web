@@ -45,6 +45,7 @@ export default {
             const result = await UserApi.login(credentials)
             console.log(result.token)
             dispatch('updateToken', { token: result.token, rememberMe })
+            
         },
         async logout({dispatch}) {
             await UserApi.logout()
