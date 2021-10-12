@@ -17,25 +17,16 @@
                 :key="rutina.id"
               >
                 <ExcercisesCard
-                  v-bind:titulo="rutina.titulo"
-                  v-bind:autor="rutina.autor"
-                  v-bind:stars="rutina.stars"
-                  v-bind:img="rutina.img"
+                  v-bind:titulo="rutina.name"
+                  v-bind:autor="rutina.user.username"
+                  v-bind:stars="rutina.score"
+                  v-bind:imgUrl="rutina.metadata"
                 ></ExcercisesCard>
               </v-slide-item>
             </v-slide-group>
           </v-row>
           <br><br>
         </v-row>
-        <v-btn
-                  @click="dale"
-                  elevation="2"
-                  color="#2679CC"
-                  dark
-                  x-large
-                  rounded
-                  >Iniciar sesión
-                </v-btn>
         <create />
       </v-container>
     </v-main>
@@ -54,11 +45,7 @@ export default {
   name: "Home",
   data() {
     return {
-      secciones: [
-        { title: "Destacados", arr: store.destacadas },
-        { title: "Mis rutinas", arr: store.misrutinas },
-        { title: "Historial", arr: store.historial },
-      ],
+      secciones: undefined,
     };
   },
   components: { ExcercisesCard, Create },
@@ -66,9 +53,23 @@ export default {
     ...mapState('category', {
         categories: state => state.categories
     }),
+    ...mapState('routines', {
+        routines: state => state.routines
+    }),
+  },
+  async created() {
+    await this.$getAll();
+    console.log(this.routines)
+    this.secciones = [
+        { title: "Destacados", arr: this.routines.content},
+        { title: "Mis rutinas", arr: store.misrutinas },
+        { title: "Historial", arr: store.historial },
+      ]
   },
   methods: {
     ...mapActions('category', {$createCategory: 'create'} ),
+    ...mapActions('routines', {$createRoutine: 'create', $getAll: 'getAll'} ),
+    /*
     async dale() {
     //const initialCategories = [{name:"espalda", detail:"N/A"},{name:"pecho", detail:"N/A"},{name:"biceps", detail:"N/A"}];
       console.log(this.$createCategory);
@@ -78,9 +79,9 @@ export default {
     //   await CategoryApi.add(category).then((res) => {console.log(res)}).catch((e) => {return e;})
     // }
     }
+    */
   },
-  
-  
+    
 };
 </script>
 

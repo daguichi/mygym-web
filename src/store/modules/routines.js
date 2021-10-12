@@ -1,91 +1,64 @@
-// {
-//   name: "Abdominales",
-//   autor: "Dax",
-//   score: "iiii",
-//   img: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
-  
-// }
+import {RoutineApi} from "../../api/routines"
 
 export default {
-  destacadas: [
-    {
-      titulo: "Abdominales",
-      autor: "Dax",
-      stars: "iiii",
-      img: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
+    namespaced: true,
+    state: {
+        routines: []
     },
-    {
-      titulo: "Calistenia",
-      autor: "Dagos",
-      stars: "iii",
-      img:
-        "https://pbs.twimg.com/media/E5lSGN6WEAM7VZz?format=jpg&name=900x900",
+    getters: {
+        findIndex(state) {
+            return (routine) => {
+                return state.routines.findIndex(item => item.id === routine.id)
+            }
+        },
     },
-    {
-      titulo: "Hombros",
-      autor: "Tisan",
-      stars: "iiii",
-      img: "https://blog.smartfit.com.mx/wp-content/uploads/2019/09/1.png",
+    mutations: {
+        push(state, routine) {
+            state.routines.push(routine)
+        },
+        replace(state, index, routine) {
+            state.routines[index] = routine
+        },
+        splice(state, index) {
+            state.routines.splice(index, 1)
+        },
+        replaceAll(state, routines) {
+            state.routines = routines
+        }
     },
-    {
-      titulo: "Piernas",
-      autor: "Sol",
-      stars: "iii",
-      img: "https://i.blogs.es/42c0e8/peso-muerto-entrenamiento/1366_2000.jpeg",
+    actions: {
+        async create({getters, commit}, routine) {
+            const result = await RoutineApi.add(routine)
+            if (!getters.findIndex(result))
+                commit('push', result)
+            return result
+        },
+        async modify({getters, commit}, routine) {
+            const result = await RoutineApi.modify(routine)
+            const index = getters.findIndex(result)
+            if (index >= 0)
+                commit('replace', index, result)
+            return result
+        },
+        async delete({getters, commit}, routine) {
+            await RoutineApi.delete(routine.id)
+            const index = getters.findIndex(routine)
+            if (index >= 0)
+                commit('splice', index)
+        },
+        async get({state, getters, commit}, routine) {
+            const index = getters.findIndex(routine)
+            if (index >= 0)
+                return state.routines[index]
+
+            const result = await RoutineApi.get()
+            commit('push', result)
+            return result
+        },
+        async getAll({commit}, controller) {
+            const result = await RoutineApi.getAll(controller)
+            commit('replaceAll', result)
+            return result
+        }
     },
-  ],
-  misrutinas: [
-    {
-      titulo: "Calistenia",
-      autor: "Dagos",
-      stars: "iii",
-      img:
-        "https://pbs.twimg.com/media/E5lSGN6WEAM7VZz?format=jpg&name=900x900",
-    },
-    {
-      titulo: "Abdominales",
-      autor: "Dax",
-      stars: "iiii",
-      img: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
-    },
-    {
-      titulo: "Hombros",
-      autor: "Tisan",
-      stars: "iiii",
-      img: "https://blog.smartfit.com.mx/wp-content/uploads/2019/09/1.png",
-    },
-    {
-      titulo: "Piernas",
-      autor: "Sol",
-      stars: "iiiii",
-      img: "https://i.blogs.es/42c0e8/peso-muerto-entrenamiento/1366_2000.jpeg",
-    },
-  ],
-  historial: [
-    {
-      titulo: "Calistenia",
-      autor: "Dagos",
-      stars: "iii",
-      img:
-        "https://pbs.twimg.com/media/E5lSGN6WEAM7VZz?format=jpg&name=900x900",
-    },
-    {
-      titulo: "Abdominales",
-      autor: "Dax",
-      stars: "iiii",
-      img: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
-    },
-    {
-      titulo: "Hombros",
-      autor: "Tisan",
-      stars: "iiii",
-      img: "https://blog.smartfit.com.mx/wp-content/uploads/2019/09/1.png",
-    },
-    {
-      titulo: "Piernas",
-      autor: "Sol",
-      stars: "iiiii",
-      img: "https://i.blogs.es/42c0e8/peso-muerto-entrenamiento/1366_2000.jpeg",
-    },
-  ],
-};
+}
