@@ -9,7 +9,7 @@ export default {
     getters: {
         findIndex(state) {
             return (routine) => {
-                return state.routines.content.findIndex(item => item.id === routine.id)
+                return state.routines.findIndex(item => item.id === routine.id)
             }
         },
         findFav(state) {
@@ -63,7 +63,7 @@ export default {
             if (index >= 0)
                 return state.routines[index]
 
-            const result = await RoutineApi.get()
+            const result = await RoutineApi.get(routine.id) // REVISAR
             commit('push', result)
             return result
         },
