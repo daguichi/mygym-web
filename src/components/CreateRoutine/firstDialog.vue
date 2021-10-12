@@ -89,7 +89,7 @@
           <v-card-text>
             <v-select
               v-model="steps"
-              :items="[1, 2, 3, 4, 5]"
+              :items="[1, 2, 3, 4]"
               label="Numero de ciclos"
               rounded
               outlined
@@ -104,7 +104,7 @@
             </v-btn>
           </v-col>
           <v-col>
-            <calentamiento-step></calentamiento-step>
+            <calentamiento-step :steps="steps"></calentamiento-step>
             <!-- <v-btn @click="nextDialog"> Siguiente</v-btn> -->
           </v-col>
         </v-row>
