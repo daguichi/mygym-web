@@ -35,49 +35,32 @@
         <!-- steper contents  -->
         <v-stepper-items>
           <v-stepper-content step="0">
-            <v-card
-              class="mb-12"
-              color="grey lighten-1"
-              height="200px"
-            ></v-card>
 
-            <v-btn color="primary" @click="e1 = 2">
-              Continue
-            </v-btn>
+            <template>
+                <v-container>
+                  <v-row class="pl-3" v-for="exercise in exercises" :key="exercise.id">
+                    <v-checkbox v-model="model[exercise+0]" :value="exercise" multiple ></v-checkbox>
+                  </v-row>
+                </v-container>
+            </template>
 
-            <v-btn text>
-              Cancel
-            </v-btn>
+            <v-btn color="primary" @click="e1 = 1"> Continue </v-btn>
+
+            <v-btn text> Cancel </v-btn>
           </v-stepper-content>
           <v-stepper-content v-for="n in steps" :key="n" :step="n">
-            <v-card
-              class="mb-12"
-              color="grey lighten-1"
-              height="200px"
-            ></v-card>
+            
 
-            <v-btn color="primary" @click="e1 = 2">
-              Continue
-            </v-btn>
+            <v-btn color="primary" @click="e1 = n + 1"> Continue </v-btn>
 
-            <v-btn text>
-              Cancel
-            </v-btn>
+            <v-btn text> Cancel </v-btn>
           </v-stepper-content>
           <v-stepper-content :step="steps + 1">
-            <v-card
-              class="mb-12"
-              color="grey lighten-1"
-              height="200px"
-            ></v-card>
+            
 
-            <v-btn color="primary" @click="e1 = 2">
-              Continue
-            </v-btn>
+            <v-btn color="primary" @click="guardar"> Continue </v-btn>
 
-            <v-btn text>
-              Cancel
-            </v-btn>
+            <v-btn text> Cancel </v-btn>
           </v-stepper-content>
         </v-stepper-items>
       </v-stepper>
@@ -93,97 +76,69 @@ export default {
   props: {
     title: String,
     imgUrl: URL,
+    steps: Number,
   },
-
   data() {
     return {
+      reps: false,
+      exercises: [
+        { name: "Dog Photos", id: "20" },
+        { name: "Dog ", id: "10" },
+        { name: "Cat Photos", id: "15" },
+      ],  
+      model: [
+        
+      ],
       e1: 0,
-      steps: 4,
       createRoutineDialogStep2: false,
+      cycles: [],
+      cycleName: [],
+      cycleDetail: [],
+      cycleType: [],
+      order: [],
+      repetitions: [],
     };
   },
   methods: {
-    /*
-    nextDialog() {
-      this.$emit(
-        "nextDialog",
-        this.nameRoutine,
-        this.detailRoutine,
-        this.diff,
-        this.steps,
-        this.reps,
-        this.col
-      );
+    guardar() {
+      console.log(this.model[0]);
+      console.log(this.model[1]);
+      console.log(this.model[2]);
+      console.log(this.model[3]);
+      console.log(this.model[4]);
     },
-    cancelRoutine() {
-      this.createRoutineDialog = false;
-      this.$emit("cancelRoutine");
-    },
-    */
   },
 };
-
 /*
-<v-stepper-content step="0">
-            <v-card
-              class="mb-12"
-              color="grey lighten-1"
-              height="800px"
-              elevation="0"
-            >
-              <v-list two-line style="max-height:300px" class="overflow-y-auto">
-                <v-subheader id="sub"
-                  >Seleccione los ejercicios que quiera</v-subheader
-                >
-                <v-list-item-group
-                  v-model="selected[0]"
-                  active-class="grey--text"
-                  multiple
-                  ><template v-for="(excersise, index) in excersises">
-                    <v-row v-bind:key="excersise.id">
-                      <v-col>
-                        <v-list-tile :class="'white'"></v-list-tile>
-                        <v-list-item :key="excersise.id">
-                          <template v-slot:default="{ active }">
-                            <v-list-item-content>
-                              <v-list-item-title
-                                v-text="excersise.nombre"
-                              ></v-list-item-title>
-                            </v-list-item-content>
-                            <v-list-item-action>
-                              <v-icon
-                                v-if="active"
-                                color="grey lighten-1"
-                                @click="imprimi"
-                              >
-                                mdi-check
-                              </v-icon>
-                            </v-list-item-action>
-                          </template>
-                        </v-list-item>
-                        <v-divider
-                          v-if="index < excersise.length - 1"
-                          :key="index"
-                        ></v-divider>
-                      </v-col> </v-row></template
-                ></v-list-item-group>
-              </v-list>
-              <br />
-              <!-- lista de ejercicios seleccionados -->
+<template>
+              <v-card class="mx-auto" max-width="500">
+                <v-list shaped>
+                  <v-list-item-group v-model="model[steps + 1]" multiple>
+                    <template v-for="(item, i) in items">
+                      <v-list-item
+                        :key="`item-${i}`"
+                        :value="item"
+                        active-class="deep-purple--text text--accent-4"
+                      >
+                        <template v-slot:default="{ active }">
+                          <v-list-item-content>
+                            <v-list-item-title
+                              v-text="item.name"
+                            ></v-list-item-title>
+                          </v-list-item-content>
 
-              <v-list>
-                <!-- <v-list-title>Ejercicios seleccionados</v-list-title> -->
-                <v-list-item
-                  v-for="selectedExercise in selectedExercises"
-                  :key="selectedExercise.id"
-                >
-                </v-list-item>
-              </v-list>
-            </v-card>
-
-                <v-btn color="primary" @click="createRoutine">guardar</v-btn>
-                <!-- llamar metodo para guardar rutina -->
-
-            </v-card>
+                          <v-list-item-action>
+                            <v-checkbox
+                              :input-value="active"
+                              color="deep-purple accent-4"
+                            ></v-checkbox>
+                          </v-list-item-action>
+                        </template>
+                      </v-list-item>
+                    </template>
+                  </v-list-item-group>
+                </v-list>
+              </v-card>
+            </template>
             */
 </script>

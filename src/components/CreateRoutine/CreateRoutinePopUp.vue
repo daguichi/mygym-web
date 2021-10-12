@@ -6,6 +6,8 @@
     ></first-dialog>
   </div>
 </template>
+
+
 <script>
 import { mapState, mapActions } from "vuex";
 import firstDialog from "./firstDialog.vue";
