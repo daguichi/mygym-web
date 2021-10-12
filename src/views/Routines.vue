@@ -5,10 +5,10 @@
       <v-row align="center" justify="center">
         <v-col></v-col>
         <v-col class="options">
-          <v-btn elevation="2" flat outlined rounded x-large block class="primary text"> Todas </v-btn>
+          <v-btn elevation="2" flat outlined rounded x-large block class="primary text" color="#6262f8"> Todas </v-btn>
         </v-col>
         <v-col class="options" >
-          <v-btn elevation="2" rounded x-large outlined block class="primary text" > Mis rutinas </v-btn>
+          <v-btn elevation="2" rounded x-large outlined block class="primary text" color="#6262f8"> Mis rutinas </v-btn>
         </v-col>   
         <v-col></v-col>
       </v-row>

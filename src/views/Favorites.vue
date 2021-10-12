@@ -2,7 +2,7 @@
   <div>
     <v-main class="grey lighten-3">
       <v-row align="stretch"
-        ><v-icon color="purple" x-large @click="goBack" class="left-arrow"
+        ><v-icon color="#6262f8" x-large @click="goBack" class="left-arrow"
           >mdi-arrow-left-thick
         </v-icon>
       </v-row>
@@ -50,12 +50,12 @@
       </div>
       <div v-else>
         <v-row justify="space-around" align="center"
-          ><v-icon x-large color="purple">mdi-heart</v-icon></v-row
+          ><v-icon x-large color="#6262f8">mdi-heart</v-icon></v-row
         >
         <h3>No tienes rutinas favoritas :(</h3>
         <h5>Toca en el ícono de Favoritos para añadir</h5>
         <router-link to="/routines" style="text-decoration: none">
-          <v-btn color="purple" elevation="2" rounded outlined x-large>
+          <v-btn color="#6262f8" elevation="2" rounded outlined x-large>
             <v-icon> right mdi-weight-lifter</v-icon>
             Buscar rutinas
           </v-btn>

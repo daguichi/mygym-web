@@ -72,8 +72,8 @@
           :to="{ name: 'Ficha tecnica' }"
           style="text-decoration: none"
         >
-          <v-btn x-large>
-            <v-icon> left mdi-account-circle </v-icon>
+          <v-btn class="white--text" x-large rounded color="#6262f8">
+            <v-icon class="mr-2">mdi-account-circle </v-icon>
             username
           </v-btn>
         </router-link>

@@ -17,7 +17,7 @@
                   <v-text-field
                     v-model="username"
                     background-color="rgb(244, 249, 252)"
-                    placeholder="Usuario"
+                    placeholder="Usuario*"
                     elevation="2"
                     color="black"
                     dense
@@ -35,7 +35,7 @@
                   <v-text-field
                     v-model="email"
                     background-color="rgb(244, 249, 252)"
-                    placeholder="Correo electrónico"
+                    placeholder="Correo electrónico*"
                     elevation="2"
                     color="black"
                     dense
@@ -56,7 +56,7 @@
                     :rules="[rules.required, rules.min]"
                     :type="show1 ? 'text' : 'password'"
                     name="input-10-1"
-                    placeholder="Contraseña"
+                    placeholder="Contraseña*"
                     @click:append="show1 = !show1"
                     background-color="rgb(244, 249, 252)"
                     elevation="2"
@@ -79,7 +79,7 @@
                     :rules="[rules.required, rules.min]"
                     :type="show1 ? 'text' : 'password'"
                     name="input-10-1"
-                    placeholder="Confirmar contraseña"
+                    placeholder="Confirmar contraseña*"
                     @click:append="show1 = !show1"
                     background-color="rgb(244, 249, 252)"
                     elevation="2"

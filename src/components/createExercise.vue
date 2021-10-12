@@ -25,7 +25,7 @@
       <v-card-actions>
         <v-row>
           <v-col>
-            <v-btn color="blue darken-1" text @click="ExcerciseDialog = false">
+            <v-btn color="#6262f8" text @click="ExcerciseDialog = false">
               Cancelar
             </v-btn>
           </v-col>
