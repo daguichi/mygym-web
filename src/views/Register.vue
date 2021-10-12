@@ -8,7 +8,9 @@
           src="../assets/MyGymLogo2.png"
         ></v-img>
       </v-row>
-      <register-card></register-card>
+      <v-row>      <register-card></register-card>
+      </v-row>
+      <v-row></v-row>
     </v-container>
   </div>
 </template>
@@ -26,9 +28,9 @@ export default {
 
 .fivepeople {
   width: auto;
-  height: 700px;
+  height: 100vh;
   overflow: visible;
-  background-image: url("../assets/RegisterBackground.jpeg");
+  background-image: url("../assets/mancuernas.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

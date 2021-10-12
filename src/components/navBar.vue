@@ -4,7 +4,7 @@
       <!-- aca arriba podemos agregarle la siguiente cosa pero queda muy grueso al principio:  shrink-on-scroll-->
       <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
       <v-row align="center" justify="space-around">
-        <router-link to="/inicio" style="text-decoration: none">
+        <router-link to="/home" style="text-decoration: none">
           <v-img
             :src="require('../assets/MyGymLogo2.png')"
             max-height="100"

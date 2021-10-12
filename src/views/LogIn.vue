@@ -167,7 +167,7 @@ export default {
   width: auto;
   height: 100vh;
   overflow: visible;
-  background-image: url("../assets/fondo.png");
+  background-image: url("../assets/gitrl.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
