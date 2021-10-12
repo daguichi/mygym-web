@@ -104,7 +104,10 @@
             </v-btn>
           </v-col>
           <v-col>
-            <calentamiento-step :steps="steps"></calentamiento-step>
+            <calentamiento-step
+              :steps="steps"
+              @save="onSave"
+            ></calentamiento-step>
             <!-- <v-btn @click="nextDialog"> Siguiente</v-btn> -->
           </v-col>
         </v-row>
@@ -143,6 +146,8 @@ export default {
         { show: "Rojo", value: "FF0000" },
         { show: "Azul", value: "#0000ff" },
       ],
+      cycles: [],
+      selectedExercises: [[], [], [], [], [], []],
     };
   },
   methods: {
@@ -160,6 +165,13 @@ export default {
     cancelRoutine() {
       this.createRoutineDialog = false;
       this.$emit("cancelRoutine");
+    },
+
+    onSave(cycles, selectedExercises) {
+      this.cycles = cycles;
+      this.selectedExercises = selectedExercises;
+
+      /* Aca ya tengo todo como para llamar a la api */
     },
   },
 };
