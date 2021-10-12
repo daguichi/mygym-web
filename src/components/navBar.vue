@@ -49,7 +49,7 @@
         </router-link>
 
         <router-link to="/favorites" style="text-decoration: none">
-          <v-btn color="purple"
+          <v-btn color="purple" 
             v-if="actualPage === 'favoritos'"
             elevation="2"
             rounded

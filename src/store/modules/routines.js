@@ -3,18 +3,27 @@ import {RoutineApi} from "../../api/routines"
 export default {
     namespaced: true,
     state: {
-        routines: []
+        routines: [],
+        favs: [],
     },
     getters: {
         findIndex(state) {
             return (routine) => {
-                return state.routines.findIndex(item => item.id === routine.id)
+                return state.routines.content.findIndex(item => item.id === routine.id)
+            }
+        },
+        findFav(state) {
+            return (routine) => {
+                return state.favs.findIndex(item => item.id === routine.id)
             }
         },
     },
     mutations: {
         push(state, routine) {
             state.routines.push(routine)
+        },
+        pushFav(state, routine) {
+            state.favs.push(routine)
         },
         replace(state, index, routine) {
             state.routines[index] = routine
@@ -24,6 +33,9 @@ export default {
         },
         replaceAll(state, routines) {
             state.routines = routines
+        },
+        replaceFavs(state, favs) {
+            state.favs = favs
         }
     },
     actions: {
@@ -57,8 +69,29 @@ export default {
         },
         async getAll({commit}, controller) {
             const result = await RoutineApi.getAll(controller)
-            commit('replaceAll', result)
+            commit('replaceAll', result.content)
+            return result.content
+        },
+        async getFavs({commit}, controller) {
+            const result = await RoutineApi.getFavs(controller);
+            commit('replaceFavs', result.content)
+            return result.content
+        },
+        async markFav({getters, commit}, routineId, controller) {
+            const result = await RoutineApi.markFav(routineId, controller);
+            if (!getters.findFav(result))
+                commit('pushFav', result)
             return result
         }
     },
 }
+
+/*
+ static async markFav(id, controller) {
+    return await Api.post(RoutineApi.getFavsUrl(id), true, controller);
+  }
+
+  static async unmarkFav(id, controller) {
+    return await Api.delete(RoutineApi.getFavsUrl(id), true, controller);
+  }
+  */

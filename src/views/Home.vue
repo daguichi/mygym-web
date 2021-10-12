@@ -13,15 +13,15 @@
             >
               <v-slide-item
                 class="pa-4"
-                v-for="rutina in seccion.arr"
-                :key="rutina.id"
+                v-for="r in routines"
+                :key="r.id"
               >
                 <ExcercisesCard
-                  v-bind:titulo="rutina.name"
-                  v-bind:autor="rutina.user.username"
-                  v-bind:stars="rutina.score"
-                  v-bind:imgUrl="rutina.metadata"
-                ></ExcercisesCard>
+                  v-bind:titulo="r.name"
+                  v-bind:autor="r.user.username"
+                  v-bind:stars="r.score"
+                  v-bind:imgUrl="r.metadata"
+                ></ExcercisesCard> 
               </v-slide-item>
             </v-slide-group>
           </v-row>
@@ -60,8 +60,11 @@ export default {
   async created() {
     await this.$getAll();
     console.log(this.routines)
+    for (let rutina in this.routines) {
+      console.log(this.routines[rutina])
+    }
     this.secciones = [
-        { title: "Destacados", arr: this.routines.content},
+        { title: "Destacados", arr: this.routines},
         { title: "Mis rutinas", arr: store.misrutinas },
         { title: "Historial", arr: store.historial },
       ]

@@ -8,6 +8,10 @@ class RoutineApi {
     return `${Api.baseUrl}/routines${ slug ? `/${slug}` : ''}`
   }
 
+  static getFavsUrl(routineId) {
+    return `${Api.baseUrl}/favourites${ routineId ? `/${routineId}` : ''}`
+  }
+
   static async add(routine, controller) {
    return await Api.post(RoutineApi.getUrl(), true, routine, controller)
   }
@@ -30,18 +34,19 @@ class RoutineApi {
 
   static async getAll(controller) {
     return await Api.get(RoutineApi.getUrl(), true, controller)
+     
   }
 
   static async getFavs(controller) {
-    return await Api.get(RoutineApi.getUrl(), true, controller);
+    return await Api.get(RoutineApi.getFavsUrl(), true, controller);
   }
 
-  static async markFav(controller) {
-    return await Api.post(RoutineApi.getUrl(), true, controller);
+  static async markFav(id, controller) {
+    return await Api.post(RoutineApi.getFavsUrl(id), true, controller);
   }
 
-  static async unmarkFav(controller) {
-    return await Api.delete(RoutineApi.getUrl(), true, controller);
+  static async unmarkFav(id, controller) {
+    return await Api.delete(RoutineApi.getFavsUrl(id), true, controller);
   }
 }
 

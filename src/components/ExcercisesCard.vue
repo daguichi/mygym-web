@@ -24,7 +24,7 @@
             <v-container>
               <v-row>
                 <v-col>
-                    <v-icon color="primary"  rounded dark>mdi-heart</v-icon>
+                    <v-icon @click="markFav" color="primary"  rounded dark>mdi-heart</v-icon>
                 </v-col>
                 <v-col><RoutinePopUp class="nopad"></RoutinePopUp></v-col>
               </v-row>
@@ -43,6 +43,8 @@
 
 <script>
 import RoutinePopUp from "../components/RoutinePopUp";
+import {mapActions} from 'vuex'
+
 export default {
   name: "ExcercisesCard",
   data() {
@@ -51,6 +53,9 @@ export default {
   components: { RoutinePopUp },
   props: 
     ["titulo", "img", "autor", "stars"],
+  methods: {
+    ...mapActions('routines', {$createRoutine: 'create', $getAll: 'getAll'} ),
+  }
 };
 </script>
 

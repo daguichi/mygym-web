@@ -3,7 +3,7 @@ import {CategoryApi} from "../../api/category"
 export default {
     namespaced: true,
     state: {
-        categories: []
+        categories: {},
     },
     getters: {
         findIndex(state) {
@@ -14,7 +14,7 @@ export default {
     },
     mutations: {
         push(state, category) {
-            state.categories.push(category)
+            state.categories.content.push(category)
         },
         replace(state, index, category) {
             state.categories[index] = category
