@@ -89,4 +89,8 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
 </style>

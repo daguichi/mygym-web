@@ -1,69 +1,71 @@
-import {RoutineApi} from "../../api/routines"
+import { RoutineApi } from "../../api/routines";
 
 export default {
-    namespaced: true,
-    state: {
-        routines: [],
-        favs: [],
+  namespaced: true,
+  state: {
+    routines: [],
+    favs: [],
+    myRoutines: [],
+  },
+  
+  getters: {
+      findIndex(state) {
+          return (routine) => {
+              return state.routines.content.findIndex(item => item.id === routine.id)
+          }
+      },
+      findFav(state) {
+          return (routine) => {
+            return state.favs.findIndex(item => item.id === routine.id);
+          }
+      },
+  },
+  
+  mutations: {
+    push(state, routine) {
+      state.routines.push(routine);
     },
-    getters: {
-        findIndex(state) {
-            return (routine) => {
-                return state.routines.content.findIndex(item => item.id === routine.id)
-            }
-        },
-        findFav(state) {
-            return (routine) => {
-                return state.favs.findIndex(item => item.id === routine.id)
-            }
-        },
+    pushFav(state, routine) {
+      state.favs.push(routine);
     },
-    mutations: {
-        push(state, routine) {
-            state.routines.push(routine)
-        },
-        pushFav(state, routine) {
-            state.favs.push(routine)
-        },
-        replace(state, index, routine) {
-            state.routines[index] = routine
-        },
-        splice(state, index) {
-            state.routines.splice(index, 1)
-        },
-        replaceAll(state, routines) {
-            state.routines = routines
-        },
-        replaceFavs(state, favs) {
-            state.favs = favs
-        }
+    replace(state, index, routine) {
+      state.routines[index] = routine;
     },
-    actions: {
-        async create({getters, commit}, routine) {
-            const result = await RoutineApi.add(routine)
-            if (!getters.findIndex(result))
-                commit('push', result)
-            return result
-        },
-        async modify({getters, commit}, routine) {
-            const result = await RoutineApi.modify(routine)
-            const index = getters.findIndex(result)
-            if (index >= 0)
-                commit('replace', index, result)
-            return result
-        },
-        async delete({getters, commit}, routine) {
-            await RoutineApi.delete(routine.id)
-            const index = getters.findIndex(routine)
-            if (index >= 0)
-                commit('splice', index)
-        },
-        async get({state, getters, commit}, routine) {
-            const index = getters.findIndex(routine)
-            if (index >= 0)
-                return state.routines[index]
+    splice(state, index) {
+      state.routines.splice(index, 1);
+    },
+    replaceAll(state, routines) {
+      state.routines = routines;
+    },
+    replaceFavs(state, favs) {
+      state.favs = favs;
+    },
+    replaceMines(state, myRoutines) {
+        state.myRoutines = myRoutines;
+    }
+  },
+  actions: {
+    async create({ getters, commit }, routine) {
+      const result = await RoutineApi.add(routine);
+      if (!getters.findIndex(result)) commit("push", result);
+      return result;
+    },
+    async modify({ getters, commit }, routine) {
+      const result = await RoutineApi.modify(routine);
+      const index = getters.findIndex(result);
+      if (index >= 0) commit("replace", index, result);
+      return result;
+    },
+    async delete({ getters, commit }, routine) {
+      await RoutineApi.delete(routine.id);
+      const index = getters.findIndex(routine);
+      if (index >= 0) commit("splice", index);
+    },
+    async get({ state, getters, commit }, routine) {
+      const index = getters.findIndex(routine);
+      if (index >= 0) return state.routines[index];
 
-            const result = await RoutineApi.get()
+            const result = await RoutineApi.get(routine.id) // REVISAR
             commit('push', result)
             return result
         },
@@ -82,9 +84,18 @@ export default {
             if (!getters.findFav(result))
                 commit('pushFav', result)
             return result
-        }
-    },
-}
+        },
+        
+        async getMines({ commit }, controller) {
+          const result = await RoutineApi.getMines(controller);
+          console.log('en modulo', result.content)
+          commit("replaceMines", result.content);
+          return result.content;
+        },
+    
+    
+  },
+};
 
 /*
  static async markFav(id, controller) {

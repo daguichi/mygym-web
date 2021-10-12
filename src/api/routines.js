@@ -48,6 +48,11 @@ class RoutineApi {
   static async unmarkFav(id, controller) {
     return await Api.delete(RoutineApi.getFavsUrl(id), true, controller);
   }
+
+  static async getMines(controller) {
+    return await this.getAll(controller)
+    // return await Api.get(RoutineApi.getFavsUrl(), true, controller);
+  }
 }
 
 class Routine {
