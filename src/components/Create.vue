@@ -55,7 +55,7 @@
 
 <script>
 import CreateExercise from "./createExercise.vue";
-import CreateRoutinePopUp from "./CreateRoutinePopUp";
+import CreateRoutinePopUp from "./CreateRoutine/CreateRoutinePopUp";
 export default {
   components: { CreateRoutinePopUp, CreateExercise },
   data: () => ({
