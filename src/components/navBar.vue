@@ -11,8 +11,9 @@
             max-width="140"
           ></v-img>
         </router-link>
-        <router-link to="/home">
-          <v-btn color="purple"
+        <router-link to="/home" style="text-decoration: none">
+          <v-btn
+            color="purple"
             v-if="actualPage === 'Home'"
             elevation="2"
             flat
@@ -31,7 +32,7 @@
 
         <router-link to="/routines" style="text-decoration: none">
           <v-btn
-          color="purple"
+            color="purple"
             v-if="actualPage === 'rutinas'"
             elevation="2"
             rounded
@@ -49,7 +50,8 @@
         </router-link>
 
         <router-link to="/favorites" style="text-decoration: none">
-          <v-btn color="purple" 
+          <v-btn
+            color="purple"
             v-if="actualPage === 'favoritos'"
             elevation="2"
             rounded
