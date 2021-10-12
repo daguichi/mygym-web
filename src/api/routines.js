@@ -32,7 +32,17 @@ class RoutineApi {
     return await Api.get(RoutineApi.getUrl(), true, controller)
   }
 
+  static async getFavs(controller) {
+    return await Api.get(RoutineApi.getUrl(), true, controller);
+  }
 
+  static async markFav(controller) {
+    return await Api.post(RoutineApi.getUrl(), true, controller);
+  }
+
+  static async unmarkFav(controller) {
+    return await Api.delete(RoutineApi.getUrl(), true, controller);
+  }
 }
 
 class Routine {

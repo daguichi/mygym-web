@@ -12,7 +12,7 @@
           ></v-img>
         </router-link>
         <router-link to="/home">
-          <v-btn
+          <v-btn color="purple"
             v-if="actualPage === 'Home'"
             elevation="2"
             flat
@@ -23,7 +23,7 @@
             Inicio
             <v-icon> right mdi-home</v-icon>
           </v-btn>
-          <v-btn v-else elevation="2" rounded x-large outlined
+          <v-btn color="purple" v-else elevation="2" rounded x-large outlined
             >Inicio
             <v-icon> right mdi-home</v-icon>
           </v-btn>
@@ -31,6 +31,7 @@
 
         <router-link to="/routines" style="text-decoration: none">
           <v-btn
+          color="purple"
             v-if="actualPage === 'rutinas'"
             elevation="2"
             rounded
@@ -41,14 +42,14 @@
             Rutinas
             <v-icon> right mdi-weight-lifter</v-icon>
           </v-btn>
-          <v-btn v-else elevation="2" rounded outlined x-large>
+          <v-btn color="purple" v-else elevation="2" rounded outlined x-large>
             Rutinas
             <v-icon> right mdi-weight-lifter</v-icon>
           </v-btn>
         </router-link>
 
         <router-link to="/favorites" style="text-decoration: none">
-          <v-btn
+          <v-btn color="purple"
             v-if="actualPage === 'favoritos'"
             elevation="2"
             rounded
@@ -59,7 +60,7 @@
             Favoritos
             <v-icon> right mdi-heart </v-icon>
           </v-btn>
-          <v-btn v-else elevation="2" rounded outlined x-large>
+          <v-btn color="purple" v-else elevation="2" rounded outlined x-large>
             Favoritos
             <v-icon> right mdi-heart </v-icon>
           </v-btn>
