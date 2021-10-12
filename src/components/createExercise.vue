@@ -18,33 +18,9 @@
             <v-col cols="12">
               <v-text-field label="Descripcion*" required></v-text-field>
             </v-col>
-            <v-col cols="12" sm="6">
-              <v-select
-                :items="['0-17', '18-29', '30-54', '54+']"
-                label="Dificultad*"
-                required
-              ></v-select>
-            </v-col>
-            <v-col cols="12" sm="6">
-              <v-autocomplete
-                :items="[
-                  'Skiing',
-                  'Ice hockey',
-                  'Soccer',
-                  'Basketball',
-                  'Hockey',
-                  'Reading',
-                  'Writing',
-                  'Coding',
-                  'Basejump',
-                ]"
-                label="Categoria*"
-                multiple
-              ></v-autocomplete>
-            </v-col>
           </v-row>
         </v-container>
-        <small>*indicates required field</small>
+        <small>*indica campos obligatorios</small>
       </v-card-text>
       <v-card-actions>
         <v-row>
@@ -66,7 +42,7 @@
 
 <script>
 export default {
-  name: "createExersise",
+  name: "createExercise",
   data: () => ({
     createDialog: false,
     ExcerciseDialog: false,
