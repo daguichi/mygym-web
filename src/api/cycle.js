@@ -12,7 +12,7 @@ class CycleApi {
    return await Api.post(`${CycleApi.url}/${routineId}/cycles`, true, cycle, controller)
   }
 
-  static async modify(cycle, controller) {
+  static async modify(routineId, cycle, controller) {
     return await Api.put(`${CycleApi.url}/${routineId}/cycles/${cycle.id}`, true, cycle, controller)
   }
 
@@ -31,7 +31,7 @@ class CycleApi {
 
 class Cycle {
   constructor(routineId, name, detail) {
-    if (id) {
+    if (routineId) {
       this.routineId = routineId;
     }
     this.name = name;
