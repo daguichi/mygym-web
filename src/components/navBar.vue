@@ -13,7 +13,7 @@
         </router-link>
         <router-link to="/home" style="text-decoration: none">
           <v-btn
-            color="purple"
+            color="#6262f8"
             v-if="actualPage === 'Home'"
             elevation="2"
             flat
@@ -24,7 +24,7 @@
             Inicio
             <v-icon> right mdi-home</v-icon>
           </v-btn>
-          <v-btn color="purple" v-else elevation="2" rounded x-large outlined
+          <v-btn color="#6262f8" v-else elevation="2" rounded x-large outlined
             >Inicio
             <v-icon> right mdi-home</v-icon>
           </v-btn>
@@ -32,7 +32,7 @@
 
         <router-link to="/routines" style="text-decoration: none">
           <v-btn
-            color="purple"
+            color="#6262f8"
             v-if="actualPage === 'rutinas'"
             elevation="2"
             rounded
@@ -43,7 +43,7 @@
             Rutinas
             <v-icon> right mdi-weight-lifter</v-icon>
           </v-btn>
-          <v-btn color="purple" v-else elevation="2" rounded outlined x-large>
+          <v-btn color="#6262f8" v-else elevation="2" rounded outlined x-large>
             Rutinas
             <v-icon> right mdi-weight-lifter</v-icon>
           </v-btn>
@@ -51,7 +51,7 @@
 
         <router-link to="/favorites" style="text-decoration: none">
           <v-btn
-            color="purple"
+              color="#6262f8"
             v-if="actualPage === 'favoritos'"
             elevation="2"
             rounded
@@ -62,7 +62,7 @@
             Favoritos
             <v-icon> right mdi-heart </v-icon>
           </v-btn>
-          <v-btn color="purple" v-else elevation="2" rounded outlined x-large>
+          <v-btn color="#6262f8" v-else elevation="2" rounded outlined x-large>
             Favoritos
             <v-icon> right mdi-heart </v-icon>
           </v-btn>
@@ -72,8 +72,8 @@
           :to="{ name: 'Ficha tecnica' }"
           style="text-decoration: none"
         >
-          <v-btn x-large>
-            <v-icon> left mdi-account-circle </v-icon>
+          <v-btn class="white--text" x-large rounded color="#6262f8">
+            <v-icon class="mr-2">mdi-account-circle </v-icon>
             username
           </v-btn>
         </router-link>

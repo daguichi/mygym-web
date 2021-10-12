@@ -19,8 +19,8 @@
               <v-row>
                 <v-text-field
                   v-model="username"
-                  background-color="rgb(244, 249, 252)"
-                  placeholder="Usuario"
+                  background-color= "#e7e7e8"
+                  placeholder="Usuario*"
                   elevation="2"
                   color="black"
                   dense
@@ -31,6 +31,7 @@
                   textColor="#333"
                   truncate="{false}"
                   value=""
+                  outlined
                   x-large
                 ></v-text-field>
               </v-row>
@@ -41,9 +42,9 @@
                   :rules="[rules.required]"
                   :type="show1 ? 'text' : 'password'"
                   name="input-10-1"
-                  placeholder="Contraseña"
+                  placeholder="Contraseña*"
                   @click:append="show1 = !show1"
-                  background-color="rgb(244, 249, 252)"
+                  background-color="#e7e7e8"
                   elevation="2"
                   color="black"
                   dense
@@ -54,6 +55,7 @@
                   textColor="#333"
                   truncate="{false}"
                   value=""
+                  outlined
                   x-large
                 ></v-text-field>
               </v-row>
@@ -61,7 +63,7 @@
                 <v-btn
                   @click="logIn"
                   elevation="2"
-                  color="#2679CC"
+                  color="#6262f8"
                   dark
                   x-large
                   rounded
@@ -70,7 +72,7 @@
               </v-row>
               <v-row class="text-center pa-4" justify="center">
                 <router-link to="/register" style="text-decoration: none">
-                  <v-btn elevation="2" color="#2679CC" dark x-large rounded
+                  <v-btn elevation="2" color="#363c94" dark x-large rounded
                     >Registrarme
                   </v-btn>
                 </router-link>

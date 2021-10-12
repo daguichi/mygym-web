@@ -27,7 +27,7 @@
           </v-row>
           <br><br>
         </v-row>
-        <create />
+        <create/>
       </v-container>
     </v-main>
   </div>

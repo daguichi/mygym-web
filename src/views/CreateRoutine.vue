@@ -156,7 +156,7 @@ export default {
   width: auto;
   height: 100vh;
   overflow: visible;
-  background-image: url("../assets/RegisterBackground.jpeg");
+  background-image: url("../assets/mancuernas.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

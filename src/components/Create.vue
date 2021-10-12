@@ -14,12 +14,12 @@
               bottom
               absolute
               right
-              color="light"
+              color="#6262f8"
               v-bind="attrs"
               v-on="on"
               x-large
             >
-              <v-icon color="blue">mdi-plus</v-icon>
+              <v-icon color="white">mdi-plus</v-icon>
             </v-btn>
           </div>
         </template>
@@ -43,7 +43,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn color="blue darken-1" text @click="createDialog = false">
+            <v-btn color="#6262f8" text @click="createDialog = false">
               Cancelar
             </v-btn>
           </v-card-actions>
@@ -75,7 +75,7 @@ export default {
 <style scoped>
 .fab-container {
   position: fixed;
-  bottom: 40px;
-  right: 15px;
+  bottom: 90px;
+  right: 35px;
 }
 </style>
