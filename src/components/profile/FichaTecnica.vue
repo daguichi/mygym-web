@@ -2,7 +2,7 @@
   <v-col>
     <v-sheet min-height="70vh" rounded="lg">
       <h1 class="pa-6 font-weight-bold">Ficha tecnica</h1>
-      <v-list-item v-for="data in fichaTecnica" :key="data" two-line>
+      <v-list-item v-for="data in Object.entries(unwrap($user))" :key="data" two-line>
         <v-list-item-content>
           <v-list-item-title class="font-weight-bold">{{
             data[0]
@@ -20,7 +20,7 @@ import { mapState } from "vuex";
 
 export default {
   data: () => ({
-    fichaTecnica: Object.entries({peso: "50"}),
+    fichaTecnica: Object.entries({ peso: "40" }),
   }),
   computed: {
     ...mapState("security", {
@@ -28,7 +28,14 @@ export default {
     }),
   },
   methods: {
-    getFichaTecnica: () => this.$user,
+    unwrap: ({
+      username,
+      firstName,
+      lastName,
+      gender,
+      birthdate,
+      metadata,
+    }) => ({ username, firstName, lastName, gender, birthdate, metadata }),
   },
 };
 </script>

@@ -84,18 +84,21 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
+// import store from "@/store/modules/security.js"
 export default {
   name: "navBar",
   props: {
-    actualPage: String,
+    actualPage: String
   },
   computed: {
     ...mapState("security", {
       $user: (state) => state.user,
     }),
+    ...mapGetters("security", {
+      $fullUser: "fullUser",
+    }),
   },
-
 };
 </script>
 
