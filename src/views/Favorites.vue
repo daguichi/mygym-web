@@ -85,6 +85,7 @@ export default {
   },
   async created() {
     await this.$getFavs();
+
   },
 };
 </script>
