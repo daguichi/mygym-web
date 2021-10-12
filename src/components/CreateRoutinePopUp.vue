@@ -10,7 +10,7 @@
         <v-card-title>tu nueva rutina</v-card-title>
         <v-card-text>
           <v-row class="pa-2">
-            <v-text-field label="Nombre*" required></v-text-field>
+            <v-text-field  v-model="nameRoutine" label="Nombre*" required></v-text-field>
           </v-row>
           <v-row
             ><v-textarea
@@ -31,7 +31,7 @@
               type="time"
               required
               hide-details
-              v-model="nameRoutine"
+              
             ></v-text-field>
           </v-row>
 
@@ -110,7 +110,7 @@
               transition="v-slide-y-transition"
             >
               <template v-slot:activator="{ on, attrs }">
-                <v-btn color="primary" dark v-bind="attrs" v-on="on" @click="createRoutine"
+                <v-btn color="primary" dark v-bind="attrs" v-on="on"
                   >Siguiente</v-btn
                 >
               </template>
@@ -372,7 +372,7 @@
                               </v-row>
                             </template>
                           </v-list-item-group>
-                          <v-btn color="primary">guardar</v-btn>
+                          <v-btn color="primary"  @click="createRoutine">guardar</v-btn>
                           <!-- llamar metodo para guardar rutina -->
                         </v-list>
                       </v-card>
@@ -395,6 +395,7 @@ export default {
   data: () => ({
     props: ["createRoutineDialog"],
     nameRoutine: "",
+    cycle: [],
     detailRoutine: "",
     diff: "rookie",
     dificultad: [
@@ -475,8 +476,13 @@ export default {
   },
   methods: {
     ...mapActions('routines', {$createRoutine: 'create', $getAll: 'getAll'} ),
+    ...mapActions('cycle', {$createCycle: 'create', $getAll: 'getAll'} ),
     async createRoutine() {
-      await this.$createRoutine({name: "Body workout", detail: "N/A", isPublic: true, difficulty: "rookie",})
+      let routine = await this.$createRoutine({name: this.nameRoutine, detail: this.detailRoutine, isPublic: true, difficulty: this.diff,})
+      const routineId = routine.id;
+      await this.$createCycle(routineId, {name: "Fast Warmup", detail: "Fast Warmup", type: "warmup", order: 1, repetitions: 1, metadata: null})
+      //console.log(routineId);
+
     },
   },
 };
