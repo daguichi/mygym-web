@@ -104,7 +104,8 @@
             </v-btn>
           </v-col>
           <v-col>
-            <v-btn @click="nextDialog"> Siguiente</v-btn>
+            <calentamiento-step></calentamiento-step>
+            <!-- <v-btn @click="nextDialog"> Siguiente</v-btn> -->
           </v-col>
         </v-row>
       </v-card-text>
@@ -112,7 +113,9 @@
   </v-dialog>
 </template>
 <script>
+import calentamientoStep from "./calentamientoStep.vue";
 export default {
+  components: { calentamientoStep },
   name: "firstDialog",
   props: {
     title: String,

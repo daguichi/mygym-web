@@ -1,17 +1,12 @@
 <template>
-
   <v-container>
     <v-row>
       <v-card class="card">
-        <v-img
-            :src="imgUrl"
-            height="100%"
-            class="grey darken-4"
-        ></v-img>
-    </v-card>
+        <v-img :src="imgUrl" height="100%" class="grey darken-4"></v-img>
+      </v-card>
     </v-row>
     <v-row align="center" justify="center">
-      <h2>{{title}}</h2>
+      <h2>{{ title }}</h2>
     </v-row>
   </v-container>
 </template>
@@ -21,12 +16,12 @@ export default {
   name: "CategoryCard",
   props: {
     title: String,
-    imgUrl: URL
+    imgUrl: URL,
   },
   data() {
     return {};
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -48,5 +43,4 @@ export default {
 .microText {
   font-size: 0.65em;
 }
-
 </style>
