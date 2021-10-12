@@ -6,7 +6,7 @@
           <v-card class="rounded-xl" rounded color="#92D9D3" elevation="1">
             <v-container class="account-icon">
               <v-row justify="center" align="center">
-                <v-icon color="#475dff" dense large x-large
+                <v-icon color="#6262f8" dense large x-large
                   >mdi-account-circle</v-icon
                 >
               </v-row>
@@ -99,7 +99,7 @@
                   <v-btn
                     @click="register"
                     elevation="2"
-                    color="#2679CC"
+                    color="#6262f8"
                     dark
                     x-large
                     rounded
