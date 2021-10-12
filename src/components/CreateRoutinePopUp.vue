@@ -110,7 +110,7 @@
               transition="v-slide-y-transition"
             >
               <template v-slot:activator="{ on, attrs }">
-                <v-btn color="primary" dark v-bind="attrs" v-on="on"
+                <v-btn color="primary" dark v-bind="attrs" v-on="on" @click="createRoutine"
                   >Siguiente</v-btn
                 >
               </template>
@@ -389,6 +389,7 @@
   </div>
 </template>
 <script>
+import {mapState, mapActions} from 'vuex'
 export default {
   name: "CreateRoutinePopUp",
   data: () => ({
@@ -467,11 +468,15 @@ export default {
     createRoutineDialogStep2: false,
     muscleGroups: ["Gemelos", "Biceps", "triceps", "cuadriceps"],
   }),
+  computed: {
+    ...mapState('routines', {
+        routines: state => state.routines
+    }),
+  },
   methods: {
-    createRoutine() {
-      if (this.nameRoutine) {
-        return;
-      }
+    ...mapActions('routines', {$createRoutine: 'create', $getAll: 'getAll'} ),
+    async createRoutine() {
+      await this.$createRoutine({name: "Body workout", detail: "N/A", isPublic: true, difficulty: "rookie",})
     },
   },
 };
