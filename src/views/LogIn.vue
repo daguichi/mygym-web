@@ -19,7 +19,7 @@
               <v-row>
                 <v-text-field
                   v-model="username"
-                  background-color= "#e7e7e8"
+                  background-color="#e7e7e8"
                   placeholder="Usuario*"
                   elevation="2"
                   color="black"
@@ -33,6 +33,7 @@
                   value=""
                   outlined
                   x-large
+                  :error-messages="result"
                 ></v-text-field>
               </v-row>
               <v-row>
@@ -57,6 +58,7 @@
                   value=""
                   outlined
                   x-large
+                  :error-messages="result"
                 ></v-text-field>
               </v-row>
               <v-row class="text-center" justify="center">
@@ -130,8 +132,8 @@ export default {
       $login: "login",
       $logout: "logout",
     }),
-    setResult(result) {
-      this.result = JSON.stringify(result, null, 2);
+    setResult() {
+      this.result = "credenciales invalidas, intente de nuevo";
     },
     clearResult() {
       this.result = null;
@@ -139,15 +141,17 @@ export default {
     async logIn() {
       try {
         const credentials = new Credentials(this.username, this.password);
-        await this.$login({ credentials, rememberMe: true })
+        await this.$login({ credentials, rememberMe: true });
         await this.getCurrentUser();
         this.clearResult();
       } catch (e) {
         this.setResult(e);
+        console.log(e);
+        return;
       }
-      
+
       console.log(this.$user);
-      router.push("Home")
+      router.push("Home");
     },
     async logout() {
       await this.$logout();
