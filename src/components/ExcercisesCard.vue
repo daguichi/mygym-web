@@ -7,6 +7,7 @@
       outlined
       color="blue lighten-3"
     >
+
       <div class="d-flex flex-no-wrap justify-space-between">
         <div>
           <v-card-title
@@ -14,7 +15,6 @@
             align="center"
             v-text="titulo"
           ></v-card-title>
-
           <v-card-subtitle class="font-italic font-weight-thin microText"
             >rutina creada por: {{ autor }}</v-card-subtitle
           >
@@ -26,7 +26,9 @@
                 <v-col>
                     <v-icon @click="markFav" color="primary"  rounded dark>mdi-heart</v-icon>
                 </v-col>
-                <v-col><RoutinePopUp class="nopad"></RoutinePopUp></v-col>
+                <v-col>
+                  <v-btn color = "primary" icon><v-icon>mdi-information</v-icon></v-btn>
+                </v-col>
               </v-row>
             </v-container>
            
@@ -42,7 +44,6 @@
 </template>
 
 <script>
-import RoutinePopUp from "../components/RoutinePopUp";
 import {mapActions} from 'vuex'
 
 export default {
@@ -50,7 +51,6 @@ export default {
   data() {
     return {};
   },
-  components: { RoutinePopUp },
   props: 
     ["titulo", "img", "autor", "stars"],
   methods: {
@@ -74,10 +74,6 @@ export default {
   font-size: 0.65em;
 }
 
-.nopad{
-  padding: 0;
-  margin: 0;
-}
 
 </style>
 
