@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-main class="grey lighten-3">
+      <v-btn @click="userTest">console</v-btn>
       <v-container>
         <v-row v-for="seccion in secciones" :key="seccion.title">
           <v-row
@@ -15,12 +16,9 @@
             show-arrows
           >
             <v-slide-item class="pl-3" v-for="r in routines" :key="r.id">
-              <ExcercisesCard
-                v-bind:titulo="r.name"
-                v-bind:autor="r.user.username"
-                v-bind:stars="r.score"
-                v-bind:imgUrl="r.metadata"
-              ></ExcercisesCard>
+              <RoutineCard
+              v-bind:routine="r"
+            />
             </v-slide-item>
           </v-slide-group>
 
@@ -28,12 +26,13 @@
         </v-row>
         <create />
       </v-container>
+
     </v-main>
   </div>
 </template>
 
 <script>
-import ExcercisesCard from "../components/ExcercisesCard";
+import RoutineCard from "../components/RoutineCard";
 import Create from "../components/Create";
 import store from "@/store/modules/routines.js";
 import { mapState, mapActions } from "vuex";
@@ -46,8 +45,11 @@ export default {
       secciones: undefined,
     };
   },
-  components: { ExcercisesCard, Create },
+  components: { RoutineCard, Create },
   computed: {
+    ...mapState("security", {
+      user: state => state.user,
+    }),
     ...mapState("category", {
       categories: (state) => state.categories,
     }),
@@ -81,6 +83,9 @@ export default {
     // }
     }
     */
+    userTest() {
+      console.log(this.user)
+    }
   },
 };
 </script>

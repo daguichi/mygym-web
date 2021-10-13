@@ -3,7 +3,7 @@ import {CycleApi} from "../../api/cycle"
 export default {
     namespaced: true,
     state: {
-        cycle: []
+        cycle: [],
     },
     getters: {
         findIndex(state) {
@@ -58,8 +58,8 @@ export default {
             commit('push', result)
             return result
         },
-        async getAll({commit}, controller) {
-            const result = await CycleApi.getAll(controller)
+        async getAll({commit}, routineId) {
+            const result = await CycleApi.getAll(routineId, null)
             commit('replaceAll', result)
             return result
         }

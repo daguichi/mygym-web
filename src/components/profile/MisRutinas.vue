@@ -16,11 +16,8 @@
           <v-carousel-item v-for="my in this.myRoutines"
             :key="my.id">
           
-            <ExcercisesCard
-              v-bind:titulo="my.name"
-              v-bind:autor="my.user.username"
-              v-bind:stars="my.score"
-              v-bind:imgUrl="my.metadata"
+            <RoutineCard
+              v-bind:routine="my"
             />
             <v-list two-line>
               <v-list-item>
@@ -45,9 +42,9 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-import ExcercisesCard from "@/components/ExcercisesCard"
+import RoutineCard from "@/components/RoutineCard"
 export default {
-  components: {ExcercisesCard},
+  components: {RoutineCard},
   methods: {
     ...mapActions("routines", { $getMines: "getMines" }),
   },

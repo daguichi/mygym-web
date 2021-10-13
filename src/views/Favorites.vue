@@ -7,7 +7,7 @@
         </v-icon>
       </v-row>
       <h1>Mis rutinas favoritas</h1>
-      <div v-if="favs.length > 0">
+      <div v-if="favs.totalCount > 0">
         <v-card elevation="24" max-width="444" class="mx-auto">
           <v-system-bar lights-out></v-system-bar>
           <v-carousel
@@ -18,14 +18,11 @@
             delimiter-icon="mdi-minus"
             height="220"
           >
-            <v-carousel-item :v-for="fav in favs">
+            <v-carousel-item v-for="fav in favs.content"
               :key="fav.id">
-              <ExcercisesCard
-                v-bind:titulo="fav.name"
-                v-bind:autor="fav.user.username"
-                v-bind:stars="fav.score"
-                v-bind:imgUrl="fav.metadata"
-              />
+            <RoutineCard
+              v-bind:routine="fav"
+            />
               <!-- <v-sheet :color="colors[i]" height="100%" tile>
                 <v-row class="fill-height" align="center" justify="center">
                   <div class="text-h2">{{ slide }} Slide</div>
@@ -48,7 +45,7 @@
           </v-carousel>
         </v-card>
       </div>
-      <div v-else>
+      <div v-if="favs.totalCount === 0">
         <v-row justify="space-around" align="center"
           ><v-icon x-large color="#6262f8">mdi-heart</v-icon></v-row
         >
@@ -66,12 +63,12 @@
 </template>
 
 <script>
-import ExcercisesCard from "../components/ExcercisesCard.vue";
+import RoutineCard from "../components/RoutineCard.vue";
 import { mapState, mapActions } from "vuex";
 
 export default {
   name: "Favorites",
-  components: { ExcercisesCard },
+  components: { RoutineCard },
   methods: {
     goBack() {
       return this.$router.go(-1);
@@ -85,7 +82,7 @@ export default {
   },
   async created() {
     await this.$getFavs();
-
+    console.log('en created de favs', this.favs)
   },
 };
 </script>

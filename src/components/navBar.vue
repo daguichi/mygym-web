@@ -77,11 +77,11 @@
             <v-avatar size="44">
               <img
                 src="https://cdn0.iconfinder.com/data/icons/handsome-man-avatars/283/stock_man_avatar-17-1024.png"
-                alt="John"
+                
               />
             </v-avatar>
 
-            {{ $user.username }}
+            {{ user.username }}
           </v-btn>
         </router-link>
       </v-row>
@@ -90,7 +90,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState } from "vuex";
 // import store from "@/store/modules/security.js"
 export default {
   name: "navBar",
@@ -99,11 +99,9 @@ export default {
   },
   computed: {
     ...mapState("security", {
-      $user: (state) => state.user,
+      user: (state) => state.user,
     }),
-    ...mapGetters("security", {
-      $fullUser: "fullUser",
-    }),
+    
   },
 };
 </script>
