@@ -16,7 +16,7 @@
           ></v-card-title>
 
           <v-card-subtitle class="font-italic font-weight-thin microText"
-            >rutina creada por: {{ routine.username }}</v-card-subtitle
+            >rutina creada por: {{ routine.user.username }}</v-card-subtitle
           >
 
           <v-icon v-for="n in routine.score" :key="n">mdi-star</v-icon>

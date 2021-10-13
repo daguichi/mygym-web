@@ -21,12 +21,10 @@
             />
             </v-slide-item>
           </v-slide-group>
-
           <br /><br />
         </v-row>
         <create />
       </v-container>
-
     </v-main>
   </div>
 </template>
