@@ -24,7 +24,7 @@
             <v-container>
               <v-row class="justify-center">
                 <v-btn icon class="mr-2"
-                  ><v-icon @click="markFav" color="primary" rounded dark
+                  ><v-icon color="primary" rounded dark
                     >mdi-heart</v-icon
                   >
                 </v-btn>
@@ -47,7 +47,7 @@ import { mapActions, mapState } from "vuex";
 import infoRoutine from "./InfoRoutine.vue";
 
 export default {
-  name: "ExcercisesCard",
+  name: "RoutineCard",
   data() {
     return {
       dialog: false,

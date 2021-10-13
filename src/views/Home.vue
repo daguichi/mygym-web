@@ -43,6 +43,7 @@ export default {
   data() {
     return {
       secciones: undefined,
+      model: undefined,
     };
   },
   components: { RoutineCard, Create },
@@ -59,10 +60,6 @@ export default {
   },
   async created() {
     await this.$getAll();
-    console.log(this.routines);
-    for (let rutina in this.routines) {
-      console.log(this.routines[rutina]);
-    }
     this.secciones = [
       { title: "Destacados", arr: this.routines },
       { title: "Mis rutinas", arr: store.misrutinas },
@@ -72,17 +69,6 @@ export default {
   methods: {
     ...mapActions("category", { $createCategory: "create" }),
     ...mapActions("routines", { $createRoutine: "create", $getAll: "getAll" }),
-    /*
-    async dale() {
-    //const initialCategories = [{name:"espalda", detail:"N/A"},{name:"pecho", detail:"N/A"},{name:"biceps", detail:"N/A"}];
-      console.log(this.$createCategory);
-      await this.$createCategory({name:"dasdasd", detail:"N/A"});
-    // for(let category in initialCategories) {
-    // console.log(category)
-    //   await CategoryApi.add(category).then((res) => {console.log(res)}).catch((e) => {return e;})
-    // }
-    }
-    */
     userTest() {
       console.log(this.user)
     }
