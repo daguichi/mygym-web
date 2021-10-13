@@ -15,6 +15,8 @@
             align="center"
             v-text="titulo"
           ></v-card-title>
+          <v-row class="justify-center"><v-btn icon><v-icon color="primary">mdi-pencil</v-icon></v-btn></v-row>
+
           <v-card-subtitle class="font-italic font-weight-thin microText"
             >rutina creada por: {{ autor }}</v-card-subtitle
           >
@@ -22,13 +24,9 @@
           <v-icon v-for="n in stars" :key="n">mdi-star</v-icon>
           <v-card-actions class="mt-4">
             <v-container>
-              <v-row>
-                <v-col>
-                    <v-icon @click="markFav" color="primary"  rounded dark>mdi-heart</v-icon>
-                </v-col>
-                <v-col>
-                  <v-btn color = "primary" icon><v-icon>mdi-information</v-icon></v-btn>
-                </v-col>
+              <v-row class="justify-center">
+                <v-btn icon class="mr-2"><v-icon @click="markFav" color="primary"  rounded dark>mdi-heart</v-icon></v-btn>
+                <v-btn color = "primary" icon><v-icon>mdi-information</v-icon></v-btn>
               </v-row>
             </v-container>
            
