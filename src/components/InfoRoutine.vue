@@ -25,7 +25,7 @@
         
         <h4 class="mt-4 pl-6 mb-4">Ciclos</h4>
 
-        <v-expansion-panels v-for="ciclo in this.ciclos" :key="ciclo.id">
+        <v-expansion-panels v-for="(ciclo, i) in this.ciclos" :key="ciclo.id">
           <v-expansion-panel>
             <v-expansion-panel-header >
               {{ ciclo.name }}
@@ -37,8 +37,8 @@
                 >{{ ciclo.repetitions }}</v-chip
               >
             
-              <!--
-              <template v-for="ejs in this.cycleExercises[0]">
+              
+              <template v-for="ejs in cycleExercises[i]">
                 <v-card small class="mt-1" :key="ejs.exercise.id">
                   <v-row>
                     <v-col>
@@ -57,7 +57,7 @@
                   </v-row>
                 </v-card>
               </template>
-            -->  
+            
               
             </v-expansion-panel-content>
             
@@ -72,7 +72,7 @@ import {mapActions, mapState} from "vuex"
 export default {
   data: () => ({
     dialog: false,
-    cycleExercises: []
+    cycleExercises: [ [], [], [], [], [], [] ]
   }),
   props: {
     rutina: Object,
