@@ -344,7 +344,7 @@ export default {
     return {
       e1: 0,
       createRoutineDialogStep2: false,
-      selectedExercises: [[], [], [], [], [], []],
+      selectedExercises: [ [], [], [], [], [], [] ],
       selectedEx: "-",
       repetitions: 0,
       seconds: 0,
@@ -377,8 +377,6 @@ export default {
           repetitions: this.cycleRepetitions[i],
         });
       }
-      //console.log(this.cycles); 
-      //console.log(this.selectedExercises); RECONTRA CHEQUEADO SE CREAN CORRECTAMENTE
       this.$emit("save", this.cycles, this.selectedExercises);
       this.createRoutineDialogStep2 = false;
     },

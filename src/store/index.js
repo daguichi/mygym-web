@@ -6,6 +6,7 @@ import category from "./modules/category";
 import routines from "./modules/routines";
 import sport from "./modules/sport";
 import cycle from "./modules/cycle";
+import cycleExercise from "./modules/cycleExercise";
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -16,5 +17,6 @@ export default new Vuex.Store({
     routines,
     sport,
     cycle,
+    cycleExercise
   },
 })

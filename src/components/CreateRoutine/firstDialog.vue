@@ -86,7 +86,7 @@
 </template>
 <script>
 import calentamientoStep from "./calentamientoStep.vue";
-import {mapActions} from 'vuex'
+import {mapState, mapActions} from 'vuex'
 export default {
   components: { calentamientoStep },
   name: "firstDialog",
@@ -120,24 +120,50 @@ export default {
       selectedExercises: [[], [], [], [], [], []],
     };
   },
+  computed: {
+    ...mapState('exercises', {
+        exercises: state => state.exercises
+    }),
+  },
   methods: {
     ...mapActions('routines', { $createRoutine: 'create'}),
+    ...mapActions('exercises', { $getExercises: 'getAll'}),
     ...mapActions('cycle', { $createCycle: 'create'}),
+    ...mapActions('cycleExercise', { $createCycleExercise: 'create'}),
     async onSave(cycles, selectedExercises) {
       this.cycles = cycles;
       this.selectedExercises = selectedExercises;
       const routine = await this.$createRoutine({name: this.nameRoutine, detail: this.detailRoutine, difficulty: this.diff, isPublic: true, metadata: null })
       const routineId = routine.id;
-      let cycleId = []
+      let cycleRes = [];
+      let cycleId = [];
       for(let i = 0; i <= this.steps + 1; i++) {
         var cycle = {name: cycles[i].name, detail: cycles[i].detail, type: cycles[i].type, order: cycles[i].order + 1, repetitions: parseInt(cycles[i].repetitions)};
-        cycleId[i] = await this.$createCycle({cycle, routineId})
+        cycleRes[i] = await this.$createCycle({cycle, routineId});
+        cycleId[i] = cycleRes[i].id;
       }
-      console.log(cycleId)
+      for(let i = 0; i < cycleId.length; i++) {
+        for(let j = 0; j < this.selectedExercises[i].length; j++){
+          let cId = parseInt(cycleId[i]);
+          let ex = {duration: parseInt(selectedExercises[i][j].duration), order: selectedExercises[i][j].order + 1, repetitions: parseInt(selectedExercises[i][j].repetitions) }
+          let exId = parseInt(this.checkExId(selectedExercises[i][j]));
+    
+          await this.$createCycleExercise({cycleId: cId, exerciseId: exId, cycleExercise: ex});
+        }
+      }
+    },
+    checkExId(ex) {
+      for(let i = 0; i < this.exercises.length; i++) {
+        if(ex.name == this.exercises[i].name)
+          return this.exercises[i].id;
+      }
     },
     cancelRoutine() {
       this.createRoutineDialog = false;
     }
   },
+  async created(){
+    this.$getExercises();
+  }
 };
 </script>
