@@ -10,6 +10,7 @@
             max-height="100"
             max-width="140"
           ></v-img>
+          <v-spacer></v-spacer>
         </router-link>
         <router-link to="/home" style="text-decoration: none">
           <v-btn
@@ -68,7 +69,7 @@
           </v-btn>
         </router-link>
 
-        <!-- <router-link
+        <router-link
           :to="{ name: 'Ficha tecnica' }"
           style="text-decoration: none"
         >
@@ -82,7 +83,7 @@
 
             {{ $user.username }}
           </v-btn>
-        </router-link> -->
+        </router-link>
       </v-row>
     </v-app-bar>
   </nav>
