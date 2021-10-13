@@ -7,14 +7,14 @@
             ><h1>{{ seccion.title }}</h1></v-row
           >
           <v-row>
-            <v-col lg="9" sm="4" md="9">
+            <v-col align-self="center" lg="10">
               <v-slide-group
                 v-model="model"
-                class="pa-4"
+                class="pl-3"
                 active-class="success"
                 show-arrows
               >
-                <v-slide-item class="pa-4" v-for="r in routines" :key="r.id">
+                <v-slide-item class="pl-3" v-for="r in routines" :key="r.id">
                   <ExcercisesCard
                     v-bind:titulo="r.name"
                     v-bind:autor="r.user.username"
