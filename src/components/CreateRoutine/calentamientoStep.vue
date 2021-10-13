@@ -118,8 +118,16 @@
                 </v-row>
               </v-container>
             </template>
-            <v-btn @click="createRoutineDialogStep2 = false"> Cancelar </v-btn>
-            <v-btn color="primary" @click="e1 = 1"> Continue </v-btn>
+            <v-row>
+              <v-col>
+                <v-btn @click="createRoutineDialogStep2 = false">
+                  Cancelar
+                </v-btn>
+              </v-col>
+              <v-col>
+                <v-btn color="primary" @click="e1 = 1"> Continuar </v-btn>
+              </v-col>
+            </v-row>
           </v-stepper-content>
 
           <v-stepper-content v-for="n in steps" :key="n" :step="n">
@@ -207,11 +215,16 @@
                 </v-row>
               </v-container>
             </template>
-
-            <v-btn @click="e1 = n - 1">
-              Anterior
-            </v-btn>
-            <v-btn color="primary" @click="e1 = n + 1"> Continue </v-btn>
+            <v-row>
+              <v-col>
+                <v-btn @click="e1 = n - 1">
+                  Anterior
+                </v-btn>
+              </v-col>
+              <v-col>
+                <v-btn color="primary" @click="e1 = n + 1"> Continuar </v-btn>
+              </v-col>
+            </v-row>
           </v-stepper-content>
 
           <v-stepper-content :step="steps + 1">
@@ -301,9 +314,14 @@
                 </v-row>
               </v-container>
             </template>
-
-            <v-btn @click="e1 = steps - 1"> Anterior </v-btn>
-            <v-btn color="primary" @click="save"> Continue </v-btn>
+            <v-row>
+              <v-col>
+                <v-btn @click="e1 = steps - 1"> Anterior </v-btn>
+              </v-col>
+              <v-col>
+                <v-btn color="primary" @click="save"> Continue </v-btn>
+              </v-col>
+            </v-row>
           </v-stepper-content>
         </v-stepper-items>
       </v-stepper>
