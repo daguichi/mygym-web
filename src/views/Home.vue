@@ -3,42 +3,41 @@
     <v-main class="grey lighten-3">
       <v-container>
         <v-row v-for="seccion in secciones" :key="seccion.title">
-          <v-row><h1>{{seccion.title}}</h1></v-row>
-          <v-row align="stretch" justify="space-around">
-            <v-slide-group
-              v-model="model"
-              class="pa-4"
-              active-class="success"
-              show-arrows
-            >
-              <v-slide-item
+          <v-row
+            ><h1>{{ seccion.title }}</h1></v-row
+          >
+          <v-row>
+            <v-col lg="9" sm="4" md="9">
+              <v-slide-group
+                v-model="model"
                 class="pa-4"
-                v-for="r in routines"
-                :key="r.id"
+                active-class="success"
+                show-arrows
               >
-                <ExcercisesCard
-                  v-bind:titulo="r.name"
-                  v-bind:autor="r.user.username"
-                  v-bind:stars="r.score"
-                  v-bind:imgUrl="r.metadata"
-                ></ExcercisesCard> 
-              </v-slide-item>
-            </v-slide-group>
+                <v-slide-item class="pa-4" v-for="r in routines" :key="r.id">
+                  <ExcercisesCard
+                    v-bind:titulo="r.name"
+                    v-bind:autor="r.user.username"
+                    v-bind:stars="r.score"
+                    v-bind:imgUrl="r.metadata"
+                  ></ExcercisesCard>
+                </v-slide-item>
+              </v-slide-group>
+            </v-col>
           </v-row>
-          <br><br>
+          <br /><br />
         </v-row>
-        <create/>
+        <create />
       </v-container>
     </v-main>
   </div>
-
 </template>
 
 <script>
 import ExcercisesCard from "../components/ExcercisesCard";
 import Create from "../components/Create";
 import store from "@/store/modules/routines.js";
-import {mapState, mapActions} from 'vuex'
+import { mapState, mapActions } from "vuex";
 //import {CategoryApi} from '../api/category'
 
 export default {
@@ -50,28 +49,28 @@ export default {
   },
   components: { ExcercisesCard, Create },
   computed: {
-    ...mapState('category', {
-        categories: state => state.categories
+    ...mapState("category", {
+      categories: (state) => state.categories,
     }),
-    ...mapState('routines', {
-        routines: state => state.routines
+    ...mapState("routines", {
+      routines: (state) => state.routines,
     }),
   },
   async created() {
     await this.$getAll();
-    console.log(this.routines)
+    console.log(this.routines);
     for (let rutina in this.routines) {
-      console.log(this.routines[rutina])
+      console.log(this.routines[rutina]);
     }
     this.secciones = [
-        { title: "Destacados", arr: this.routines},
-        { title: "Mis rutinas", arr: store.misrutinas },
-        { title: "Historial", arr: store.historial },
-      ]
+      { title: "Destacados", arr: this.routines },
+      { title: "Mis rutinas", arr: store.misrutinas },
+      { title: "Historial", arr: store.historial },
+    ];
   },
   methods: {
-    ...mapActions('category', {$createCategory: 'create'} ),
-    ...mapActions('routines', {$createRoutine: 'create', $getAll: 'getAll'} ),
+    ...mapActions("category", { $createCategory: "create" }),
+    ...mapActions("routines", { $createRoutine: "create", $getAll: "getAll" }),
     /*
     async dale() {
     //const initialCategories = [{name:"espalda", detail:"N/A"},{name:"pecho", detail:"N/A"},{name:"biceps", detail:"N/A"}];
@@ -84,7 +83,6 @@ export default {
     }
     */
   },
-    
 };
 </script>
 
