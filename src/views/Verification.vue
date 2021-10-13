@@ -18,7 +18,7 @@
             cuenta</v-text-area
           >
           <v-text-field
-            label="Correo electronico"
+            label="Correo electronico*"
             outlined
             v-model="email"
             background-color="rgb(244, 249, 252)"
@@ -42,7 +42,7 @@
           <v-text-field
             v-model="code"
             outlined
-            label="Codigo de confirmación"
+            label="Codigo de confirmación*"
             background-color="rgb(244, 249, 252)"
             placeholder="Código de confirmación"
             elevation="2"
@@ -63,7 +63,7 @@
         <v-divider class="mx-4"></v-divider
       ></v-row>
       <v-row class="text-center pa-3" justify="center">
-        <v-btn @click="check" elevation="2" color="#2679CC" dark x-large rounded
+        <v-btn @click="check" elevation="2" color="#6262f8" dark x-large rounded
           >VERIFICAR
         </v-btn>
       </v-row>
