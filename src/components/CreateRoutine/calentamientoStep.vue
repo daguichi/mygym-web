@@ -70,7 +70,7 @@
                 <v-row
                   class="pl-3"
                   v-for="exercise in selectedExercises[0]"
-                  :key="exercise.name"
+                  :key="exercise.order"
                 >
                   {{ exercise.name }} - segundos:{{ exercise.duration }} -
                   repeticiones:{{ exercise.repetitions }}
@@ -165,7 +165,7 @@
                 <v-row
                   class="pl-3"
                   v-for="exercise in selectedExercises[n + 0]"
-                  :key="exercise.name"
+                  :key="exercise.order"
                 >
                   {{ exercise.name }} - segundos:{{ exercise.duration }} -
                   repeticiones:{{ exercise.repetitions }}
@@ -262,7 +262,7 @@
                 <v-row
                   class="pl-3"
                   v-for="exercise in selectedExercises[steps + 1]"
-                  :key="exercise.name"
+                  :key="exercise.order"
                 >
                   {{ exercise.name }} - segundos:{{ exercise.duration }} -
                   repeticiones:{{ exercise.repetitions }}
@@ -351,7 +351,7 @@ export default {
       cycles: [],
       cycleName: [],
       cycleDetail: [],
-      cycleRepetitions: [],
+      cycleRepetitions: [0,0,0,0,0,0],
     };
   },
   computed: {
@@ -377,7 +377,7 @@ export default {
           repetitions: this.cycleRepetitions[i],
         });
       }
-      //console.log(this.cycles); RECONTRA CHEQUEADO SE CREAN CORRECTAMENTE
+      //console.log(this.cycles); 
       //console.log(this.selectedExercises); RECONTRA CHEQUEADO SE CREAN CORRECTAMENTE
       this.$emit("save", this.cycles, this.selectedExercises);
       this.createRoutineDialogStep2 = false;
@@ -387,6 +387,7 @@ export default {
         name: name,
         repetitions: repetitions,
         duration: seconds,
+        order: this.selectedExercises[cycle].length
       });
     },
     getExerciseNames() {

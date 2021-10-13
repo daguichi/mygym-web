@@ -11,7 +11,7 @@ export default {
   getters: {
       findIndex(state) {
           return (routine) => {
-              return state.routines.content.findIndex(item => item.id === routine.id)
+              return state.routines.findIndex(item => item.id === routine.id)
           }
       },
       findFav(state) {
@@ -45,9 +45,10 @@ export default {
     }
   },
   actions: {
-    async create({ getters, commit }, routine) {
+    async create({ commit }, routine) {
       const result = await RoutineApi.add(routine);
-      if (!getters.findIndex(result)) commit("push", result);
+      //if ( false && !getters.findIndex(result)) commit("push", result); // <-- aca hay un error
+      commit("push", result);
       return result;
     },
     async modify({ getters, commit }, routine) {

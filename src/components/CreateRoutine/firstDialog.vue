@@ -126,13 +126,14 @@ export default {
     async onSave(cycles, selectedExercises) {
       this.cycles = cycles;
       this.selectedExercises = selectedExercises;
-      //console.log(this.cycles); RECONTRA CHEQUEADO SE RECIBEN CORRECTAMENTE
-      //console.log(this.selectedExercises); RECONTRA CHEQUEADO SE RECIBEN CORRECTAMENTE
-      const routine = await this.$createRoutine({name: this.nameRoutine, detail: this.detailRoutine, difficulty: this.diff, isPublic: true })
+      const routine = await this.$createRoutine({name: this.nameRoutine, detail: this.detailRoutine, difficulty: this.diff, isPublic: true, metadata: null })
       const routineId = routine.id;
-      console.log(routineId);
-      //await this.$createCycle(routineId, {name: cycles[0].name, detail: cycles[0].detail, type: cycles[0].type, order: cycles[0].order, repetitions: cycles[0].repetitions})
-      //this.createRoutineDialog = false;
+      let cycleId = []
+      for(let i = 0; i <= this.steps + 1; i++) {
+        var cycle = {name: cycles[i].name, detail: cycles[i].detail, type: cycles[i].type, order: cycles[i].order + 1, repetitions: parseInt(cycles[i].repetitions)};
+        cycleId[i] = await this.$createCycle({cycle, routineId})
+      }
+      console.log(cycleId)
     },
     cancelRoutine() {
       this.createRoutineDialog = false;
