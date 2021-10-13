@@ -151,12 +151,23 @@ export default {
     };
   },
   methods: {
-    ...mapActions('category', { $getAll: 'getAll'}),
-    onSave(cycles, selectedExercises) {
+    ...mapActions('routines', { $createRoutine: 'create'}),
+    ...mapActions('cycle', { $createCycle: 'create'}),
+    async onSave(cycles, selectedExercises) {
       this.cycles = cycles;
+      console.log(this.cycles);
       this.selectedExercises = selectedExercises;
-
-      /* Aca ya tengo todo como para llamar a la api */
+      const routine = await this.$createRoutine({name: this.nameRoutine, detail: this.detailRoutine, difficulty: this.diff, isPublic: true })
+      const routineId = routine.id;
+      console.log(routineId)
+      await this.$createCycle(routineId, {name: cycles[0].name, detail: cycles[0].detail, type: cycles[0].type, order: cycles[0].order, repetitions: cycles[0].repetitions})
+      /*
+      for(let i = 0; i <= this.steps +1; i++) {
+          console.log("aca");
+          this.$createCycle(routineId, {name: cycles[i].name, detail: cycles[i].detail, type: cycles[i].type, order: cycles[i].order, repetitions: cycles[i].repetitions})
+      }
+      */
+      this.createRoutineDialog = false;
     },
     cancelRoutine() {
       this.createRoutineDialog = false;

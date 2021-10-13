@@ -175,7 +175,7 @@
                   <v-col>
                     <v-select
                       v-model="selectedEx"
-                      :items="exercises"
+                      :items="getExerciseNames(exercises)"
                       label="elija el ejercicio"
                       rounded
                       outlined
@@ -272,7 +272,7 @@
                   <v-col>
                     <v-select
                       v-model="selectedEx"
-                      :items="exercises"
+                      :items="getExerciseNames(exercises)"
                       label="elija el ejercicio"
                       rounded
                       outlined
@@ -348,7 +348,6 @@ export default {
       selectedEx: "-",
       repetitions: 0,
       seconds: 0,
-
       cycles: [],
       cycleName: [],
       cycleDetail: [],
@@ -379,6 +378,7 @@ export default {
         });
       }
       this.$emit("save", this.cycles, this.selectedExercises);
+      this.createRoutineDialogStep2 = false;
     },
     addEx(cycle, name, repetitions, seconds) {
       this.selectedExercises[cycle].push({
@@ -388,13 +388,11 @@ export default {
       });
     },
     getExerciseNames() {
-      let res;
-      console.log(this.exercises)
-      for(let exercise of this.exercises) {
-        console.log(exercise.name)
+      let res = [];
+      this.exercises.forEach((exercise) => {
         res.push(exercise.name);
-      }
-      console.log(res);
+      })
+      console.log(res)
       return res;
     }
   },

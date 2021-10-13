@@ -5,6 +5,7 @@ import security from "./modules/security";
 import category from "./modules/category";
 import routines from "./modules/routines";
 import sport from "./modules/sport";
+import cycle from "./modules/cycle";
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -14,5 +15,6 @@ export default new Vuex.Store({
     category,
     routines,
     sport,
+    cycle,
   },
 })

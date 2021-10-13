@@ -3,21 +3,21 @@ import {CycleApi} from "../../api/cycle"
 export default {
     namespaced: true,
     state: {
-        cycle: [[]]
+        cycle: []
     },
     getters: {
         findIndex(state) {
-            return (routine) => {
-                return state.cycle.findIndex(item => item.id === routine.id)
+            return (cycle) => {
+                return state.cycle.findIndex(item => item.id === cycle.id)
             }
         },
     },
     mutations: {
-        push(state, routine) {
-            state.cycle.push(routine)
+        push(state, cycle) {
+            state.cycle.push(cycle)
         },
-        replace(state, index, routine) {
-            state.cycle[index] = routine
+        replace(state, index, cycle) {
+            state.cycle[index] = cycle
         },
         splice(state, index) {
             state.cycle.splice(index, 1)
@@ -27,27 +27,28 @@ export default {
         }
     },
     actions: {
-        async create({getters, commit}, routine) {
-            const result = await CycleApi.add(routine)
+        async create({getters, commit}, routineId, cycle) {
+            console.log("??");
+            const result = await CycleApi.add(routineId, cycle)
             if (!getters.findIndex(result))
                 commit('push', result)
             return result
         },
-        async modify({getters, commit}, routine) {
-            const result = await CycleApi.modify(routine)
+        async modify({getters, commit}, routineId, cycleId, cycle) {
+            const result = await CycleApi.modify(cycle)
             const index = getters.findIndex(result)
             if (index >= 0)
                 commit('replace', index, result)
             return result
         },
-        async delete({getters, commit}, routine) {
-            await CycleApi.delete(routine.id)
-            const index = getters.findIndex(routine)
+        async delete({getters, commit}, cycle) {
+            await CycleApi.delete(cycle.id)
+            const index = getters.findIndex(cycle)
             if (index >= 0)
                 commit('splice', index)
         },
-        async get({state, getters, commit}, routine) {
-            const index = getters.findIndex(routine)
+        async get({state, getters, commit}, cycle) {
+            const index = getters.findIndex(cycle)
             if (index >= 0)
                 return state.cycle[index]
 
