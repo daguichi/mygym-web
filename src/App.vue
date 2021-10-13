@@ -8,6 +8,7 @@
 </template>
 <script>
 import NavBar from "./components/navBar.vue";
+import {mapActions} from "vuex"
 export default {
   name: "App",
   computed: {
@@ -18,6 +19,13 @@ export default {
   components: {
     NavBar,
   },
+  methods: {
+    ...mapActions("security", {initialize: "initialize", getCurrentUser: "getCurrentUser"})
+  },
+  async created() {
+    this.initialize();
+    await this.getCurrentUser();
+  }
 };
 </script>
 

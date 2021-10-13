@@ -7,7 +7,9 @@
     transition="v-slide-y-transition"
   >
     <template v-slot:activator="{ on, attrs }">
-      <v-btn color="primary" dark v-bind="attrs" v-on="on">Siguiente</v-btn>
+      <v-btn :disabled="validForm" color="primary" v-bind="attrs" v-on="on"
+        >Siguiente</v-btn
+      >
     </template>
 
     <!-- steppers steps -->
@@ -331,7 +333,7 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex'
+import { mapState, mapActions } from "vuex";
 export default {
   components: {},
   name: "calentamientoStep",
@@ -339,28 +341,29 @@ export default {
     title: String,
     imgUrl: URL,
     steps: Number,
+    validForm: Boolean,
   },
   data() {
     return {
       e1: 0,
       createRoutineDialogStep2: false,
-      selectedExercises: [ [], [], [], [], [], [] ],
+      selectedExercises: [[], [], [], [], [], []],
       selectedEx: "-",
       repetitions: 0,
       seconds: 0,
       cycles: [],
       cycleName: [],
       cycleDetail: [],
-      cycleRepetitions: [0,0,0,0,0,0],
+      cycleRepetitions: [0, 0, 0, 0, 0, 0],
     };
   },
   computed: {
-    ...mapState('exercises', {
-        exercises: state => state.exercises
+    ...mapState("exercises", {
+      exercises: (state) => state.exercises,
     }),
   },
   methods: {
-    ...mapActions('exercises', { $getExercises: 'getAll'}),
+    ...mapActions("exercises", { $getExercises: "getAll" }),
     save() {
       for (var i = 0; i <= this.steps + 1; i++) {
         var type = "exercise";
@@ -385,19 +388,19 @@ export default {
         name: name,
         repetitions: repetitions,
         duration: seconds,
-        order: this.selectedExercises[cycle].length
+        order: this.selectedExercises[cycle].length,
       });
     },
     getExerciseNames() {
       let res = [];
       this.exercises.forEach((exercise) => {
         res.push(exercise.name);
-      })
+      });
       return res;
-    }
+    },
   },
-  async created(){
+  async created() {
     this.$getExercises();
-  }
+  },
 };
 </script>
