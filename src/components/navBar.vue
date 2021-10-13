@@ -68,7 +68,7 @@
           </v-btn>
         </router-link>
 
-        <router-link
+        <!-- <router-link
           :to="{ name: 'Ficha tecnica' }"
           style="text-decoration: none"
         >
@@ -82,7 +82,7 @@
 
             {{ $user.username }}
           </v-btn>
-        </router-link>
+        </router-link> -->
       </v-row>
     </v-app-bar>
   </nav>
