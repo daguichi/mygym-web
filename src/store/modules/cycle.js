@@ -22,8 +22,8 @@ export default {
         splice(state, index) {
             state.cycle.splice(index, 1)
         },
-        replaceAll(state, cycle) {
-            state.cycle = cycle
+        replaceAll(state, cycles) {
+            state.cycle = cycles
         }
     },
     actions: {
