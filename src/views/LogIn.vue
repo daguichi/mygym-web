@@ -139,14 +139,13 @@ export default {
     async logIn() {
       try {
         const credentials = new Credentials(this.username, this.password);
-        this.$login({ credentials, rememberMe: true }).then(() => {
-          console.log(this.$isLoggedIn);
-        });
+        await this.$login({ credentials, rememberMe: true })
+        await this.getCurrentUser();
         this.clearResult();
       } catch (e) {
         this.setResult(e);
       }
-      await this.getCurrentUser();
+      
       console.log(this.$user);
       router.push("Home")
     },
