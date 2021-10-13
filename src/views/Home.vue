@@ -4,12 +4,12 @@
       <v-container>
         <v-row v-for="seccion in secciones" :key="seccion.title">
           <v-row
-            ><h1 class="pa-5">{{ seccion.title }}</h1>
+            ><h1 class="pt-5 botom-line">{{ seccion.title }}</h1>
           </v-row>
 
           <v-slide-group
             v-model="model"
-            class="pl-3"
+            class="pl-3 pt-9"
             active-class="success"
             mobile-breakpoint="1"
             show-arrows
@@ -86,8 +86,11 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  margin-top: 20px;
-  margin-bottom: 0px;
+.botom-line {
+  border-bottom: 5px solid #6262f8;
+  height: 100%;
+  margin-bottom: 10px;
+  padding: 0 80px; /* or how longer you want */
+  padding-bottom: 10px;
 }
 </style>
