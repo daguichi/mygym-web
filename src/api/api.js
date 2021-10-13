@@ -14,6 +14,9 @@ class Api {
   }
 
   static async fetch(url, secure, init = {}, controller) { // este metodo es generico, es el que usan post, get, etc
+    if (!Api.token) {
+      Api.token = localStorage.getItem("token");
+    }
     if (secure && Api.token) {
       if (!init.headers)
         init.headers = {}

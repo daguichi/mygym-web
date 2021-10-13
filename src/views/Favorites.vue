@@ -7,7 +7,7 @@
         </v-icon>
       </v-row>
       <h1>Mis rutinas favoritas</h1>
-      <div v-if="favs.totalCount > 0">
+      <div :v-if="favs.totalCount > 0">
         <v-card elevation="24" max-width="444" class="mx-auto">
           <v-system-bar lights-out></v-system-bar>
           <v-carousel
@@ -18,7 +18,7 @@
             delimiter-icon="mdi-minus"
             height="220"
           >
-            <v-carousel-item v-for="fav in favs.content"
+            <v-carousel-item :v-for="fav in favs.content"
               :key="fav.id">
             <RoutineCard
               v-bind:routine="fav"

@@ -82,4 +82,5 @@ export default {
   padding: 0 80px; /* or how longer you want */
   padding-bottom: 10px;
 }
+
 </style>
