@@ -25,36 +25,6 @@
             label="Descripcion"
           ></v-textarea>
         </v-row>
-        <!--
-        <v-row class="pa-2">
-          <v-text-field
-            v-model="duracion"
-            label="Duración*"
-            outlined
-            rounded
-            value="00:00:00"
-            type="time"
-            required
-            hide-details
-          ></v-text-field>
-        </v-row>
-        -->
-        <!-- 
-          <v-row class="pa-2">
-            <v-autocomplete
-              v-model="selected"
-              chips
-              label="Grupos musculares"
-              outlined
-              rounded
-              hide-details
-              hide-no-data
-              hide-selected
-              multiple
-              :items="muscleGroups"
-            >asdas
-            </v-autocomplete>
-          </v-row> -->
         <v-row class="pa-2">
           <v-col>
             <v-select
@@ -155,19 +125,14 @@ export default {
     ...mapActions('cycle', { $createCycle: 'create'}),
     async onSave(cycles, selectedExercises) {
       this.cycles = cycles;
-      console.log(this.cycles);
       this.selectedExercises = selectedExercises;
+      //console.log(this.cycles); RECONTRA CHEQUEADO SE RECIBEN CORRECTAMENTE
+      //console.log(this.selectedExercises); RECONTRA CHEQUEADO SE RECIBEN CORRECTAMENTE
       const routine = await this.$createRoutine({name: this.nameRoutine, detail: this.detailRoutine, difficulty: this.diff, isPublic: true })
       const routineId = routine.id;
-      console.log(routineId)
-      await this.$createCycle(routineId, {name: cycles[0].name, detail: cycles[0].detail, type: cycles[0].type, order: cycles[0].order, repetitions: cycles[0].repetitions})
-      /*
-      for(let i = 0; i <= this.steps +1; i++) {
-          console.log("aca");
-          this.$createCycle(routineId, {name: cycles[i].name, detail: cycles[i].detail, type: cycles[i].type, order: cycles[i].order, repetitions: cycles[i].repetitions})
-      }
-      */
-      this.createRoutineDialog = false;
+      console.log(routineId);
+      //await this.$createCycle(routineId, {name: cycles[0].name, detail: cycles[0].detail, type: cycles[0].type, order: cycles[0].order, repetitions: cycles[0].repetitions})
+      //this.createRoutineDialog = false;
     },
     cancelRoutine() {
       this.createRoutineDialog = false;

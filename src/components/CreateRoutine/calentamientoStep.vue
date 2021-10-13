@@ -70,9 +70,9 @@
                 <v-row
                   class="pl-3"
                   v-for="exercise in selectedExercises[0]"
-                  :key="exercise"
+                  :key="exercise.name"
                 >
-                  {{ exercise.name }} - segundos:{{ exercise.seconds }} -
+                  {{ exercise.name }} - segundos:{{ exercise.duration }} -
                   repeticiones:{{ exercise.repetitions }}
                 </v-row>
 
@@ -165,9 +165,9 @@
                 <v-row
                   class="pl-3"
                   v-for="exercise in selectedExercises[n + 0]"
-                  :key="exercise"
+                  :key="exercise.name"
                 >
-                  {{ exercise.name }} - segundos:{{ exercise.seconds }} -
+                  {{ exercise.name }} - segundos:{{ exercise.duration }} -
                   repeticiones:{{ exercise.repetitions }}
                 </v-row>
 
@@ -262,9 +262,9 @@
                 <v-row
                   class="pl-3"
                   v-for="exercise in selectedExercises[steps + 1]"
-                  :key="exercise"
+                  :key="exercise.name"
                 >
-                  {{ exercise.name }} - segundos:{{ exercise.seconds }} -
+                  {{ exercise.name }} - segundos:{{ exercise.duration }} -
                   repeticiones:{{ exercise.repetitions }}
                 </v-row>
 
@@ -319,7 +319,7 @@
                 <v-btn @click="e1 = steps - 1"> Anterior </v-btn>
               </v-col>
               <v-col>
-                <v-btn color="primary" @click="save"> Continue </v-btn>
+                <v-btn color="primary" @click="save"> Guardar </v-btn>
               </v-col>
             </v-row>
           </v-stepper-content>
@@ -377,6 +377,8 @@ export default {
           repetitions: this.cycleRepetitions[i],
         });
       }
+      //console.log(this.cycles); RECONTRA CHEQUEADO SE CREAN CORRECTAMENTE
+      //console.log(this.selectedExercises); RECONTRA CHEQUEADO SE CREAN CORRECTAMENTE
       this.$emit("save", this.cycles, this.selectedExercises);
       this.createRoutineDialogStep2 = false;
     },
@@ -392,7 +394,6 @@ export default {
       this.exercises.forEach((exercise) => {
         res.push(exercise.name);
       })
-      console.log(res)
       return res;
     }
   },
