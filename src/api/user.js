@@ -24,7 +24,7 @@ class UserApi {
   }
 
   static async get(controller) {
-    return Api.get(UserApi.getUrl("current"), true, controller);
+    return await Api.get(UserApi.getUrl("current"), true, controller);
   }
 
   static async register(credentials, controller) {
@@ -49,6 +49,8 @@ class RegisterCredentials {
     this.username = username;
     this.password = password;
     this.email = email;
+    this.avatarUrl =
+      "https://cdn0.iconfinder.com/data/icons/handsome-man-avatars/283/stock_man_avatar-17-1024.png";
   }
 }
 
