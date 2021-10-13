@@ -24,7 +24,7 @@ class CategoryApi {
     }
 
     static async getAll(controller) {
-        return await Api.get(`${CategoryApi.getUrl()}?size=50`, true, controller);
+        return await Api.get(`${CategoryApi.url}?size=50`, true, controller);
     }
 }
 

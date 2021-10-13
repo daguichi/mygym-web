@@ -34,7 +34,7 @@
         </v-col>
       </v-row>
       <v-row :v-if="!loading">
-        <v-col cols="3"  v-for="cat in categories.content" :key="cat">
+        <v-col cols="3"  v-for="cat in categories" :key="cat">
           <category-card class="card" :title="cat.name" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"></category-card>
         </v-col> 
       </v-row>
