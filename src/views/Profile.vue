@@ -46,6 +46,7 @@
                 </v-list-item>
               </v-list>
             </v-sheet>
+            <router-link to="/"><v-btn class="logout" @click="logout" >logout</v-btn></router-link>
           </v-col>
 
           <!-- columna derecha -->
@@ -57,18 +58,15 @@
 </template>
 
 <script>
-import store from "@/store/profile";
-import {mapState} from 'vuex';
+// import store from "@/store/profile";
+import { mapState, mapActions } from "vuex";
 export default {
   data: () => ({
-    profileSections: store.sections,
-    user: {
-      nombre: "johndoe",
-      email: "john@doe.com",
-      peso: "70",
-      edad: "22",
-      fechaNacimiento: "30/08/1999",
-    },
+    profileSections: [
+      { icon: "mdi-account", title: "Ficha tecnica", route: "fichatecnica" },
+      { icon: "mdi-dumbbell", title: "Mis rutinas", route: "misrutinas" },
+      { icon: "mdi-history", title: "Historial", route: "historial" },
+    ],
   }),
   components: {},
   computed: {
@@ -76,5 +74,16 @@ export default {
       $user: (state) => state.user,
     }),
   },
+  methods: {
+    ...mapActions("security", {
+      logout: "logout"
+    })
+  }
 };
 </script>
+
+<style scoped>
+.logout{
+  margin-top: 40px;
+}
+</style>
