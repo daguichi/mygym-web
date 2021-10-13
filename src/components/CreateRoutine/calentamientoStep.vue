@@ -80,7 +80,7 @@
                   <v-col>
                     <v-select
                       v-model="selectedEx"
-                      :items="exercises"
+                      :items="getExerciseNames(exercises)"
                       label="elija el ejercicio"
                       rounded
                       outlined
@@ -313,6 +313,7 @@
 </template>
 
 <script>
+import {mapState, mapActions} from 'vuex'
 export default {
   components: {},
   name: "calentamientoStep",
@@ -325,9 +326,7 @@ export default {
     return {
       e1: 0,
       createRoutineDialogStep2: false,
-
       selectedExercises: [[], [], [], [], [], []],
-      exercises: ["ex1", "ex2", "ex3"],
       selectedEx: "-",
       repetitions: 0,
       seconds: 0,
@@ -338,7 +337,13 @@ export default {
       cycleRepetitions: [],
     };
   },
+  computed: {
+    ...mapState('exercises', {
+        exercises: state => state.exercises
+    }),
+  },
   methods: {
+    ...mapActions('exercises', { $getExercises: 'getAll'}),
     save() {
       for (var i = 0; i <= this.steps + 1; i++) {
         var type = "exercise";
@@ -361,9 +366,22 @@ export default {
       this.selectedExercises[cycle].push({
         name: name,
         repetitions: repetitions,
-        seconds: seconds,
+        duration: seconds,
       });
     },
+    getExerciseNames() {
+      let res;
+      console.log(this.exercises)
+      for(let exercise of this.exercises) {
+        console.log(exercise.name)
+        res.push(exercise.name);
+      }
+      console.log(res);
+      return res;
+    }
   },
+  async created(){
+    this.$getExercises();
+  }
 };
 </script>

@@ -108,7 +108,6 @@
               :steps="steps"
               @save="onSave"
             ></calentamiento-step>
-            <!-- <v-btn @click="nextDialog"> Siguiente</v-btn> -->
           </v-col>
         </v-row>
       </v-card-text>
@@ -117,6 +116,7 @@
 </template>
 <script>
 import calentamientoStep from "./calentamientoStep.vue";
+import {mapActions} from 'vuex'
 export default {
   components: { calentamientoStep },
   name: "firstDialog",
@@ -151,28 +151,16 @@ export default {
     };
   },
   methods: {
-    nextDialog() {
-      this.$emit(
-        "nextDialog",
-        this.nameRoutine,
-        this.detailRoutine,
-        this.diff,
-        this.steps,
-        this.reps,
-        this.col
-      );
-    },
-    cancelRoutine() {
-      this.createRoutineDialog = false;
-      this.$emit("cancelRoutine");
-    },
-
+    ...mapActions('category', { $getAll: 'getAll'}),
     onSave(cycles, selectedExercises) {
       this.cycles = cycles;
       this.selectedExercises = selectedExercises;
 
       /* Aca ya tengo todo como para llamar a la api */
     },
+    cancelRoutine() {
+      this.createRoutineDialog = false;
+    }
   },
 };
 </script>
