@@ -60,8 +60,8 @@ export default {
         },
         async getAll({commit}, routineId) {
             const result = await CycleApi.getAll(routineId, null)
-            commit('replaceAll', result)
-            return result
+            commit('replaceAll', result.content)
+            return result.content
         }
     },
 }

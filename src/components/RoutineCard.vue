@@ -28,16 +28,7 @@
                     >mdi-heart</v-icon
                   >
                 </v-btn>
-                <v-dialog v-model="dialog" persistent max-width="600px">
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn icon color="primary" dark v-bind="attrs" v-on="on">
-                      <v-icon>mdi-information</v-icon>
-                    </v-btn>
-                  </template>
-                  <info-routine
-                    v-bind:rutina="routine"
-                  ></info-routine>
-                </v-dialog>
+                <info-routine v-bind:rutina="routine"></info-routine>
               </v-row>
             </v-container>
           </v-card-actions>
@@ -59,12 +50,15 @@ export default {
   name: "ExcercisesCard",
   data() {
     return {
-      
+      dialog: false,
     };
   },
   props: { routine: Object, },
   methods: {
     ...mapActions("routines", { $createRoutine: "create", $getAll: "getAll" }),
+    onClose(){
+      this.dialog = false;
+    }
   },
   computed: {
     ...mapState("security", { $user: (state) => state.user }),

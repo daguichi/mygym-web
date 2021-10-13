@@ -58,8 +58,8 @@ export default {
             commit('push', result)
             return result
         },
-        async getAll({commit}, controller) {
-            const result = await CycleExerciseApi.getAll(controller)
+        async getAll({commit}, cycleId) {
+            const result = await CycleExerciseApi.getAll(cycleId, null)
             commit('replaceAll', result.content)
             return result.content
         }
