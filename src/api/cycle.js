@@ -25,7 +25,7 @@ class CycleApi {
 }
 
   static async getAll(routineId, controller) {
-    return await Api.get(`${CycleApi.url}/${routineId}/cycles`, true, controller);
+    return await Api.get(`${CycleApi.url}/${routineId}/cycles?size=50`, true, controller);
   }
 }
 

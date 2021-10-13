@@ -1,5 +1,4 @@
 import { Api } from './api.js'
-import { CycleApi } from './cycle.js'
 
 export {RoutineApi, Routine}
 
@@ -8,17 +7,9 @@ class RoutineApi {
     return `${Api.baseUrl}/routines${ slug ? `/${slug}` : ''}`
   }
 
-  static getFavsUrl(routineId) {
-    return `${Api.baseUrl}/favourites${ routineId ? `/${routineId}` : ''}`
-  }
-
   static async add(routine, controller) {
    return await Api.post(RoutineApi.getUrl(), true, routine, controller)
   }
-
-  static async addCycle(routineId, cycle, controller) {
-    return await CycleApi.add(routineId, cycle, controller);
-   }
 
   static async modify(routine, controller) {
     return await Api.put(RoutineApi.getUrl(routine.id), true, routine, controller)
@@ -33,8 +24,8 @@ class RoutineApi {
   }
 
   static async getAll(controller) {
-    return await Api.get(RoutineApi.getUrl(), true, controller)
-     
+    return await Api.get(`${RoutineApi.getUrl()}?size=50`, true, controller)
+
   }
 
   static async getFavs(controller) {

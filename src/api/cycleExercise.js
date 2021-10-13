@@ -26,6 +26,6 @@ class CycleExerciseApi {
     }
 
     static async getAll(cycleId, controller) {
-        return await Api.get(`${CycleExerciseApi.url}/${cycleId}/exercises/`, true, controller);
+        return await Api.get(`${CycleExerciseApi.url}/${cycleId}/exercises?size=50`, true, controller);
     }
 }

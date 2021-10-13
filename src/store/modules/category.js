@@ -3,7 +3,7 @@ import {CategoryApi} from "../../api/category"
 export default {
     namespaced: true,
     state: {
-        categories: {},
+        categories: [],
     },
     getters: {
         findIndex(state) {
@@ -22,8 +22,8 @@ export default {
         splice(state, index) {
             state.categories.splice(index, 1)
         },
-        replaceAll(state, category) {
-            state.categories = category
+        replaceAll(state, categories) {
+            state.categories = categories
         }
     },
     actions: {
@@ -57,8 +57,8 @@ export default {
         },
         async getAll({commit}, controller) {
             const result = await CategoryApi.getAll(controller)
-            commit('replaceAll', result)
-            return result
+            commit('replaceAll', result.content)
+            return result.content
         }
     },
 }

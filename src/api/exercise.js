@@ -24,6 +24,6 @@ class ExerciseApi {
   }
 
   static async getAll(controller) {
-    return await Api.get(ExerciseApi.getUrl(), true, controller)
+    return await Api.get(`${ExerciseApi.getUrl()}?size=50`, true, controller)
   }
 }
