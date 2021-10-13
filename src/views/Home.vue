@@ -7,7 +7,7 @@
             ><h1>{{ seccion.title }}</h1></v-row
           >
           <v-row>
-            <v-col align-self="center" lg="10">
+            <v-col lg="10">
               <v-slide-group
                 v-model="model"
                 class="pl-3"

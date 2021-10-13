@@ -108,7 +108,6 @@
               :steps="steps"
               @save="onSave"
             ></calentamiento-step>
-            <!-- <v-btn @click="nextDialog"> Siguiente</v-btn> -->
           </v-col>
         </v-row>
       </v-card-text>
@@ -117,6 +116,7 @@
 </template>
 <script>
 import calentamientoStep from "./calentamientoStep.vue";
+import {mapActions} from 'vuex'
 export default {
   components: { calentamientoStep },
   name: "firstDialog",
@@ -151,28 +151,27 @@ export default {
     };
   },
   methods: {
-    nextDialog() {
-      this.$emit(
-        "nextDialog",
-        this.nameRoutine,
-        this.detailRoutine,
-        this.diff,
-        this.steps,
-        this.reps,
-        this.col
-      );
+    ...mapActions('routines', { $createRoutine: 'create'}),
+    ...mapActions('cycle', { $createCycle: 'create'}),
+    async onSave(cycles, selectedExercises) {
+      this.cycles = cycles;
+      console.log(this.cycles);
+      this.selectedExercises = selectedExercises;
+      const routine = await this.$createRoutine({name: this.nameRoutine, detail: this.detailRoutine, difficulty: this.diff, isPublic: true })
+      const routineId = routine.id;
+      console.log(routineId)
+      await this.$createCycle(routineId, {name: cycles[0].name, detail: cycles[0].detail, type: cycles[0].type, order: cycles[0].order, repetitions: cycles[0].repetitions})
+      /*
+      for(let i = 0; i <= this.steps +1; i++) {
+          console.log("aca");
+          this.$createCycle(routineId, {name: cycles[i].name, detail: cycles[i].detail, type: cycles[i].type, order: cycles[i].order, repetitions: cycles[i].repetitions})
+      }
+      */
+      this.createRoutineDialog = false;
     },
     cancelRoutine() {
       this.createRoutineDialog = false;
-      this.$emit("cancelRoutine");
-    },
-
-    onSave(cycles, selectedExercises) {
-      this.cycles = cycles;
-      this.selectedExercises = selectedExercises;
-
-      /* Aca ya tengo todo como para llamar a la api */
-    },
+    }
   },
 };
 </script>

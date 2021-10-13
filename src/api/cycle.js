@@ -12,16 +12,16 @@ class CycleApi {
    return await Api.post(`${CycleApi.url}/${routineId}/cycles`, true, cycle, controller)
   }
 
-  static async modify(routineId, cycle, controller) {
-    return await Api.put(`${CycleApi.url}/${routineId}/cycles/${cycle.id}`, true, cycle, controller)
+  static async modify(routineId, cycleId, cycle, controller) {
+    return await Api.put(`${CycleApi.url}/${routineId}/cycles/${cycleId}`, true, cycle, controller)
   }
 
-  static async delete(routineId, cycle, controller) {
-    return await Api.delete(`${CycleApi.url}/${routineId}/cycles/${cycle.id}`, true, controller);
+  static async delete(routineId, cycleId, controller) {
+    return await Api.delete(`${CycleApi.url}/${routineId}/cycles/${cycleId}`, true, controller);
   }
 
-  static async get(routineId, cycle, controller) {
-    return await Api.get(`${CycleApi.url}/${routineId}/cycles/${cycle.id}`,true,  controller);
+  static async get(routineId, cycleId, controller) {
+    return await Api.get(`${CycleApi.url}/${routineId}/cycles/${cycleId}`,true,  controller);
 }
 
   static async getAll(routineId, controller) {
