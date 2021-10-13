@@ -6,7 +6,7 @@
           <v-card class="rounded-xl" rounded color="#92D9D3" elevation="1">
             <v-container class="account-icon">
               <v-row justify="center" align="center">
-                <v-icon color="#475dff" dense large x-large
+                <v-icon color="#6262f8" dense large x-large
                   >mdi-account-circle</v-icon
                 >
               </v-row>
@@ -17,7 +17,7 @@
                   <v-text-field
                     v-model="username"
                     background-color="rgb(244, 249, 252)"
-                    placeholder="Usuario"
+                    placeholder="Usuario*"
                     elevation="2"
                     color="black"
                     dense
@@ -35,7 +35,7 @@
                   <v-text-field
                     v-model="email"
                     background-color="rgb(244, 249, 252)"
-                    placeholder="Correo electrónico"
+                    placeholder="Correo electrónico*"
                     elevation="2"
                     color="black"
                     dense
@@ -56,7 +56,7 @@
                     :rules="[rules.required, rules.min]"
                     :type="show1 ? 'text' : 'password'"
                     name="input-10-1"
-                    placeholder="Contraseña"
+                    placeholder="Contraseña*"
                     @click:append="show1 = !show1"
                     background-color="rgb(244, 249, 252)"
                     elevation="2"
@@ -79,7 +79,7 @@
                     :rules="[rules.required, rules.min]"
                     :type="show1 ? 'text' : 'password'"
                     name="input-10-1"
-                    placeholder="Confirmar contraseña"
+                    placeholder="Confirmar contraseña*"
                     @click:append="show1 = !show1"
                     background-color="rgb(244, 249, 252)"
                     elevation="2"
@@ -99,7 +99,7 @@
                   <v-btn
                     @click="register"
                     elevation="2"
-                    color="#2679CC"
+                    color="#6262f8"
                     dark
                     x-large
                     rounded

@@ -5,10 +5,10 @@
       <v-row align="center" justify="center">
         <v-col></v-col>
         <v-col class="options">
-          <v-btn elevation="2" flat outlined rounded x-large block class="primary text"> Todas </v-btn>
+          <v-btn elevation="2" flat outlined rounded x-large block class="primary text" color="#6262f8"> Todas </v-btn>
         </v-col>
         <v-col class="options" >
-          <v-btn elevation="2" rounded x-large outlined block class="primary text" > Mis rutinas </v-btn>
+          <v-btn elevation="2" rounded x-large outlined block class="primary text" color="#6262f8"> Mis rutinas </v-btn>
         </v-col>   
         <v-col></v-col>
       </v-row>
@@ -34,15 +34,8 @@
         </v-col>
       </v-row>
       <v-row :v-if="!loading">
-        <v-col cols="3"  v-for="ex in exercises" :key="ex">
-          <category-card class="card" :title="ex.title" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg">
-          </category-card>
-        </v-col> 
-      </v-row>
-      <v-row :v-if="!loading">
-        <v-col cols="3"  v-for="s in sport" :key="s">
-          <category-card class="card" :title="s.name" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg">
-          </category-card>
+        <v-col cols="3"  v-for="cat in categories.content" :key="cat">
+          <category-card class="card" :title="cat.name" imgUrl="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"></category-card>
         </v-col> 
       </v-row>
     </v-container>
@@ -63,22 +56,22 @@ export default {
   components: {CategoryCard},
   methods: {
     ...mapActions('exercises', ['fetchExercises']),
-    ...mapActions('sport', ['getAll']),
+    ...mapActions('category', { $getAll: 'getAll'}),
   },
   computed: {
     ...mapState('exercises', {
         exercises: state => state.exercises
     }),
-    ...mapState('items', {
-        sport: state => state.items
+    ...mapState('category', {
+        categories: state => state.categories
     }),
   },
   
   async created() {
     this.loading = true;
-    await this.fetchExercises();
-    await this.getAll();
+    let cat = await this.$getAll();
     this.loading = false;
+    console.log(cat);
   }
 
 };

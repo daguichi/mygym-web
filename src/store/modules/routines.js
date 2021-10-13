@@ -1,91 +1,108 @@
-// {
-//   name: "Abdominales",
-//   autor: "Dax",
-//   score: "iiii",
-//   img: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
-  
-// }
+import { RoutineApi } from "../../api/routines";
 
 export default {
-  destacadas: [
-    {
-      titulo: "Abdominales",
-      autor: "Dax",
-      stars: "iiii",
-      img: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
+  namespaced: true,
+  state: {
+    routines: [],
+    favs: [],
+    myRoutines: [],
+  },
+  
+  getters: {
+      findIndex(state) {
+          return (routine) => {
+              return state.routines.content.findIndex(item => item.id === routine.id)
+          }
+      },
+      findFav(state) {
+          return (routine) => {
+            return state.favs.findIndex(item => item.id === routine.id);
+          }
+      },
+  },
+  
+  mutations: {
+    push(state, routine) {
+      state.routines.push(routine);
     },
-    {
-      titulo: "Calistenia",
-      autor: "Dagos",
-      stars: "iii",
-      img:
-        "https://pbs.twimg.com/media/E5lSGN6WEAM7VZz?format=jpg&name=900x900",
+    pushFav(state, routine) {
+      state.favs.push(routine);
     },
-    {
-      titulo: "Hombros",
-      autor: "Tisan",
-      stars: "iiii",
-      img: "https://blog.smartfit.com.mx/wp-content/uploads/2019/09/1.png",
+    replace(state, index, routine) {
+      state.routines[index] = routine;
     },
-    {
-      titulo: "Piernas",
-      autor: "Sol",
-      stars: "iii",
-      img: "https://i.blogs.es/42c0e8/peso-muerto-entrenamiento/1366_2000.jpeg",
+    splice(state, index) {
+      state.routines.splice(index, 1);
     },
-  ],
-  misrutinas: [
-    {
-      titulo: "Calistenia",
-      autor: "Dagos",
-      stars: "iii",
-      img:
-        "https://pbs.twimg.com/media/E5lSGN6WEAM7VZz?format=jpg&name=900x900",
+    replaceAll(state, routines) {
+      state.routines = routines;
     },
-    {
-      titulo: "Abdominales",
-      autor: "Dax",
-      stars: "iiii",
-      img: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
+    replaceFavs(state, favs) {
+      state.favs = favs;
     },
-    {
-      titulo: "Hombros",
-      autor: "Tisan",
-      stars: "iiii",
-      img: "https://blog.smartfit.com.mx/wp-content/uploads/2019/09/1.png",
+    replaceMines(state, myRoutines) {
+        state.myRoutines = myRoutines;
+    }
+  },
+  actions: {
+    async create({ getters, commit }, routine) {
+      const result = await RoutineApi.add(routine);
+      if (!getters.findIndex(result)) commit("push", result);
+      return result;
     },
-    {
-      titulo: "Piernas",
-      autor: "Sol",
-      stars: "iiiii",
-      img: "https://i.blogs.es/42c0e8/peso-muerto-entrenamiento/1366_2000.jpeg",
+    async modify({ getters, commit }, routine) {
+      const result = await RoutineApi.modify(routine);
+      const index = getters.findIndex(result);
+      if (index >= 0) commit("replace", index, result);
+      return result;
     },
-  ],
-  historial: [
-    {
-      titulo: "Calistenia",
-      autor: "Dagos",
-      stars: "iii",
-      img:
-        "https://pbs.twimg.com/media/E5lSGN6WEAM7VZz?format=jpg&name=900x900",
+    async delete({ getters, commit }, routine) {
+      await RoutineApi.delete(routine.id);
+      const index = getters.findIndex(routine);
+      if (index >= 0) commit("splice", index);
     },
-    {
-      titulo: "Abdominales",
-      autor: "Dax",
-      stars: "iiii",
-      img: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
-    },
-    {
-      titulo: "Hombros",
-      autor: "Tisan",
-      stars: "iiii",
-      img: "https://blog.smartfit.com.mx/wp-content/uploads/2019/09/1.png",
-    },
-    {
-      titulo: "Piernas",
-      autor: "Sol",
-      stars: "iiiii",
-      img: "https://i.blogs.es/42c0e8/peso-muerto-entrenamiento/1366_2000.jpeg",
-    },
-  ],
+    async get({ state, getters, commit }, routine) {
+      const index = getters.findIndex(routine);
+      if (index >= 0) return state.routines[index];
+
+            const result = await RoutineApi.get(routine.id) // REVISAR
+            commit('push', result)
+            return result
+        },
+        async getAll({commit}, controller) {
+            const result = await RoutineApi.getAll(controller)
+            commit('replaceAll', result.content)
+            return result.content
+        },
+        async getFavs({commit}, controller) {
+            const result = await RoutineApi.getFavs(controller);
+            commit('replaceFavs', result.content)
+            return result.content
+        },
+        async markFav({getters, commit}, routineId, controller) {
+            const result = await RoutineApi.markFav(routineId, controller);
+            if (!getters.findFav(result))
+                commit('pushFav', result)
+            return result
+        },
+        
+        async getMines({ commit }, controller) {
+          const result = await RoutineApi.getMines(controller);
+          console.log('en modulo', result.content)
+          commit("replaceMines", result.content);
+          return result.content;
+        },
+    
+    
+  },
 };
+
+/*
+ static async markFav(id, controller) {
+    return await Api.post(RoutineApi.getFavsUrl(id), true, controller);
+  }
+
+  static async unmarkFav(id, controller) {
+    return await Api.delete(RoutineApi.getFavsUrl(id), true, controller);
+  }
+  */
