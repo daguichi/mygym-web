@@ -25,20 +25,20 @@
                 </v-list-item>
               </v-list>
 
-              <v-divider></v-divider>
+            <v-divider></v-divider>
 
-              <v-list color="transparent">
-                <v-list-item
-                  v-for="item in profileSections"
-                  :key="item.title"
-                  link
-                  :to="{
-                    name: item.title,
-                  }"
-                >
-                  <v-list-item-icon>
-                    <v-icon color="#6262f8">{{ item.icon }}</v-icon>
-                  </v-list-item-icon>
+            <v-list color="transparent">
+              <v-list-item
+                v-for="item in profileSections"
+                :key="item.title"
+                link
+                :to="{
+                  name: item.title,
+                }"
+              >
+                <v-list-item-icon>
+                  <v-icon color="#6262f8">{{ item.icon }}</v-icon>
+                </v-list-item-icon>
 
                   <v-list-item-content>
                     <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -49,11 +49,11 @@
             <router-link class="router" to="/"><v-btn color ="red" outlined class="logout" @click="logout" ><v-icon class="logouticon">mdi-logout-variant</v-icon> Cerrar sesión</v-btn></router-link>
           </v-col>
 
-          <!-- columna derecha -->
-          <router-view :key="$route.path" />
-        </v-row>
-      </v-container>
-    </v-main>
+        <!-- columna derecha -->
+        <router-view :key="$route.path" />
+      </v-row>
+    </v-container>
+  </v-main>
   </div>
 </template>
 
@@ -65,7 +65,11 @@ export default {
   data: () => ({
     profileSections: [
       { icon: "mdi-account", title: "Mi perfil", route: "miperfil" },
-      { icon: "mdi-weight-lifter", title: "Mis ejercicios", route: "misejercicios" },
+      {
+        icon: "mdi-weight-lifter",
+        title: "Mis ejercicios",
+        route: "misejercicios",
+      },
       { icon: "mdi-dumbbell", title: "Mis rutinas", route: "misrutinas" },
     ],
   }),
@@ -89,7 +93,7 @@ export default {
 </script>
 
 <style scoped>
-.logout{
+.logout {
   margin-top: 40px;
 }
 .logouticon{

@@ -1,44 +1,71 @@
 <template>
   <div>
     <v-card
-      class="rounded-xl imagen mx-auto"
+      class="rounded-xl imagen mx-auto "
       max-width="430"
-      height="220"
       outlined
       color="light-blue accent-2"
     >
-      <div class="d-flex flex-no-wrap justify-space-between">
+      <div>
         <div>
-          <v-card-title
-            class="text-h6"
-            align="center"
-            v-text="exercise.name"
-          ></v-card-title>
-
-          <v-row align="left">Detalle: {{ exercise.detail }}</v-row>
-          <v-btn icon class="mr-2" @click="confirm"
-                  ><v-icon color="primary" x-large rounded dark
-                    >mdi-delete</v-icon
-                  >
-                </v-btn>
-          <v-btn icon class="mr-2"
-                  ><v-icon color="primary" x-large rounded dark
-                    >mdi-pencil</v-icon
-                  >
-          </v-btn>
+          <v-row align="center" justify="center">
+            <v-col cols="7">
+              <v-text-field
+                :value="exercise.name"
+                label="nombre"
+                outlined
+                readonly
+                rounded
+                class="pl-3 pt-5"
+              ></v-text-field>
+            </v-col>
+            <v-col>
+              <v-icon @click="confirm" large>
+                mdi-delete
+              </v-icon>
+            </v-col>
+            <v-col>
+              <v-icon large>
+                mdi-file-edit-outline
+              </v-icon>
+            </v-col>
+          </v-row>
+          <v-row align="center" justify="center" class="font-italic">
+            <v-col>
+              <v-textarea
+                outlined
+                readonly
+                class="pl-2"
+                name="input-7-4"
+                label="Descripción"
+                :value="exercise.detail"
+              ></v-textarea>
+              <!-- <v-text-field
+                :value="exercise.detail"
+                label="detalle"
+                outlined
+                readonly
+                rounded
+                class="mb-3 pl-2"
+              ></v-text-field> -->
+            </v-col>
+            <v-col
+              ><v-text-field
+                :value="exercise.type"
+                label="tipo"
+                outlined
+                readonly
+                rounded
+                class="mb-3 pr-2"
+              ></v-text-field
+            ></v-col>
+          </v-row>
         </div>
       </div>
-      <v-snackbar
-          v-model="snackbar"
-      >
+      <v-snackbar v-model="snackbar">
         ¿Está seguro de que desea borrar el ejercicio?
         <template v-slot:action="{ attrs }">
-          <v-btn
-              text
-              dark
-              v-bind="attrs"
-              @click="deleteEx"
-          >
+          <v-btn text dark v-bind="attrs" @click="deleteEx">
             Si
           </v-btn>
         </template>
@@ -48,7 +75,7 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "ExerciseCard",
@@ -60,32 +87,34 @@ export default {
   },
   props: { exercise: Object },
   methods: {
-    ...mapActions("exercises", {$delete: "delete", $getMines: "getMines"}),
+    ...mapActions("exercises", { $delete: "delete", $getMines: "getMines" }),
     onClose() {
       this.dialog = false;
     },
     async deleteEx() {
-      await this.$delete(this.exercise)
+      await this.$delete(this.exercise);
       await this.$getMines();
       this.snackbar = false;
     },
     confirm() {
       this.snackbar = true;
-    }
+    },
   },
-  
 };
 </script>
 
 <style scoped>
 .imagen {
-  background: rgb(55, 43, 255);
+  background: rgb(76, 68, 207);
   background: linear-gradient(
     43deg,
-    rgba(55, 43, 255, 1) 0%,
-    rgba(28, 109, 173, 1) 58%,
-    rgba(0, 212, 255, 1) 100%
+    rgba(76, 68, 207, 1) 0%,
+    rgba(154, 67, 180, 1) 60%,
+    rgba(122, 92, 175, 1) 93%
   );
+}
+.titulo {
+  margin-left: 50%;
 }
 
 .microText {
