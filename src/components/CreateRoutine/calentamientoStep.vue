@@ -127,7 +127,7 @@
             </template>
             <v-row>
               <v-col>
-                <v-btn @click="createRoutineDialogStep2 = false">
+                <v-btn color="#6262f8" outlined @click="createRoutineDialogStep2 = false">
                   Cancelar
                 </v-btn>
               </v-col>
@@ -223,7 +223,7 @@
             </template>
             <v-row>
               <v-col>
-                <v-btn @click="e1 = n - 1">
+                <v-btn color="#6262f8" outlined @click="e1 = n - 1">
                   Anterior
                 </v-btn>
               </v-col>
@@ -322,7 +322,7 @@
             </template>
             <v-row>
               <v-col>
-                <v-btn @click="e1 = steps - 1"> Anterior </v-btn>
+                <v-btn color="#6262f8" outlined @click="e1 = steps - 1"> Anterior </v-btn>
               </v-col>
               <v-col>
                 <v-btn color="primary" @click="save"> Guardar </v-btn>
