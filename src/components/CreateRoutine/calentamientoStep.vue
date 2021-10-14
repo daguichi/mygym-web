@@ -422,11 +422,11 @@ export default {
   data() {
     return {
       rules: {
-        name: [(val) => (val || "").length > 0 || "Campo obligatorio"],
-        detail: [(val) => (val || "").length > 0 || "Campo obligatorio"],
-        reps: [(val) => (val || "").length > 0 || "Campo obligatorio"],
-        exReps: [(val) => (val || "").length > 0 || "Campo obligatorio"],
-        exSecs: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+        name: [(val) => val === undefined || (val || "").length > 0 || "Campo obligatorio"],
+        detail: [(val) => val === undefined || (val || "").length > 0 || "Campo obligatorio"],
+        reps: [(val) => val >= 1 || (val || "").length > 0 || "Campo obligatorio"],
+        exReps: [(val) => val >= 1 || (val || "").length > 0 || "Campo obligatorio"],
+        exSecs: [(val) => val >= 1 || (val || "").length > 0 || "Campo obligatorio"],
       },
       isEmpty: true,
       continueFail: false,
@@ -536,8 +536,8 @@ export default {
       this.repetitions = 1;
       this.seconds = 1;
       this.cycles = [];
-      this.cycleName = [];
-      this.cycleDetail = [];
+      this.cycleName = [undefined, undefined, undefined, undefined, undefined, undefined];
+      this.cycleDetail = [undefined, undefined, undefined, undefined, undefined, undefined];
       this.cycleRepetitions = [1, 1, 1, 1, 1, 1];
     },
   },

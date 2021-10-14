@@ -106,8 +106,8 @@ export default {
       cycles: [],
       selectedExercises: [[], [], [], [], [], []],
       rules: {
-        name: [(val) => (val || "").length > 0 || "Campo obligatorio"],
-        desc: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+        name: [(val) => val === undefined || (val || "").length > 0 || "Campo obligatorio"],
+        desc: [(val) => val === undefined || (val || "").length > 0 || "Campo obligatorio"],
       },
     };
   },
@@ -116,7 +116,7 @@ export default {
       exercises: (state) => state.exercises,
     }),
     formIsValid() {
-      return this.nameRoutine === "" || this.detailRoutine === "";
+      return this.nameRoutine === "" || this.nameRoutine === undefined || this.detailRoutine === "" || this.nameRoutine === undefined;
     },
   },
   methods: {
@@ -166,8 +166,8 @@ export default {
           });
         }
       }
-      this.nameRoutine = "";
-      this.detailRoutine = "";
+      this.nameRoutine = undefined;
+      this.detailRoutine = undefined;
       this.diff = "rookie";
       this.steps = 1;
       this.reps = "-";
@@ -185,8 +185,8 @@ export default {
     },
     cancelRoutine() {
       this.createRoutineDialog = false;
-      this.nameRoutine = "";
-      this.detailRoutine = "";
+      this.nameRoutine = undefined;
+      this.detailRoutine = undefined;
       this.diff = "rookie";
       this.steps = 1;
       this.reps = "-";
