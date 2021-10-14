@@ -24,6 +24,7 @@
               dense
               outlined
               auto-grow
+              :rules="rules.desc"
               label="Descripcion"
             ></v-textarea>
           </v-row>
@@ -125,6 +126,7 @@ export default {
       selectedExercises: [[], [], [], [], [], []],
       rules: {
         name: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+        desc: [(val) => (val || "").length > 0 || "Campo obligatorio"],
       },
     };
   },
@@ -133,7 +135,7 @@ export default {
       exercises: (state) => state.exercises,
     }),
     formIsValid() {
-      return this.nameRoutine === "";
+      return this.nameRoutine === "" || this.detailRoutine === "";
     },
   },
   methods: {
