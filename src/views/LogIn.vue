@@ -155,9 +155,7 @@ export default {
       this.controller.abort();
     },
   },
-  created() {
-    if (this.$token) router.push("Home")
-  }
+ 
 };
 </script>
 

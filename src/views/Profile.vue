@@ -58,8 +58,6 @@
 </template>
 
 <script>
-// import store from "@/store/profile";
-import router from "@/router/index";
 import { mapState, mapActions } from "vuex";
 export default {
   data: () => ({
@@ -86,7 +84,6 @@ export default {
 
     async logout() {
       await this.$logout();
-      router.push("/")
     }
   }
 };
