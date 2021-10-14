@@ -45,9 +45,9 @@
           </v-expansion-panel-header>
 
           <v-expansion-panel-content>
-            <v-chip class="mb-4 ma-2" dark small color="#2679CC">{{
-              ciclo.repetitions
-            }}</v-chip>
+            <v-chip class="mb-4 ma-2" dark small color="#2679CC">
+              Repeticiones del ciclo: {{ ciclo.repetitions }}</v-chip
+            >
 
             <template v-for="ejs in cycleExercises[i]">
               <v-card small class="mt-1" :key="ejs.exercise.id">
