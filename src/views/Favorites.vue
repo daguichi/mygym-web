@@ -7,45 +7,41 @@
         </v-icon>
       </v-row>
       <h1>Mis rutinas favoritas</h1>
-      <div :v-if="favs.totalCount > 0">
+      <div v-if="this.favs.length > 0">
         <v-card elevation="24" max-width="444" class="mx-auto">
-          <v-system-bar lights-out></v-system-bar>
-          <v-carousel
-            :continuous="false"
-            :cycle="cycle"
-            :show-arrows="false"
-            hide-delimiter-background
-            delimiter-icon="mdi-minus"
-            height="220"
-          >
-            <v-carousel-item :v-for="fav in favs.content"
-              :key="fav.id">
+        <v-system-bar lights-out></v-system-bar>
+        <v-carousel
+          :continuous="false"
+          :cycle="cycle"
+          :show-arrows="false"
+          hide-delimiter-background
+          delimiter-icon="mdi-minus"
+          height="300"
+        >
+          <v-carousel-item v-for="fav in this.favs"
+            :key="fav.id">
+
             <RoutineCard
               v-bind:routine="fav"
             />
-              <!-- <v-sheet :color="colors[i]" height="100%" tile>
-                <v-row class="fill-height" align="center" justify="center">
-                  <div class="text-h2">{{ slide }} Slide</div>
-                </v-row>
-              </v-sheet> -->
-              <v-list two-line>
-                <v-list-item>
-                  <v-list-item-avatar>
-                    <v-img
-                      src="https://cdn.vuetifyjs.com/images/john.png"
-                    ></v-img>
-                  </v-list-item-avatar>
-                  <v-list-item-content>
-                    <v-list-item-title>John Leider</v-list-item-title>
-                    <v-list-item-subtitle>Author</v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
-            </v-carousel-item>
-          </v-carousel>
-        </v-card>
+            <v-list two-line>
+              <v-list-item>
+                <v-list-item-avatar>
+                  <v-img
+                    src="https://cdn.vuetifyjs.com/images/john.png"
+                  ></v-img>
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title>John Leider</v-list-item-title>
+                  <v-list-item-subtitle>Author</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-carousel-item>
+        </v-carousel>
+      </v-card>
       </div>
-      <div v-if="favs.totalCount === 0">
+      <div v-else>
         <v-row justify="space-around" align="center"
           ><v-icon x-large color="#6262f8">mdi-heart</v-icon></v-row
         >
@@ -82,7 +78,7 @@ export default {
   },
   async created() {
     await this.$getFavs();
-    console.log('en created de favs', this.favs)
+    console.log(this.favs)
   },
 };
 </script>

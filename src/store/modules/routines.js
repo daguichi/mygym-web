@@ -4,7 +4,7 @@ export default {
   namespaced: true,
   state: {
     routines: [],
-    favs: {},
+    favs: [],
     myRoutines: [],
   },
   
@@ -77,7 +77,8 @@ export default {
         },
         async getFavs({commit}, controller) {
             const result = await RoutineApi.getFavs(controller);
-            commit('replaceFavs', result)
+            console.log(result)
+            commit('replaceFavs', result.content)
             return result.content
         },
         async markFav({getters, commit}, routineId, controller) {

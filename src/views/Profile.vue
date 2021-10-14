@@ -46,7 +46,7 @@
                 </v-list-item>
               </v-list>
             </v-sheet>
-            <router-link to="/"><v-btn class="logout" @click="logout" >logout</v-btn></router-link>
+            <router-link to="/"><v-btn dark class="logout" @click="logout" >logout</v-btn></router-link>
           </v-col>
 
           <!-- columna derecha -->

@@ -7,6 +7,10 @@ class RoutineApi {
     return `${Api.baseUrl}/routines${ slug ? `/${slug}` : ''}`
   }
 
+  static getFavsUrl(id) {
+    return `${Api.baseUrl}/favourites${ id ? `/${id}` : ''}`
+  }
+
   static async add(routine, controller) {
    return await Api.post(RoutineApi.getUrl(), true, routine, controller)
   }
