@@ -2,24 +2,23 @@
   <div>
     <v-main class="grey lighten-3">
       <v-container>
-              
         <v-row v-for="seccion in secciones" :key="seccion.title">
-          <v-row
-            ><h1 class="pt-5 botom-line">{{ seccion.title }}</h1>
-          </v-row>
+          <v-col>
+            <h1 class="pt-5 botom-line">{{ seccion.title }}</h1>
 
-          <v-slide-group
-            v-model="model"
-            class="pl-3 pt-9"
-            active-class="success"
-            mobile-breakpoint="1"
-            show-arrows
-          >
-            <v-slide-item class="pl-3" v-for="r in routines" :key="r.id">
-              <RoutineCard v-bind:routine="r" />
-            </v-slide-item>
-          </v-slide-group>
-          <br /><br />
+            <v-slide-group
+              v-model="model"
+              class="pl-3 pt-9"
+              active-class="success"
+              mobile-breakpoint="1"
+              show-arrows
+            >
+              <v-slide-item class="pl-3" v-for="r in routines" :key="r.id">
+                <RoutineCard v-bind:routine="r" />
+              </v-slide-item>
+            </v-slide-group>
+            <br /><br />
+          </v-col>
         </v-row>
         <create />
       </v-container>
@@ -48,8 +47,8 @@ export default {
     ...mapState("security", {
       user: (state) => state.user,
     }),
-        ...mapState("security", {$token: state => state.token}),
-    ...mapGetters("security", {$isLoggedIn: 'isLoggedIn'}),
+    ...mapState("security", { $token: (state) => state.token }),
+    ...mapGetters("security", { $isLoggedIn: "isLoggedIn" }),
     ...mapState("category", {
       categories: (state) => state.categories,
     }),
@@ -66,7 +65,6 @@ export default {
     ];
   },
   methods: {
-    
     ...mapActions("category", { $createCategory: "create" }),
     ...mapActions("routines", { $createRoutine: "create", $getAll: "getAll" }),
   },
@@ -75,8 +73,9 @@ export default {
 
 <style scoped>
 .botom-line {
+  text-align: left;
   border-bottom: 5px solid #6262f8;
-  height: 100%;
+
   margin-bottom: 10px;
   padding: 0 80px; /* or how longer you want */
   padding-bottom: 10px;
