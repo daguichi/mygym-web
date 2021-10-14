@@ -15,14 +15,12 @@
     <v-card flat>
       <v-card-title
         >{{ rutina.name }} 
-    
-        <v-btn @click="close" color="#6262f8" outlined>
+        <v-btn color="#6262f8" outlined>
           <v-icon>mdi-pencil</v-icon>
         </v-btn>
-        <v-btn @click="close" color="#6262f8" outlined>
+        <v-btn @click="confirm" color="#6262f8" outlined>
           <v-icon>mdi-delete</v-icon>
         </v-btn>
-
         <v-btn @click="close" color="#6262f8" outlined>
           <v-icon>mdi-close</v-icon>
         </v-btn>
@@ -147,11 +145,9 @@ export default {
       await this.$deleteRoutine(this.rutina);
       await this.$getMines();
       this.snackbar = false;
-      close();
     },
     async getCycles() {
       await this.$getCycles(this.rutina.id);
-
       for (let i = 0; i < this.ciclos.length; i++) {
         this.cycleExercises[i] = await this.$getCycleExercises(
           this.ciclos[i].id
