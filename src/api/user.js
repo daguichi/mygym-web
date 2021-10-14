@@ -57,6 +57,10 @@ class Credentials {
 
 class RegisterCredentials {
   constructor(username, password, email) {
+    this.firstName = "-";
+    this.lastName = "-";
+    this.phone = "-";
+    this.gender = "other";
     this.username = username;
     this.password = password;
     this.email = email;
