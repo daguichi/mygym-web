@@ -90,6 +90,7 @@
               <calentamiento-step
                 :steps="steps"
                 @save="onSave"
+                @closeAll="onClose"
                 :validForm="formIsValid"
               ></calentamiento-step>
             </v-col>
@@ -195,6 +196,18 @@ export default {
           });
         }
       }
+      this.nameRoutine = "";
+      this.detailRoutine = "";
+      this.diff = "rookie";
+      this.steps = 1;
+      this.reps = "-";
+      this.col = "Azul";
+      this.cycles = [];
+      this.selectedExercises = [[], [], [], [], [], []];
+
+    },
+    onClose() {
+      this.createRoutineDialog = false
     },
     checkExId(ex) {
       for (let i = 0; i < this.exercises.length; i++) {

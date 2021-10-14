@@ -129,13 +129,13 @@
                 <v-btn
                   color="#6262f8"
                   outlined
-                  @click="createRoutineDialogStep2 = false"
+                  @click="cancel"
                 >
                   Cancelar
                 </v-btn>
               </v-col>
               <v-col>
-                <v-btn color="primary" @click="e1 = 1"> Continuar </v-btn>
+                <v-btn color="primary" @click="nextStep(1)"> Continuar </v-btn>
               </v-col>
             </v-row>
           </v-stepper-content>
@@ -235,7 +235,7 @@
                 </v-btn>
               </v-col>
               <v-col>
-                <v-btn color="primary" @click="e1 = n + 1"> Continuar </v-btn>
+                <v-btn color="primary" @click="nextStep(n+1)"> Continuar </v-btn>
               </v-col>
             </v-row>
           </v-stepper-content>
@@ -333,7 +333,7 @@
             </template>
             <v-row>
               <v-col>
-                <v-btn color="#6262f8" outlined @click="e1 = steps - 1">
+                <v-btn color="#6262f8" outlined @click="e1= steps - 1">
                   Anterior
                 </v-btn>
               </v-col>
@@ -345,6 +345,36 @@
         </v-stepper-items>
       </v-stepper>
     </v-card>
+    <v-snackbar
+        v-model="continueFail"
+        color="error"
+    >
+      Debes agregar al menos un ejercicio
+      <template v-slot:action="{ attrs }">
+        <v-btn
+            text
+            v-bind="attrs"
+            @click="continueFail = false;"
+        >
+          Cerrar
+        </v-btn>
+      </template>
+    </v-snackbar>
+    <v-snackbar
+        v-model="snackbar"
+        color="success"
+    ><v-icon class="save">mdi-check</v-icon>
+      Rutina creada correctamente
+      <template v-slot:action="{ attrs }">
+        <v-btn
+            text
+            v-bind="attrs"
+            @click="close"
+        >
+          Cerrar
+        </v-btn>
+      </template>
+    </v-snackbar>
     <!-- <v-btn @click="createRoutineDialogStep2 = false"> Atras</v-btn>  -->
   </v-dialog>
 </template>
@@ -363,6 +393,8 @@ export default {
   data() {
     return {
       isEmpty: true,
+      continueFail: false,
+      snackbar: false,
       e1: 0,
       createRoutineDialogStep2: false,
       selectedExercises: [[], [], [], [], [], []],
@@ -396,6 +428,16 @@ export default {
         this.isEmpty = false;
       }
     },
+    cancel() {
+      this.createRoutineDialogStep2 = false
+      this.clear();
+    },
+    nextStep(to){
+      if(this.selectedExercises[to-1].length === 0)
+        this.continueFail = true;
+      else
+        this.e1 = to;
+    },
     ...mapActions("exercises", { $getExercises: "getAll" }),
     save() {
       for (var i = 0; i <= this.steps + 1; i++) {
@@ -414,7 +456,11 @@ export default {
         });
       }
       this.$emit("save", this.cycles, this.selectedExercises);
+      this.clear();
+    },
+    close() {
       this.createRoutineDialogStep2 = false;
+      this.$emit("closeAll");
     },
     addEx(cycle, name, repetitions, seconds) {
       this.selectedExercises[cycle].push({
@@ -432,6 +478,18 @@ export default {
         res.push(exercise.name);
       });
       return res;
+    },
+     clear(){
+      this.selectedExercises = [[], [], [], [], [], []];
+      this. selectedEx = "-";
+      this.repetitions = 1;
+      this.seconds = 1;
+      this.cycles = [];
+      this.cycleName = [];
+      this.cycleDetail = [];
+      this.cycleRepetitions = [1, 1, 1, 1, 1, 1];
+      this.e1 = 0;
+      this.snackbar = true;
     },
   },
   async created() {
