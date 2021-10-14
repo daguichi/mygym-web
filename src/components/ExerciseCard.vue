@@ -20,7 +20,7 @@
               ></v-text-field>
             </v-col>
             <v-col>
-              <v-icon>
+              <v-icon @click="confirm">
                 mdi-delete
               </v-icon>
             </v-col>
