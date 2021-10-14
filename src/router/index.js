@@ -13,7 +13,7 @@ import Verification from "../views/Verification";
 import FichaTecnica from "../components/profile/FichaTecnica";
 import MisRutinas from "../components/profile/MisRutinas";
 import Historial from "../components/profile/Historial";
-import EditarPerfil from "../components/profile/EditarPerfil";
+
 
 Vue.use(VueRouter);
 
@@ -68,11 +68,7 @@ const routes = [
         name: "Historial",
         component: Historial,
       },
-      {
-        path: "editarperfil",
-        name: "Editar perfil",
-        component: EditarPerfil,
-      },
+  
     ],
   },
   {

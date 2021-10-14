@@ -44,7 +44,7 @@
             
             v-model="genero"
        
-            :items="generos"
+            :items="this.generos.map(genero => genero.value)"
             label="Genero"
             placeholder="Seleccione"
              
@@ -67,8 +67,8 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-text-field
-              v-model="dateFormatted"
-              label="Date"
+              v-model="this.cumpleaños"
+              label="Cumpleaños"
               hint="MM/DD/YYYY format"
               persistent-hint
               prepend-icon="mdi-calendar"
@@ -83,11 +83,7 @@
             @input="menu1 = false"
           ></v-date-picker>
         </v-menu>
-              <v-text-field
-              v-model="this.cumpleaños"
-              label="Cumpleaños"
-               
-              ></v-text-field>
+             
           </v-col>
           <v-col></v-col>
         </v-row>
@@ -130,11 +126,13 @@ export default {
     cumpleaños: "",
     telefono: "",
     avatarUrl: "",
-    genero: [
+    genero: "",
+    generos: [
         { show: "Hombre", value: "male" },
         { show: "Mujer", value: "female" },
         { show: "Otro", value: "other" },
       ],
+      generosValues:"" ,
   }),
   computed: {
     ...mapState("security", {

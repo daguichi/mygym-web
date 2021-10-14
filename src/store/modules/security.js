@@ -48,8 +48,10 @@ export default {
       console.log(result.token);
       dispatch("updateToken", { token: result.token, rememberMe });
     },
-    async logout({ dispatch }) {
+    async logout({ commit, dispatch }) {
+      console.log('en logout de security store', Api.token)
       await UserApi.logout();
+      commit("setUser", null);
       dispatch("removeToken");
     },
 

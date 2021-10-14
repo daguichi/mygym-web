@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-main class="grey lighten-3">
-      <v-btn @click="userTest">console</v-btn>
       <v-container>
         <v-row v-for="seccion in secciones" :key="seccion.title">
           <v-row
@@ -67,14 +66,12 @@ export default {
   methods: {
     ...mapActions("category", { $createCategory: "create" }),
     ...mapActions("routines", { $createRoutine: "create", $getAll: "getAll" }),
-    userTest() {
-      console.log(this.user)
-    }
   },
 };
 </script>
 
 <style scoped>
+
 .botom-line {
   border-bottom: 5px solid #6262f8;
   height: 100%;
