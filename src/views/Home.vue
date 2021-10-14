@@ -1,29 +1,28 @@
 <template>
-  <div>
-    <v-main class="grey lighten-3">
-      <v-container>
-        <v-row v-for="seccion in secciones" :key="seccion.title">
-          <v-col>
-            <h1 class="pt-5 botom-line">{{ seccion.title }}</h1>
+  <v-main class="grey lighten-3 fill-height">
+    <v-container>
+      <v-row v-for="seccion in secciones" :key="seccion.title">
+        <v-col>
+          <h1 class="pt-5 texto">{{ seccion.title }}</h1>
+          <div class="botom-line"></div>
 
-            <v-slide-group
-              v-model="model"
-              class="pl-3 pt-9"
-              active-class="success"
-              mobile-breakpoint="1"
-              show-arrows
-            >
-              <v-slide-item class="pl-3" v-for="r in routines" :key="r.id">
-                <RoutineCard v-bind:routine="r" />
-              </v-slide-item>
-            </v-slide-group>
-            <br /><br />
-          </v-col>
-        </v-row>
-        <create />
-      </v-container>
-    </v-main>
-  </div>
+          <v-slide-group
+            v-model="model"
+            class="pl-3 pt-9"
+            active-class="success"
+            mobile-breakpoint="1"
+            show-arrows
+          >
+            <v-slide-item class="pl-3" v-for="r in routines" :key="r.id">
+              <RoutineCard v-bind:routine="r" />
+            </v-slide-item>
+          </v-slide-group>
+          <br /><br />
+        </v-col>
+      </v-row>
+      <create />
+    </v-container>
+  </v-main>
 </template>
 
 <script>
@@ -77,7 +76,11 @@ export default {
   border-bottom: 5px solid #6262f8;
 
   margin-bottom: 10px;
-  padding: 0 80px; /* or how longer you want */
+  padding: 0 40px; /* or how longer you want */
+  width: 15%;
   padding-bottom: 10px;
+}
+.texto {
+  text-align: left;
 }
 </style>
