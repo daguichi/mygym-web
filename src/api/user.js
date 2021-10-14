@@ -31,6 +31,17 @@ class UserApi {
     await Api.post(UserApi.getUrl(), false, credentials, controller);
   }
 
+  static async modify(newUser, controller) {
+    return await Api.put(UserApi.getUrl("current"), true, newUser, controller);
+  }
+  /*
+  static async modifyUserInformation(data, controller){
+        const result = await Api.put(`${UserApi.url}/current`, true, data, controller);
+        if (!result.id){
+            console.log("ERROR!"); //ERROR
+        }
+    }
+    */
   static async verifyEmail(verification, controller) {
     console.log(verification);
     await Api.post(UserApi.getUrl("verify_email"), false, verification, controller);

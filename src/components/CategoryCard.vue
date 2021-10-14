@@ -16,7 +16,7 @@ export default {
   name: "CategoryCard",
   props: {
     title: String,
-    imgUrl: URL,
+    imgUrl: String,
   },
   data() {
     return {};

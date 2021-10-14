@@ -70,7 +70,7 @@
         </router-link>
 
         <router-link
-          :to="{ name: 'Ficha tecnica' }"
+          :to="{ name: 'Mi perfil' }"
           style="text-decoration: none"
         >
           <v-btn class="white--text" x-large rounded color="#6262f8">

@@ -63,11 +63,10 @@ import { mapState, mapActions } from "vuex";
 export default {
   data: () => ({
     profileSections: [
-      { icon: "mdi-account", title: "Ficha tecnica", route: "fichatecnica" },
+      { icon: "mdi-account", title: "Mi perfil", route: "miperfil" },
       { icon: "mdi-weight-lifter", title: "Mis ejercicios", route: "misejercicios" },
       { icon: "mdi-dumbbell", title: "Mis rutinas", route: "misrutinas" },
-      { icon: "mdi-history", title: "Historial", route: "historial" },
-      
+
     ],
   }),
   components: {},

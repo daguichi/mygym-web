@@ -10,9 +10,8 @@ import Routines from "../views/Routines";
 import Register from "../views/Register";
 import Verification from "../views/Verification";
 
-import FichaTecnica from "../components/profile/FichaTecnica";
+import MiPerfil from "../components/profile/MiPerfil";
 import MisRutinas from "../components/profile/MisRutinas";
-import Historial from "../components/profile/Historial";
 import MisEjercicios from "../components/profile/MisEjercicios"
 
 Vue.use(VueRouter);
@@ -54,9 +53,9 @@ const routes = [
     component: Profile,
     children: [
       {
-        path: "fichatecnica",
-        name: "Ficha tecnica",
-        component: FichaTecnica,
+        path: "miperfil",
+        name: "Mi perfil",
+        component: MiPerfil,
       },
       {
         path: "misejercicios",
@@ -68,11 +67,7 @@ const routes = [
         name: "Mis rutinas",
         component: MisRutinas,
       },
-      {
-        path: "historial",
-        name: "Historial",
-        component: Historial,
-      },
+ 
   
     ],
   },
