@@ -43,7 +43,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn color="#6262f8" text @click="createDialog = false">
+            <v-btn color="#6262f8" outlined @click="createDialog = false">
               Cancelar
             </v-btn>
           </v-card-actions>
