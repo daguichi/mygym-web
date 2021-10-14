@@ -142,6 +142,7 @@ export default {
       
       await this.$modifyUser(newUser);
       this.snackbar = true;
+      this.$router.push("/profile/miperfil")
    },
     
   },

@@ -73,10 +73,10 @@
           :to="{ name: 'Mi perfil' }"
           style="text-decoration: none"
         >
-          <v-btn class="white--text" x-large rounded color="#6262f8">
+          <v-btn  class="white--text" x-large rounded color="#6262f8">
             <v-avatar size="44">
               <img
-                src="https://cdn0.iconfinder.com/data/icons/handsome-man-avatars/283/stock_man_avatar-17-1024.png"
+                :src="user.avatarUrl"
                 
               />
             </v-avatar>

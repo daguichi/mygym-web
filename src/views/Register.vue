@@ -17,10 +17,18 @@
 
 <script>
 import RegisterCard from "../components/RegisterCard.vue";
+import {mapState} from "vuex"
 
+import router from '@/router/index'
 export default {
   name: "Register",
   components: { RegisterCard },
+  computed: {
+    ...mapState("security", {$token: state => state.token}),
+  },
+  created() {
+    if (this.$token) router.push("Home")
+  }
 };
 </script>
 

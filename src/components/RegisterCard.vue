@@ -119,7 +119,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 import router from "../router";
 import { RegisterCredentials } from "../api/user";
 export default {
@@ -164,18 +164,6 @@ export default {
     ...mapState("security", {
       $user: (state) => state.user,
     }),
-    ...mapGetters("security", {
-      $isLoggedIn: "isLoggedIn",
-    }),
-    canCreate() {
-      return this.$isLoggedIn && !this.sport;
-    },
-    canOperate() {
-      return this.$isLoggedIn && this.sport;
-    },
-    canAbort() {
-      return this.$isLoggedIn && this.controller;
-    },
   },
   methods: {
     ...mapActions("security", {
@@ -188,11 +176,6 @@ export default {
       this.result = null;
     },
 
-    async getCurrentUser() {
-      await this.$getCurrentUser();
-      this.setResult(this.$user);
-    },
-
     abort() {
       this.controller.abort();
     },
@@ -201,7 +184,7 @@ export default {
       const credentials = new RegisterCredentials(
         this.username,
         this.password1,
-        this.email
+        this.email,
       );
       this.$register({ credentials, rememberMe: true });
       router.push("Verification");

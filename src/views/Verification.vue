@@ -13,9 +13,9 @@
       </v-row>
       <v-row class="pt-3">
         <v-col>
-          <v-text-area
+          <h4
             >Te enviamos un correo electrónico con un código para verificar tu
-            cuenta</v-text-area
+            cuenta</h4
           >
           <v-text-field
             label="Correo electronico*"
@@ -73,8 +73,10 @@
 
 <script>
 import { mapActions } from "vuex";
-import router from "../router";
 import { Verification } from "../api/user";
+import {mapState} from "vuex"
+
+import router from '@/router/index'
 export default {
   name: "Verification",
   data() {
@@ -105,6 +107,12 @@ export default {
       router.push("/");
     },
   },
+  computed: {
+    ...mapState("security", {$token: state => state.token}),
+  },
+  created() {
+    if (this.$token) router.push("Home")
+  }
 };
 </script>
 <style scoped>

@@ -13,7 +13,7 @@ export default {
   name: "App",
   computed: {
     hide() {
-      return this.$route.path === "/" || this.$route.path === "/register";
+      return this.$route.path === "/" || this.$route.path === "/register" || this.$route.path === "/Verification";
     },
   },
   components: {
@@ -24,7 +24,6 @@ export default {
   },
   async created() {
     this.initialize();
-    await this.getCurrentUser();
   }
 };
 </script>

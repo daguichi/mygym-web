@@ -23,7 +23,7 @@
                   placeholder="Usuario*"
                   elevation="2"
                   color="black"
-                  dense
+                  
                   filled
                   rounded
                   placeholderColor="#aaa"
@@ -48,7 +48,7 @@
                   background-color="#e7e7e8"
                   elevation="2"
                   color="black"
-                  dense
+                  
                   filled
                   rounded
                   placeholderColor="#aaa"
@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 import { Credentials } from "../api/user";
 import router from "../router/index";
 export default {
@@ -113,18 +113,7 @@ export default {
     ...mapState("security", {
       $user: (state) => state.user,
     }),
-    ...mapGetters("security", {
-      $isLoggedIn: "isLoggedIn",
-    }),
-    canCreate() {
-      return this.$isLoggedIn && !this.sport;
-    },
-    canOperate() {
-      return this.$isLoggedIn && this.sport;
-    },
-    canAbort() {
-      return this.$isLoggedIn && this.controller;
-    },
+    ...mapState("security", {$token: state => state.token}),
   },
   methods: {
     ...mapActions("security", {
@@ -166,6 +155,9 @@ export default {
       this.controller.abort();
     },
   },
+  created() {
+    if (this.$token) router.push("Home")
+  }
 };
 </script>
 

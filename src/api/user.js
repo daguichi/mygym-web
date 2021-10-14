@@ -62,6 +62,7 @@ class RegisterCredentials {
     this.email = email;
     this.avatarUrl =
       "https://cdn0.iconfinder.com/data/icons/handsome-man-avatars/283/stock_man_avatar-17-1024.png";
+    this.metadata = {};
   }
 }
 

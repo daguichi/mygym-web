@@ -11,7 +11,7 @@
                   <v-list-item-avatar>
                     <v-img
                       contain
-                      src="https://cdn0.iconfinder.com/data/icons/handsome-man-avatars/283/stock_man_avatar-17-1024.png"
+                      :src="$user.avatarUrl"
                     ></v-img>
                   </v-list-item-avatar>
                   <v-list-item-content>
@@ -46,7 +46,7 @@
                 </v-list-item>
               </v-list>
             </v-sheet>
-            <router-link class="router" to="/"><v-btn color ="red" outlined class="logout" @click="logout" >Cerrar sesión</v-btn></router-link>
+            <router-link class="router" to="/"><v-btn color ="red" outlined class="logout" @click="logout" ><v-icon class="logouticon">mdi-logout-variant</v-icon> Cerrar sesión</v-btn></router-link>
           </v-col>
 
           <!-- columna derecha -->
@@ -59,6 +59,7 @@
 
 <script>
 // import store from "@/store/profile";
+import router from "@/router/index";
 import { mapState, mapActions } from "vuex";
 export default {
   data: () => ({
@@ -76,8 +77,13 @@ export default {
   },
   methods: {
     ...mapActions("security", {
-      logout: "logout"
-    })
+      $logout: "logout"
+    }),
+
+    async logout() {
+      await this.$logout();
+      router.push("/")
+    }
   }
 };
 </script>
@@ -85,6 +91,9 @@ export default {
 <style scoped>
 .logout{
   margin-top: 40px;
+}
+.logouticon{
+  padding-right: 20px;
 }
 .router{
   text-decoration: none
