@@ -68,6 +68,12 @@ export default {
       commit("setUser", result);
     },
 
+    async modifyUser({commit},newUser) {
+      UserApi.modify(newUser);
+      const result = await UserApi.get();
+      commit("setUser", result);
+    },
+
     async verifyEmail({ dispatch }, { credentials, rememberMe }) {
       await UserApi.verifyEmail(credentials);
       console.log(rememberMe);
