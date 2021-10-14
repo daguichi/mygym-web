@@ -30,6 +30,16 @@
           </v-row>
           <v-row class="pa-2">
             <v-col>
+              <!-- <v-file-input
+                :rules="rules"
+                accept="image/png, image/jpeg, image/bmp"
+                placeholder="Pick an avatar"
+                prepend-icon="mdi-camera"
+                rounded
+                outlined
+                dense
+                label="Seleccione una foto"
+              ></v-file-input> -->
               <v-select
                 v-model="col"
                 :items="colores"
