@@ -99,7 +99,6 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.matched.some(route => route.meta.requiresAuth)) {
     if (!localStorage.getItem("token")) {
-      console.log("hola")
       next({ name: "LogIn", query: { redirect: to.fullPath } });
     } else {
       next();

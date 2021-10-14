@@ -2,7 +2,7 @@
   <div>
     <v-main class="grey lighten-3">
       <v-container>
-              <v-btn @click="console">CONSOLE</v-btn>
+              
         <v-row v-for="seccion in secciones" :key="seccion.title">
           <v-row
             ><h1 class="pt-5 botom-line">{{ seccion.title }}</h1>
@@ -66,11 +66,7 @@ export default {
     ];
   },
   methods: {
-    console() {
-      console.log(this.user);
-      console.log(this.$isLoggedIn);
-      console.log(this.$token)
-    },
+    
     ...mapActions("category", { $createCategory: "create" }),
     ...mapActions("routines", { $createRoutine: "create", $getAll: "getAll" }),
   },

@@ -2,7 +2,6 @@
   <div>
     <div class="fondo">
       <v-container>
-        <v-btn @click="console">CONSOLE</v-btn>
         <v-row>
           <v-col md="4">
             <v-row align="center" justify="center">
@@ -118,11 +117,7 @@ export default {
     ...mapGetters("security", {$isLoggedIn: 'isLoggedIn'})
   },
   methods: {
-    console() {
-      console.log(this.$user);
-      console.log(this.$isLoggedIn);
-      console.log(this.$token)
-    },
+  
     ...mapActions("security", {
       $getCurrentUser: "getCurrentUser",
       $login: "login",
