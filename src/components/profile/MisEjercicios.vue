@@ -1,9 +1,13 @@
 <template>
   <v-col>
     <v-sheet max-height="100vh" rounded="lg">
-      <h1 class="pa-6 font-weight-bold ">Mis ejercicios</h1>
-      <v-carousel dark height="300">
-        <v-carousel-item v-for="my in this.myExercises" :key="my.id">
+      <h1 class="pt-8 pb-16 font-weight-bold ">Mis ejercicios</h1>
+      <v-carousel dark>
+        <v-carousel-item
+          class="mx-auto"
+          v-for="my in this.myExercises"
+          :key="my.id"
+        >
           <ExerciseCard v-bind:exercise="my" />
         </v-carousel-item>
       </v-carousel>

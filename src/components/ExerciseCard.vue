@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card
-      class="rounded-xl imagen mx-auto"
+      class="rounded-xl imagen mx-auto "
       max-width="430"
       outlined
       color="light-blue accent-2"
@@ -9,37 +9,45 @@
       <div>
         <div>
           <v-row align="center" justify="center">
-            <v-col>
+            <v-col cols="7">
               <v-text-field
                 :value="exercise.name"
                 label="nombre"
                 outlined
                 readonly
                 rounded
-                class="ma-5 pt-2"
+                class="pl-3 pt-5"
               ></v-text-field>
             </v-col>
             <v-col>
-              <v-icon @click="confirm">
+              <v-icon @click="confirm" large>
                 mdi-delete
               </v-icon>
             </v-col>
             <v-col>
-              <v-icon>
+              <v-icon large>
                 mdi-file-edit-outline
               </v-icon>
             </v-col>
           </v-row>
           <v-row align="center" justify="center" class="font-italic">
             <v-col>
-              <v-text-field
+              <v-textarea
+                outlined
+                readonly
+                class="pl-2"
+                name="input-7-4"
+                label="Descripción"
+                :value="exercise.detail"
+              ></v-textarea>
+              <!-- <v-text-field
                 :value="exercise.detail"
                 label="detalle"
                 outlined
                 readonly
                 rounded
-                class=" pt-2 pl-2"
-              ></v-text-field>
+                class="mb-3 pl-2"
+              ></v-text-field> -->
             </v-col>
             <v-col
               ><v-text-field
@@ -48,7 +56,7 @@
                 outlined
                 readonly
                 rounded
-                class=" pt-2 pr-2"
+                class="mb-3 pr-2"
               ></v-text-field
             ></v-col>
           </v-row>

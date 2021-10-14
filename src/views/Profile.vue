@@ -1,60 +1,60 @@
 <template>
-  <div>
-    <v-main class="grey lighten-3">
-      <v-container>
-        <v-row>
-          <!-- columna izquierda -->
-          <v-col cols="3">
-            <v-sheet rounded="lg">
-              <v-list>
-                <v-list-item>
-                  <v-list-item-avatar>
-                    <v-img
-                      contain
-                      src="https://cdn0.iconfinder.com/data/icons/handsome-man-avatars/283/stock_man_avatar-17-1024.png"
-                    ></v-img>
-                  </v-list-item-avatar>
-                  <v-list-item-content>
-                    <v-list-item-title class="text-h6">
-                      {{ $user.username }}
-                    </v-list-item-title>
-                    <v-list-item-subtitle>{{
-                      $user.email
-                    }}</v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
+  <v-main class="grey lighten-3 fill-height">
+    <v-container>
+      <v-row>
+        <!-- columna izquierda -->
+        <v-col cols="3">
+          <v-sheet rounded="lg">
+            <v-list>
+              <v-list-item>
+                <v-list-item-avatar>
+                  <v-img
+                    contain
+                    src="https://cdn0.iconfinder.com/data/icons/handsome-man-avatars/283/stock_man_avatar-17-1024.png"
+                  ></v-img>
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title class="text-h6">
+                    {{ $user.username }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle>{{ $user.email }}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
 
-              <v-divider></v-divider>
+            <v-divider></v-divider>
 
-              <v-list color="transparent">
-                <v-list-item
-                  v-for="item in profileSections"
-                  :key="item.title"
-                  link
-                  :to="{
-                    name: item.title,
-                  }"
-                >
-                  <v-list-item-icon>
-                    <v-icon color="#6262f8">{{ item.icon }}</v-icon>
-                  </v-list-item-icon>
+            <v-list color="transparent">
+              <v-list-item
+                v-for="item in profileSections"
+                :key="item.title"
+                link
+                :to="{
+                  name: item.title,
+                }"
+              >
+                <v-list-item-icon>
+                  <v-icon color="#6262f8">{{ item.icon }}</v-icon>
+                </v-list-item-icon>
 
-                  <v-list-item-content>
-                    <v-list-item-title>{{ item.title }}</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
-            </v-sheet>
-            <router-link class="router" to="/"><v-btn color ="red" outlined class="logout" @click="logout" >Cerrar sesión</v-btn></router-link>
-          </v-col>
+                <v-list-item-content>
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-sheet>
+          <router-link class="router" to="/"
+            ><v-btn color="red" outlined class="logout" @click="logout"
+              >Cerrar sesión</v-btn
+            ></router-link
+          >
+        </v-col>
 
-          <!-- columna derecha -->
-          <router-view :key="$route.path" />
-        </v-row>
-      </v-container>
-    </v-main>
-  </div>
+        <!-- columna derecha -->
+        <router-view :key="$route.path" />
+      </v-row>
+    </v-container>
+  </v-main>
 </template>
 
 <script>
@@ -64,7 +64,11 @@ export default {
   data: () => ({
     profileSections: [
       { icon: "mdi-account", title: "Mi perfil", route: "miperfil" },
-      { icon: "mdi-weight-lifter", title: "Mis ejercicios", route: "misejercicios" },
+      {
+        icon: "mdi-weight-lifter",
+        title: "Mis ejercicios",
+        route: "misejercicios",
+      },
       { icon: "mdi-dumbbell", title: "Mis rutinas", route: "misrutinas" },
     ],
   }),
@@ -76,17 +80,17 @@ export default {
   },
   methods: {
     ...mapActions("security", {
-      logout: "logout"
-    })
-  }
+      logout: "logout",
+    }),
+  },
 };
 </script>
 
 <style scoped>
-.logout{
+.logout {
   margin-top: 40px;
 }
-.router{
-  text-decoration: none
+.router {
+  text-decoration: none;
 }
 </style>
