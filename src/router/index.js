@@ -13,7 +13,9 @@ import MiPerfil from "../components/profile/MiPerfil";
 import MisRutinas from "../components/profile/MisRutinas";
 import MisEjercicios from "../components/profile/MisEjercicios"
 
-import security from "@/store/modules/security"
+// import Api from "@/api/api"
+// import index from "@/store/index"
+// import security from "@/store/modules/security"
 
 Vue.use(VueRouter);
 
@@ -87,6 +89,7 @@ const routes = [
 
 ];
 
+
 const router = new VueRouter({
   mode: "history",
   // base: process.env.BASE_URL, INVESTIGAR QUE HACE
@@ -95,7 +98,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(route => route.meta.requiresAuth)) {
-    if (!security.state.token) {
+    if (!localStorage.getItem("token")) {
       next({ name: "LogIn", query: { redirect: to.fullPath } });
     } else {
       next();

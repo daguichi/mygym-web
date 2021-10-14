@@ -2,6 +2,7 @@
   <div>
     <v-main class="grey lighten-3">
       <v-container>
+              
         <v-row v-for="seccion in secciones" :key="seccion.title">
           <v-row
             ><h1 class="pt-5 botom-line">{{ seccion.title }}</h1>
@@ -30,7 +31,7 @@
 import RoutineCard from "../components/RoutineCard";
 import Create from "../components/Create";
 import store from "@/store/modules/routines.js";
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 //import CardExercise from "../components/cardExercise.vue";
 //import {CategoryApi} from '../api/category'
 
@@ -47,6 +48,8 @@ export default {
     ...mapState("security", {
       user: (state) => state.user,
     }),
+        ...mapState("security", {$token: state => state.token}),
+    ...mapGetters("security", {$isLoggedIn: 'isLoggedIn'}),
     ...mapState("category", {
       categories: (state) => state.categories,
     }),
@@ -63,6 +66,7 @@ export default {
     ];
   },
   methods: {
+    
     ...mapActions("category", { $createCategory: "create" }),
     ...mapActions("routines", { $createRoutine: "create", $getAll: "getAll" }),
   },
