@@ -44,12 +44,14 @@
                   <v-col>
                     <v-text-field
                       v-model="cycleName[0]"
+                      :rules="rules.name"
                       label="Nombre del ciclo"
                     ></v-text-field>
                   </v-col>
                   <v-col>
                     <v-text-field
                       v-model="cycleRepetitions[0]"
+                      :rules="rules.reps"
                       hide-details
                       rounded
                       outlined
@@ -63,6 +65,7 @@
                 </v-row>
                 <v-textarea
                   v-model="cycleDetail[0]"
+                  :rules="rules.detail"
                   class="mr-3 ml-3"
                   dense
                   outlined
@@ -92,6 +95,7 @@
                   <v-col>
                     <v-text-field
                       v-model="repetitions"
+                      :rules="rules.exReps"
                       rounded
                       outlined
                       type="number"
@@ -103,6 +107,7 @@
                   ><v-col>
                     <v-text-field
                       v-model="seconds"
+                      :rules="rules.exSecs"
                       hide-details
                       rounded
                       outlined
@@ -375,6 +380,21 @@
         </v-btn>
       </template>
     </v-snackbar>
+    <v-snackbar
+        v-model="obligatorios"
+        color="error"
+    >
+      Complete todos los campos obligatorios
+      <template v-slot:action="{ attrs }">
+        <v-btn
+            text
+            v-bind="attrs"
+            @click="obligatorios = false;"
+        >
+          Cerrar
+        </v-btn>
+      </template>
+    </v-snackbar>
     <!-- <v-btn @click="createRoutineDialogStep2 = false"> Atras</v-btn>  -->
   </v-dialog>
 </template>
@@ -392,9 +412,17 @@ export default {
   },
   data() {
     return {
+      rules: {
+        name: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+        detail: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+        reps: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+        exReps: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+        exSecs: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+      },
       isEmpty: true,
       continueFail: false,
       snackbar: false,
+      obligatorios: false,
       e1: 0,
       createRoutineDialogStep2: false,
       selectedExercises: [[], [], [], [], [], []],
@@ -433,44 +461,58 @@ export default {
       this.clear();
     },
     nextStep(to){
-      if(this.selectedExercises[to-1].length === 0)
+      if(this.cycleName[to-1] === undefined || this.cycleName[to-1] === "" || this.cycleDetail[to-1] === undefined || this.cycleDetail[to-1] === "" || this.cycleRepetitions[to-1] === undefined || this.cycleRepetitions[to-1] === "")
+        this.obligatorios = true;
+      else if(this.selectedExercises[to-1].length === 0)
         this.continueFail = true;
       else
         this.e1 = to;
     },
     ...mapActions("exercises", { $getExercises: "getAll" }),
     save() {
-      for (var i = 0; i <= this.steps + 1; i++) {
-        var type = "exercise";
-        if (i === 0) {
-          type = "warmup";
-        } else if (i === this.steps + 1) {
-          type = "cooldown";
+      if(this.cycleName[this.steps+1] === undefined || this.cycleName[this.steps+1] === "" || this.cycleDetail[this.steps+1] === undefined || this.cycleDetail[this.steps+1] === "" || this.cycleRepetitions[this.steps+1] === undefined || this.cycleRepetitions[this.steps+1] === "")
+        this.obligatorios = true;
+      else if(this.selectedExercises[this.steps+1].length === 0)
+        this.continueFail = true;
+      else {
+        for (var i = 0; i <= this.steps + 1; i++) {
+          var type = "exercise";
+          if (i === 0) {
+            type = "warmup";
+          } else if (i === this.steps + 1) {
+            type = "cooldown";
+          }
+          this.cycles.push({
+            name: this.cycleName[i],
+            detail: this.cycleDetail[i],
+            type: type,
+            order: i,
+            repetitions: this.cycleRepetitions[i],
+          });
         }
-        this.cycles.push({
-          name: this.cycleName[i],
-          detail: this.cycleDetail[i],
-          type: type,
-          order: i,
-          repetitions: this.cycleRepetitions[i],
-        });
+        this.$emit("save", this.cycles, this.selectedExercises);
+        this.clear();
+        this.snackbar = true;
       }
-      this.$emit("save", this.cycles, this.selectedExercises);
-      this.clear();
     },
     close() {
       this.createRoutineDialogStep2 = false;
+      this.e1 = 0;
       this.$emit("closeAll");
     },
     addEx(cycle, name, repetitions, seconds) {
-      this.selectedExercises[cycle].push({
-        name: name,
-        repetitions: repetitions,
-        duration: seconds,
-        order: this.selectedExercises[cycle].length,
-      });
-      this.selectedEx = 0;
-      this.isEmpty = !this.isEmpty;
+      if(repetitions === null || repetitions === "" ||seconds === null || seconds === "")
+        this.obligatorios = true;
+      else {
+        this.selectedExercises[cycle].push({
+          name: name,
+          repetitions: repetitions,
+          duration: seconds,
+          order: this.selectedExercises[cycle].length,
+        });
+        this.selectedEx = 0;
+        this.isEmpty = !this.isEmpty;
+      }
     },
     getExerciseNames() {
       let res = [];
@@ -488,8 +530,6 @@ export default {
       this.cycleName = [];
       this.cycleDetail = [];
       this.cycleRepetitions = [1, 1, 1, 1, 1, 1];
-      this.e1 = 0;
-      this.snackbar = true;
     },
   },
   async created() {
