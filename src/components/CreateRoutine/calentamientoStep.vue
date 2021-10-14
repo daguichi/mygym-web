@@ -57,6 +57,7 @@
                       outlined
                       type="number"
                       min="1"
+                      onkeypress="return event.charCode >= 49"
                       label="repeticiones del ciclo"
                       item-text="show"
                     >
@@ -99,7 +100,8 @@
                       rounded
                       outlined
                       type="number"
-                      min="0"
+                      min="1"
+                      onkeypress="return event.charCode >= 49"
                       label="repeticiones"
                       item-text="show"
                     >
@@ -113,7 +115,8 @@
                       outlined
                       label="segundos"
                       type="number"
-                      min="0"
+                      min="1"
+                      onkeypress="return event.charCode >= 49"
                     >
                     </v-text-field>
                   </v-col>
@@ -162,6 +165,7 @@
                       outlined
                       type="number"
                       min="1"
+                      onkeypress="return event.charCode >= 49"
                       label="repeticiones del ciclo"
                       item-text="show"
                     >
@@ -204,7 +208,8 @@
                         rounded
                         outlined
                         type="number"
-                        min="0"
+                        min="1"
+                        onkeypress="return event.charCode >= 49"
                         label="repeticiones"
                         item-text="show"
                       >
@@ -216,7 +221,8 @@
                         rounded
                         outlined
                         label="segundos"
-                        min="0"
+                        min="1"
+                        onkeypress="return event.charCode >= 49"
                         type="number"
                       >
                       </v-text-field>
@@ -263,6 +269,7 @@
                       outlined
                       type="number"
                       min="1"
+                      onkeypress="return event.charCode >= 49"
                       label="repeticiones del ciclo"
                       item-text="show"
                     >
@@ -305,7 +312,8 @@
                         rounded
                         outlined
                         type="number"
-                        min="0"
+                        min="1"
+                        onkeypress="return event.charCode >= 49"
                         label="repeticiones"
                         item-text="show"
                       >
@@ -316,7 +324,8 @@
                         hide-details
                         rounded
                         outlined
-                        min="0"
+                        min="1"
+                        onkeypress="return event.charCode >= 49"
                         label="segundos"
                         type="number"
                       >

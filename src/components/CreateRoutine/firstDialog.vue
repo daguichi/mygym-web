@@ -30,30 +30,6 @@
           </v-row>
           <v-row class="pa-2">
             <v-col>
-              <!-- <v-file-input
-                :rules="rules"
-                accept="image/png, image/jpeg, image/bmp"
-                placeholder="Pick an avatar"
-                prepend-icon="mdi-camera"
-                rounded
-                outlined
-                dense
-                label="Seleccione una foto"
-              ></v-file-input> -->
-              <v-select
-                v-model="col"
-                :items="colores"
-                label="Color"
-                outlined
-                rounded
-                dense
-                item-text="show"
-                item-value="value"
-                :menu-props="{ maxHeight: '400' }"
-              >
-              </v-select>
-            </v-col>
-            <v-col>
               <v-select
                 v-model="diff"
                 :items="dificultad"
@@ -127,12 +103,6 @@ export default {
       ],
       steps: 1,
       reps: "-",
-      col: "Azul",
-      colores: [
-        { show: "Amarillo", value: "#fff00" },
-        { show: "Rojo", value: "FF0000" },
-        { show: "Azul", value: "#0000ff" },
-      ],
       cycles: [],
       selectedExercises: [[], [], [], [], [], []],
       rules: {
@@ -201,7 +171,6 @@ export default {
       this.diff = "rookie";
       this.steps = 1;
       this.reps = "-";
-      this.col = "Azul";
       this.cycles = [];
       this.selectedExercises = [[], [], [], [], [], []];
 
@@ -219,6 +188,10 @@ export default {
       this.nameRoutine = "";
       this.detailRoutine = "";
       this.diff = "rookie";
+      this.steps = 1;
+      this.reps = "-";
+      this.cycles = [];
+      this.selectedExercises = [[], [], [], [], [], []];
     },
     async fetch() {
       await this.$getExercises();
