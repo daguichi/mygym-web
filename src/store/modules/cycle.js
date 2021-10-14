@@ -36,8 +36,8 @@ export default {
                 commit('push', result)
             return result
         },
-        async modify({getters, commit}, routineId, cycleId, cycle) {
-            const result = await CycleApi.modify(cycle)
+        async modify({getters, commit}, {routineId, cycleId, cycle}) {
+            const result = await CycleApi.modify(routineId, cycleId, cycle)
             const index = getters.findIndex(result)
             if (index >= 0)
                 commit('replace', index, result)

@@ -36,7 +36,7 @@ export default {
                 commit('push', result)
             return result
         },
-        async modify({getters, commit}, cycleId, exerciseId, cycleExercise) {
+        async modify({getters, commit}, {cycleId, exerciseId, cycleExercise}) {
             const result = await CycleExerciseApi.modify(cycleId, exerciseId, cycleExercise)
             const index = getters.findIndex(result)
             if (index >= 0)

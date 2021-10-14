@@ -51,11 +51,12 @@ export default {
       commit("push", result);
       return result;
     },
-    async modify({ getters, commit }, routine) {
-      const result = await RoutineApi.modify(routine);
+    async modify({ getters, commit }, {routineId, routine}) {
+      const result = await RoutineApi.modify(routineId, routine);
       const index = getters.findIndex(result);
       if (index >= 0) commit("replace", index, result);
       return result;
+    
     },
     async delete({ getters, commit }, routine) {
       await RoutineApi.delete(routine.id);
