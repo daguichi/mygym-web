@@ -13,6 +13,8 @@
             <v-text-field
               v-model="nameRoutine"
               label="Nombre*"
+              maxlength="25"
+              counter
               :rules="rules.name"
               required
             ></v-text-field>
@@ -26,6 +28,8 @@
               auto-grow
               :rules="rules.desc"
               label="Descripcion*"
+              maxlength="200"
+              counter
             ></v-textarea>
           </v-row>
           <v-row class="pa-2">
@@ -106,8 +110,14 @@ export default {
       cycles: [],
       selectedExercises: [[], [], [], [], [], []],
       rules: {
-        name: [(val) => val === undefined || (val || "").length > 0 || "Campo obligatorio"],
-        desc: [(val) => val === undefined || (val || "").length > 0 || "Campo obligatorio"],
+        name: [
+          (val) =>
+            val === undefined || (val || "").length > 0 || "Campo obligatorio",
+        ],
+        desc: [
+          (val) =>
+            val === undefined || (val || "").length > 0 || "Campo obligatorio",
+        ],
       },
     };
   },
@@ -116,7 +126,12 @@ export default {
       exercises: (state) => state.exercises,
     }),
     formIsValid() {
-      return this.nameRoutine === "" || this.nameRoutine === undefined || this.detailRoutine === "" || this.nameRoutine === undefined;
+      return (
+        this.nameRoutine === "" ||
+        this.nameRoutine === undefined ||
+        this.detailRoutine === "" ||
+        this.nameRoutine === undefined
+      );
     },
   },
   methods: {
@@ -173,10 +188,9 @@ export default {
       this.reps = "-";
       this.cycles = [];
       this.selectedExercises = [[], [], [], [], [], []];
-
     },
     onClose() {
-      this.createRoutineDialog = false
+      this.createRoutineDialog = false;
     },
     checkExId(ex) {
       for (let i = 0; i < this.exercises.length; i++) {
@@ -195,7 +209,7 @@ export default {
     },
     async fetch() {
       await this.$getExercises();
-    }
+    },
   },
 };
 </script>

@@ -46,6 +46,8 @@
                       v-model="cycleName[0]"
                       :rules="rules.name"
                       label="Nombre del ciclo"
+                      maxlength="25"
+                      counter
                     ></v-text-field>
                   </v-col>
                   <v-col>
@@ -56,6 +58,7 @@
                       rounded
                       outlined
                       type="number"
+                      max="100"
                       min="1"
                       onkeypress="return event.charCode >= 49"
                       label="repeticiones del ciclo"
@@ -72,6 +75,8 @@
                   outlined
                   auto-grow
                   label="Descripcion"
+                  maxlength="200"
+                  counter
                 ></v-textarea>
                 <v-row
                   class="pl-3"
@@ -101,6 +106,7 @@
                       outlined
                       type="number"
                       min="1"
+                      max="100"
                       onkeypress="return event.charCode >= 49"
                       label="repeticiones"
                       item-text="show"
@@ -116,6 +122,7 @@
                       label="segundos"
                       type="number"
                       min="1"
+                      max="100"
                       onkeypress="return event.charCode >= 49"
                     >
                     </v-text-field>
@@ -134,11 +141,7 @@
             </template>
             <v-row>
               <v-col>
-                <v-btn
-                  color="#6262f8"
-                  outlined
-                  @click="cancel"
-                >
+                <v-btn color="#6262f8" outlined @click="cancel">
                   Cancelar
                 </v-btn>
               </v-col>
@@ -155,6 +158,8 @@
                     <v-text-field
                       v-model="cycleName[n + 0]"
                       label="Nombre del ciclo"
+                      maxlength="25"
+                      counter
                     ></v-text-field>
                   </v-col>
                   <v-col>
@@ -165,6 +170,7 @@
                       outlined
                       type="number"
                       min="1"
+                      max="100"
                       onkeypress="return event.charCode >= 49"
                       label="repeticiones del ciclo"
                       item-text="show"
@@ -179,6 +185,8 @@
                   outlined
                   auto-grow
                   label="Descripcion"
+                  maxlength="25"
+                  counter
                 ></v-textarea>
                 <v-container>
                   <v-row
@@ -196,6 +204,7 @@
                         v-model="selectedEx"
                         :items="getExerciseNames(exercises)"
                         label="elija el ejercicio"
+                        maxlength="25"
                         rounded
                         @change="onChange"
                         outlined
@@ -209,6 +218,7 @@
                         outlined
                         type="number"
                         min="1"
+                        max="100"
                         onkeypress="return event.charCode >= 49"
                         label="repeticiones"
                         item-text="show"
@@ -222,6 +232,7 @@
                         outlined
                         label="segundos"
                         min="1"
+                        max="100"
                         onkeypress="return event.charCode >= 49"
                         type="number"
                       >
@@ -246,7 +257,9 @@
                 </v-btn>
               </v-col>
               <v-col>
-                <v-btn color="primary" @click="nextStep(n+1)"> Continuar </v-btn>
+                <v-btn color="primary" @click="nextStep(n + 1)">
+                  Continuar
+                </v-btn>
               </v-col>
             </v-row>
           </v-stepper-content>
@@ -259,6 +272,8 @@
                     <v-text-field
                       v-model="cycleName[steps + 1]"
                       label="Nombre del ciclo"
+                      maxlength="25"
+                      counter
                     ></v-text-field>
                   </v-col>
                   <v-col>
@@ -269,6 +284,7 @@
                       outlined
                       type="number"
                       min="1"
+                      max="100"
                       onkeypress="return event.charCode >= 49"
                       label="repeticiones del ciclo"
                       item-text="show"
@@ -283,6 +299,8 @@
                   outlined
                   auto-grow
                   label="Descripcion"
+                  maxlength="25"
+                  counter
                 ></v-textarea>
                 <v-container>
                   <v-row
@@ -313,6 +331,7 @@
                         outlined
                         type="number"
                         min="1"
+                        max="100"
                         onkeypress="return event.charCode >= 49"
                         label="repeticiones"
                         item-text="show"
@@ -327,6 +346,7 @@
                         min="1"
                         onkeypress="return event.charCode >= 49"
                         label="segundos"
+                        max="100"
                         type="number"
                       >
                       </v-text-field>
@@ -347,7 +367,7 @@
             </template>
             <v-row>
               <v-col>
-                <v-btn color="#6262f8" outlined @click="e1= steps - 1">
+                <v-btn color="#6262f8" outlined @click="e1 = steps - 1">
                   Anterior
                 </v-btn>
               </v-col>
@@ -359,47 +379,27 @@
         </v-stepper-items>
       </v-stepper>
     </v-card>
-    <v-snackbar
-        v-model="continueFail"
-        color="error"
-    >
+    <v-snackbar v-model="continueFail" color="error">
       Debes agregar al menos un ejercicio
       <template v-slot:action="{ attrs }">
-        <v-btn
-            text
-            v-bind="attrs"
-            @click="continueFail = false;"
-        >
+        <v-btn text v-bind="attrs" @click="continueFail = false">
           Cerrar
         </v-btn>
       </template>
     </v-snackbar>
-    <v-snackbar
-        v-model="snackbar"
-        color="success"
-    ><v-icon class="save">mdi-check</v-icon>
+    <v-snackbar v-model="snackbar" color="success"
+      ><v-icon class="save">mdi-check</v-icon>
       Rutina creada correctamente
       <template v-slot:action="{ attrs }">
-        <v-btn
-            text
-            v-bind="attrs"
-            @click="close"
-        >
+        <v-btn text v-bind="attrs" @click="close">
           Cerrar
         </v-btn>
       </template>
     </v-snackbar>
-    <v-snackbar
-        v-model="obligatorios"
-        color="error"
-    >
+    <v-snackbar v-model="obligatorios" color="error">
       Complete todos los campos obligatorios
       <template v-slot:action="{ attrs }">
-        <v-btn
-            text
-            v-bind="attrs"
-            @click="obligatorios = false;"
-        >
+        <v-btn text v-bind="attrs" @click="obligatorios = false">
           Cerrar
         </v-btn>
       </template>
@@ -422,11 +422,23 @@ export default {
   data() {
     return {
       rules: {
-        name: [(val) => val === undefined || (val || "").length > 0 || "Campo obligatorio"],
-        detail: [(val) => val === undefined || (val || "").length > 0 || "Campo obligatorio"],
-        reps: [(val) => val >= 1 || (val || "").length > 0 || "Campo obligatorio"],
-        exReps: [(val) => val >= 1 || (val || "").length > 0 || "Campo obligatorio"],
-        exSecs: [(val) => val >= 1 || (val || "").length > 0 || "Campo obligatorio"],
+        name: [
+          (val) =>
+            val === undefined || (val || "").length > 0 || "Campo obligatorio",
+        ],
+        detail: [
+          (val) =>
+            val === undefined || (val || "").length > 0 || "Campo obligatorio",
+        ],
+        reps: [
+          (val) => val >= 1 || (val || "").length > 0 || "Campo obligatorio",
+        ],
+        exReps: [
+          (val) => val >= 1 || (val || "").length > 0 || "Campo obligatorio",
+        ],
+        exSecs: [
+          (val) => val >= 1 || (val || "").length > 0 || "Campo obligatorio",
+        ],
       },
       isEmpty: true,
       continueFail: false,
@@ -466,22 +478,35 @@ export default {
       }
     },
     cancel() {
-      this.createRoutineDialogStep2 = false
+      this.createRoutineDialogStep2 = false;
       this.clear();
     },
-    nextStep(to){
-      if(this.cycleName[to-1] === undefined || this.cycleName[to-1] === "" || this.cycleDetail[to-1] === undefined || this.cycleDetail[to-1] === "" || this.cycleRepetitions[to-1] === undefined || this.cycleRepetitions[to-1] === "")
+    nextStep(to) {
+      if (
+        this.cycleName[to - 1] === undefined ||
+        this.cycleName[to - 1] === "" ||
+        this.cycleDetail[to - 1] === undefined ||
+        this.cycleDetail[to - 1] === "" ||
+        this.cycleRepetitions[to - 1] === undefined ||
+        this.cycleRepetitions[to - 1] === ""
+      )
         this.obligatorios = true;
-      else if(this.selectedExercises[to-1].length === 0)
+      else if (this.selectedExercises[to - 1].length === 0)
         this.continueFail = true;
-      else
-        this.e1 = to;
+      else this.e1 = to;
     },
     ...mapActions("exercises", { $getExercises: "getAll" }),
     save() {
-      if(this.cycleName[this.steps+1] === undefined || this.cycleName[this.steps+1] === "" || this.cycleDetail[this.steps+1] === undefined || this.cycleDetail[this.steps+1] === "" || this.cycleRepetitions[this.steps+1] === undefined || this.cycleRepetitions[this.steps+1] === "")
+      if (
+        this.cycleName[this.steps + 1] === undefined ||
+        this.cycleName[this.steps + 1] === "" ||
+        this.cycleDetail[this.steps + 1] === undefined ||
+        this.cycleDetail[this.steps + 1] === "" ||
+        this.cycleRepetitions[this.steps + 1] === undefined ||
+        this.cycleRepetitions[this.steps + 1] === ""
+      )
         this.obligatorios = true;
-      else if(this.selectedExercises[this.steps+1].length === 0)
+      else if (this.selectedExercises[this.steps + 1].length === 0)
         this.continueFail = true;
       else {
         for (var i = 0; i <= this.steps + 1; i++) {
@@ -510,7 +535,12 @@ export default {
       this.$emit("closeAll");
     },
     addEx(cycle, name, repetitions, seconds) {
-      if(repetitions === null || repetitions === "" ||seconds === null || seconds === "")
+      if (
+        repetitions === null ||
+        repetitions === "" ||
+        seconds === null ||
+        seconds === ""
+      )
         this.obligatorios = true;
       else {
         this.selectedExercises[cycle].push({
@@ -530,14 +560,28 @@ export default {
       });
       return res;
     },
-     clear(){
+    clear() {
       this.selectedExercises = [[], [], [], [], [], []];
-      this. selectedEx = "-";
+      this.selectedEx = "-";
       this.repetitions = 1;
       this.seconds = 1;
       this.cycles = [];
-      this.cycleName = [undefined, undefined, undefined, undefined, undefined, undefined];
-      this.cycleDetail = [undefined, undefined, undefined, undefined, undefined, undefined];
+      this.cycleName = [
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+      ];
+      this.cycleDetail = [
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+      ];
       this.cycleRepetitions = [1, 1, 1, 1, 1, 1];
     },
   },
