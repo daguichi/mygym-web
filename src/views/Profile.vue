@@ -66,7 +66,6 @@ export default {
       { icon: "mdi-account", title: "Mi perfil", route: "miperfil" },
       { icon: "mdi-weight-lifter", title: "Mis ejercicios", route: "misejercicios" },
       { icon: "mdi-dumbbell", title: "Mis rutinas", route: "misrutinas" },
-
     ],
   }),
   components: {},

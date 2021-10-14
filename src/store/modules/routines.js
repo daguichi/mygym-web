@@ -88,11 +88,10 @@ export default {
             return result
         },
         
-        async getMines({ commit }, controller) {
+        async getMines({commit}, controller) {
           const result = await RoutineApi.getMines(controller);
-          console.log('en modulo', result.content)
-          commit("replaceMines", result.content);
-          return result.content;
+          commit("replaceMines", result);
+          return result;
         },
     
     

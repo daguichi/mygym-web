@@ -1,5 +1,5 @@
 import { Api } from './api.js'
-
+import { UserApi } from './user.js'
 export {RoutineApi, Routine}
 
 class RoutineApi {
@@ -45,8 +45,15 @@ class RoutineApi {
   }
 
   static async getMines(controller) {
-    return await this.getAll(controller)
-    // return await Api.get(RoutineApi.getFavsUrl(), true, controller);
+    let ans = await this.getAll(controller)
+    let routines = ans.content
+    let user = await UserApi.get();
+    let res = [];
+    routines.forEach((routine) => {
+      if (routine.user.id === user.id)
+        res.push(routine)
+    })
+    return res;
   }
 }
 

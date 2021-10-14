@@ -30,10 +30,7 @@ export default {
     }),
   },
   async created() {
-    console.log('hola')
-    let res = await this.$getMines();
-    console.log(res)
-    console.log('created')
+    this.$getMines();
   },
 };
 </script>
