@@ -3,7 +3,7 @@
     <v-sheet max-height="100vh" rounded="lg">
       <h1 class="pa-6 font-weight-bold">Mis ejercicios</h1>
       <v-container v-if="this.myExercises.length > 0">
-        <v-carousel dark height="320">
+        <v-carousel dark height="470">
           <v-carousel-item
             class="mx-auto"
             v-for="my in this.myExercises"

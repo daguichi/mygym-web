@@ -1,81 +1,87 @@
 <template>
   <div>
     <v-card
-      class="rounded-xl imagen mx-auto"
-      max-width="430"
+      class="mx-auto my-12"
+      width="300"
+      color="blue lighten-3"
+      elevation="2"
       outlined
-      color="light-blue accent-2"
     >
-      <div>
-        <v-row align="center" justify="space-around" >
-          <v-col cols="7">
-            <h2 v-if="!edit">{{ exercise.name }}</h2>
-            <v-text-field
-              v-else
-              :value="exercise.name"
-              label="nombre"
-              outlined
-              readonly
-              rounded
-              class="pl-3 pt-5"
-            ></v-text-field>
-          </v-col>
-          <v-col>
-            <v-icon @click="confirm" large> mdi-delete </v-icon>
-          </v-col>
-          <v-col>
-            <v-icon @click="edit = !edit" large> mdi-file-edit-outline </v-icon>
-          </v-col>
-        </v-row>
-        <v-row align="center" justify="center" class="font-italic">
-          <v-col>
-            <v-textarea
-              outlined
-              readonly
-              class="pl-2"
-              name="input-7-4"
-              label="Descripción"
-              :value="exercise.detail"
-            ></v-textarea>
-            <!-- <v-text-field
-                :value="exercise.detail"
-                label="detalle"
-                outlined
-                readonly
-                rounded
-                class="mb-3 pl-2"
-              ></v-text-field> -->
-          </v-col>
-          <v-col
-            ><v-text-field
-              :value="exercise.type"
-              label="tipo"
-              outlined
-              readonly
-              rounded
-              class="mb-3 pr-2"
-            ></v-text-field
-          ></v-col>
-        </v-row>
+      <template slot="progress">
+        <v-progress-linear
+          color="deep-purple"
+          height="10"
+          indeterminate
+        ></v-progress-linear>
+      </template>
+
+      <div v-if="!edit">
+        <v-card-title class="justify-center font-weight-bold">{{
+          exercise.name
+        }}</v-card-title>
+
+        <v-card-text>
+          <div class="my-4 text-subtitle-1">
+            {{ showType }}
+          </div>
+
+          <div class="font-italic">
+            {{ exercise.detail }}
+          </div>
+        </v-card-text>
       </div>
+      <div v-else>
+        <v-card-title class="justify-center font-weight-bold">
+          <v-text-field
+            v-model="name"
+            label="Nombre*"
+            :rules="this.rules.name"
+          ></v-text-field>
+        </v-card-title>
+        <v-card-text>
+          
+          <v-autocomplete
+            v-model="type"
+            :items="this.tipos.map((tipo) => tipo.show)"
+            label="Tipo*"
+            placeholder="Seleccione"
+          ></v-autocomplete>
+          <v-text-field
+            v-model="detail"
+            label="Descripcion*"
+            :rules="this.rules.detail"
+          ></v-text-field>
+        </v-card-text>
+      </div>
+      <v-card-actions>
+        <v-row class="mt-2 mb-4" justify="space-around"
+          ><v-btn color="deep-purple" text @click="confirm">
+            <v-icon>mdi-delete</v-icon>
+          </v-btn>
+          <v-btn v-if="edit" color="blue darken-4" @click="save" >GUARDAR</v-btn>
+          <v-btn color="deep-purple " text @click="edit = !edit"
+            ><v-icon> mdi-pencil</v-icon></v-btn
+          ></v-row
+        >
+      </v-card-actions>
 
       <v-snackbar v-model="confirmSnack">
         ¿Está seguro de que desea borrar el ejercicio?
         <template v-slot:action="{ attrs }">
           <v-btn text dark v-bind="attrs" @click="deleteEx"> Si </v-btn>
-          <v-btn text dark v-bind="attrs" @click="confirmSnack = false"> No </v-btn>
-        </template>
-      </v-snackbar>
-      
-      <v-snackbar v-model="error" color="error">
-        Complete los campos obligatorios
-        <template v-slot:action="{ attrs }">
-          <v-btn text v-bind="attrs" @click="error = false">
-            Cerrar
+          <v-btn text dark v-bind="attrs" @click="confirmSnack = false">
+            No
           </v-btn>
         </template>
       </v-snackbar>
-      
+
+      <v-snackbar v-model="error" color="error">
+        Complete los campos obligatorios
+        <template v-slot:action="{ attrs }">
+          <v-btn text v-bind="attrs" @click="error = false"> Cerrar </v-btn>
+        </template>
+      </v-snackbar>
+
       <v-snackbar v-model="success" color="success"
         ><v-icon class="save">mdi-check</v-icon>
         Se ha modificado el ejerciico correctamente
@@ -94,30 +100,65 @@ export default {
   name: "ExerciseCard",
   data() {
     return {
+      name: "",
+      type: "",
+      detail: "",
       confirmSnack: false,
       success: false,
       error: false,
       dialog: false,
       edit: false,
+      tipos: [{show: 'Descanso', value: 'rest'}, {show: 'Ejercicio', value: 'exercise'}],
+      rules: {
+        name: (val) => (val || "").length > 0 || "Campo obligatorio",
+        detail: (val) =>  (val || "").length > 0 || "Campo obligatorio",
+      },
     };
+  },
+  computed: {
+    showType() {
+      if (this.exercise.type === "exercise") return "Ejercicio";
+        return "Descanso";
+    }
   },
   props: { exercise: Object },
   methods: {
-    ...mapActions("exercises", { $deleteExercise: "delete", $getMines: "getMines" }),
+    ...mapActions("exercises", {$delete: "delete", $getMines: "getMines", $modifyExercise: "modify"}),
     onClose() {
       this.dialog = false;
     },
     async deleteEx() {
-      await this.$deleteExercise(this.exercise);
+      await this.$delete(this.exercise);
       await this.$getMines();
       this.confirmSnack = false;
     },
     confirm() {
       this.confirmSnack = true;
     },
-    modifySuccess() {
-
-    }
+    modifySuccess() {},
+    async save() {
+      let toSaveType = "";
+      if (this.type == "Ejercicio") toSaveType = "exercise";
+      else toSaveType = "rest";
+      let newExercise = {
+        id: this.exercise.id,
+        name: this.name,
+        detail: this.detail,
+        type: toSaveType,
+      };
+      await this.$modifyExercise(newExercise);
+      this.success = true;
+      this.edit = !this.edit;
+      await this.$getMines();
+      this.$router.push("/profile/misejercicios");
+    },
+  },
+  created() {
+    this.name = this.exercise.name;
+    this.detail = this.exercise.detail;
+    console.log(this.detail);
+    if (this.exercise.type == "exercise") this.type = "Ejercicio";
+    else this.type = "Descanso";
   },
 };
 </script>
@@ -138,5 +179,9 @@ export default {
 
 .microText {
   font-size: 0.65em;
+}
+
+.icons {
+  margin-top: 10px;
 }
 </style>
