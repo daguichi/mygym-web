@@ -13,8 +13,8 @@
     </template>
 
     <!-- steppers steps -->
-    <v-card class="rounded-xl" width="10000px" height="400px">
-      <v-stepper v-model="e1">
+    <v-card class="rounded-xl" width="100%" height="600px">
+      <v-stepper v-model="e1" min-height="100%">
         <v-stepper-header>
           <v-stepper-step :complete="e1 > 0" step="0" editable>
             Calentamiento
@@ -85,6 +85,7 @@
                       :items="getExerciseNames(exercises)"
                       label="elija el ejercicio"
                       rounded
+                      @change="onChange"
                       outlined
                     ></v-select>
                   </v-col>
@@ -113,7 +114,11 @@
                     </v-text-field>
                   </v-col>
                   <v-col>
-                    <v-btn @click="addEx(0, selectedEx, repetitions, seconds)">
+                    <!-- el boton queda deshabilitado si no se selecciono ninguna opcion -->
+                    <v-btn
+                      :disabled="isEmpty"
+                      @click="addEx(0, selectedEx, repetitions, seconds)"
+                    >
                       +
                     </v-btn>
                   </v-col>
@@ -122,7 +127,7 @@
             </template>
             <v-row>
               <v-col>
-                <v-btn @click="createRoutineDialogStep2 = false">
+                <v-btn color="#6262f8" outlined @click="createRoutineDialogStep2 = false">
                   Cancelar
                 </v-btn>
               </v-col>
@@ -131,7 +136,6 @@
               </v-col>
             </v-row>
           </v-stepper-content>
-
           <v-stepper-content v-for="n in steps" :key="n" :step="n">
             <template>
               <v-row>
@@ -219,7 +223,7 @@
             </template>
             <v-row>
               <v-col>
-                <v-btn @click="e1 = n - 1">
+                <v-btn color="#6262f8" outlined @click="e1 = n - 1">
                   Anterior
                 </v-btn>
               </v-col>
@@ -318,7 +322,7 @@
             </template>
             <v-row>
               <v-col>
-                <v-btn @click="e1 = steps - 1"> Anterior </v-btn>
+                <v-btn color="#6262f8" outlined @click="e1 = steps - 1"> Anterior </v-btn>
               </v-col>
               <v-col>
                 <v-btn color="primary" @click="save"> Guardar </v-btn>
@@ -345,6 +349,7 @@ export default {
   },
   data() {
     return {
+      isEmpty: true,
       e1: 0,
       createRoutineDialogStep2: false,
       selectedExercises: [[], [], [], [], [], []],
@@ -361,8 +366,20 @@ export default {
     ...mapState("exercises", {
       exercises: (state) => state.exercises,
     }),
+    Empty() {
+      if (this.isEmpty) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   methods: {
+    onChange() {
+      if (this.isEmpty) {
+        this.isEmpty = !this.isEmpty;
+      }
+    },
     ...mapActions("exercises", { $getExercises: "getAll" }),
     save() {
       for (var i = 0; i <= this.steps + 1; i++) {

@@ -7,7 +7,7 @@
     </template>
     <v-form>
       <v-card class="rounded-xl">
-        <v-card-title>tu nueva rutina</v-card-title>
+        <v-card-title>Tu nueva rutina</v-card-title>
         <v-card-text>
           <v-row class="pa-2">
             <v-text-field
@@ -70,7 +70,7 @@
           </v-row>
           <v-row class="pa-2">
             <v-col>
-              <v-btn color="blue darken-1" text @click="cancelRoutine">
+              <v-btn color="#6262f8" outlined @click="cancelRoutine">
                 <!-- LLAMAR METODOS PARA CANCELAR RUTINA -->
                 Cancelar
               </v-btn>

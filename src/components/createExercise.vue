@@ -13,10 +13,20 @@
         <v-container>
           <v-row>
             <v-col cols="12" sm="6" md="4">
-              <v-text-field label="Nombre*" required></v-text-field>
+              <v-text-field
+                label="Nombre*"
+                v-model="exName"
+                :rules="rules.name"
+                required
+              ></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field label="Descripcion*" required></v-text-field>
+              <v-text-field
+                :rules="rules.desc"
+                v-model="exDesc"
+                label="Descripcion*"
+                required
+              ></v-text-field>
             </v-col>
           </v-row>
         </v-container>
@@ -30,7 +40,11 @@
             </v-btn>
           </v-col>
           <v-col>
-            <v-btn color="primary" @click="ExcerciseDialog = false">
+            <v-btn
+              :disabled="validFields"
+              color="primary"
+              @click="ExcerciseDialog = false"
+            >
               Guardar
             </v-btn>
           </v-col>
@@ -44,10 +58,21 @@
 export default {
   name: "createExercise",
   data: () => ({
+    exName: "",
+    exDesc: "",
     createDialog: false,
     ExcerciseDialog: false,
     createRoutineDialog: false,
     createRoutineDialogStep2: false,
+    rules: {
+      name: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+      desc: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+    },
   }),
+  computed: {
+    validFields() {
+      return this.exName === "" || this.exDesc === "";
+    },
+  },
 };
 </script>
