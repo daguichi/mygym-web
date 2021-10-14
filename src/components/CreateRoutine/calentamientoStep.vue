@@ -141,89 +141,91 @@
           </v-stepper-content>
           <v-stepper-content v-for="n in steps" :key="n" :step="n">
             <template>
-              <v-row>
-                <v-col>
-                  <v-text-field
-                    v-model="cycleName[n + 0]"
-                    label="Nombre del ciclo"
-                  ></v-text-field>
-                </v-col>
-                <v-col>
-                  <v-text-field
-                    v-model="cycleRepetitions[n + 0]"
-                    hide-details
-                    rounded
-                    outlined
-                    type="number"
-                    min="1"
-                    label="repeticiones del ciclo"
-                    item-text="show"
-                  >
-                  </v-text-field>
-                </v-col>
-              </v-row>
-              <v-textarea
-                v-model="cycleDetail[n + 0]"
-                class="mr-3 ml-3"
-                dense
-                outlined
-                auto-grow
-                label="Descripcion"
-              ></v-textarea>
               <v-container>
-                <v-row
-                  class="pl-3"
-                  v-for="exercise in selectedExercises[n + 0]"
-                  :key="exercise.order"
-                >
-                  {{ exercise.name }} - segundos:{{ exercise.duration }} -
-                  repeticiones:{{ exercise.repetitions }}
-                </v-row>
-
                 <v-row>
                   <v-col>
-                    <v-select
-                      v-model="selectedEx"
-                      :items="getExerciseNames(exercises)"
-                      label="elija el ejercicio"
-                      rounded
-                      @change="onChange"
-                      outlined
-                    ></v-select>
+                    <v-text-field
+                      v-model="cycleName[n + 0]"
+                      label="Nombre del ciclo"
+                    ></v-text-field>
                   </v-col>
                   <v-col>
                     <v-text-field
-                      v-model="repetitions"
+                      v-model="cycleRepetitions[n + 0]"
                       hide-details
                       rounded
                       outlined
                       type="number"
-                      min="0"
-                      label="repeticiones"
+                      min="1"
+                      label="repeticiones del ciclo"
                       item-text="show"
-                    >
-                    </v-text-field> </v-col
-                  ><v-col>
-                    <v-text-field
-                      v-model="seconds"
-                      hide-details
-                      rounded
-                      outlined
-                      label="segundos"
-                      min="0"
-                      type="number"
                     >
                     </v-text-field>
                   </v-col>
-                  <v-col>
-                    <v-btn
-                      :disabled="isEmpty"
-                      @click="addEx(n + 0, selectedEx, repetitions, seconds)"
-                    >
-                      +
-                    </v-btn>
-                  </v-col>
                 </v-row>
+                <v-textarea
+                  v-model="cycleDetail[n + 0]"
+                  class="mr-3 ml-3"
+                  dense
+                  outlined
+                  auto-grow
+                  label="Descripcion"
+                ></v-textarea>
+                <v-container>
+                  <v-row
+                    class="pl-3"
+                    v-for="exercise in selectedExercises[n + 0]"
+                    :key="exercise.order"
+                  >
+                    {{ exercise.name }} - segundos:{{ exercise.duration }} -
+                    repeticiones:{{ exercise.repetitions }}
+                  </v-row>
+
+                  <v-row>
+                    <v-col>
+                      <v-select
+                        v-model="selectedEx"
+                        :items="getExerciseNames(exercises)"
+                        label="elija el ejercicio"
+                        rounded
+                        @change="onChange"
+                        outlined
+                      ></v-select>
+                    </v-col>
+                    <v-col>
+                      <v-text-field
+                        v-model="repetitions"
+                        hide-details
+                        rounded
+                        outlined
+                        type="number"
+                        min="0"
+                        label="repeticiones"
+                        item-text="show"
+                      >
+                      </v-text-field> </v-col
+                    ><v-col>
+                      <v-text-field
+                        v-model="seconds"
+                        hide-details
+                        rounded
+                        outlined
+                        label="segundos"
+                        min="0"
+                        type="number"
+                      >
+                      </v-text-field>
+                    </v-col>
+                    <v-col>
+                      <v-btn
+                        :disabled="isEmpty"
+                        @click="addEx(n + 0, selectedEx, repetitions, seconds)"
+                      >
+                        +
+                      </v-btn>
+                    </v-col>
+                  </v-row>
+                </v-container>
               </v-container>
             </template>
             <v-row>
@@ -240,91 +242,93 @@
 
           <v-stepper-content :step="steps + 1">
             <template>
-              <v-row>
-                <v-col>
-                  <v-text-field
-                    v-model="cycleName[steps + 1]"
-                    label="Nombre del ciclo"
-                  ></v-text-field>
-                </v-col>
-                <v-col>
-                  <v-text-field
-                    v-model="cycleRepetitions[steps + 1]"
-                    hide-details
-                    rounded
-                    outlined
-                    type="number"
-                    min="1"
-                    label="repeticiones del ciclo"
-                    item-text="show"
-                  >
-                  </v-text-field>
-                </v-col>
-              </v-row>
-              <v-textarea
-                v-model="cycleDetail[steps + 1]"
-                class="mr-3 ml-3"
-                dense
-                outlined
-                auto-grow
-                label="Descripcion"
-              ></v-textarea>
               <v-container>
-                <v-row
-                  class="pl-3"
-                  v-for="exercise in selectedExercises[steps + 1]"
-                  :key="exercise.order"
-                >
-                  {{ exercise.name }} - segundos:{{ exercise.duration }} -
-                  repeticiones:{{ exercise.repetitions }}
-                </v-row>
-
                 <v-row>
                   <v-col>
-                    <v-select
-                      v-model="selectedEx"
-                      :items="getExerciseNames(exercises)"
-                      label="elija el ejercicio"
-                      rounded
-                      @change="onChange"
-                      outlined
-                    ></v-select>
+                    <v-text-field
+                      v-model="cycleName[steps + 1]"
+                      label="Nombre del ciclo"
+                    ></v-text-field>
                   </v-col>
                   <v-col>
                     <v-text-field
-                      v-model="repetitions"
+                      v-model="cycleRepetitions[steps + 1]"
                       hide-details
                       rounded
                       outlined
                       type="number"
-                      min="0"
-                      label="repeticiones"
+                      min="1"
+                      label="repeticiones del ciclo"
                       item-text="show"
-                    >
-                    </v-text-field> </v-col
-                  ><v-col>
-                    <v-text-field
-                      v-model="seconds"
-                      hide-details
-                      rounded
-                      outlined
-                      min="0"
-                      label="segundos"
-                      type="number"
                     >
                     </v-text-field>
                   </v-col>
-                  <v-col>
-                    <v-btn
-                      :disabled="isEmpty"
-                      @click="
-                        addEx(steps + 1, selectedEx, repetitions, seconds)
-                      "
-                    >
-                      +
-                    </v-btn>
-                  </v-col>
                 </v-row>
+                <v-textarea
+                  v-model="cycleDetail[steps + 1]"
+                  class="mr-3 ml-3"
+                  dense
+                  outlined
+                  auto-grow
+                  label="Descripcion"
+                ></v-textarea>
+                <v-container>
+                  <v-row
+                    class="pl-3"
+                    v-for="exercise in selectedExercises[steps + 1]"
+                    :key="exercise.order"
+                  >
+                    {{ exercise.name }} - segundos:{{ exercise.duration }} -
+                    repeticiones:{{ exercise.repetitions }}
+                  </v-row>
+
+                  <v-row>
+                    <v-col>
+                      <v-select
+                        v-model="selectedEx"
+                        :items="getExerciseNames(exercises)"
+                        label="elija el ejercicio"
+                        rounded
+                        @change="onChange"
+                        outlined
+                      ></v-select>
+                    </v-col>
+                    <v-col>
+                      <v-text-field
+                        v-model="repetitions"
+                        hide-details
+                        rounded
+                        outlined
+                        type="number"
+                        min="0"
+                        label="repeticiones"
+                        item-text="show"
+                      >
+                      </v-text-field> </v-col
+                    ><v-col>
+                      <v-text-field
+                        v-model="seconds"
+                        hide-details
+                        rounded
+                        outlined
+                        min="0"
+                        label="segundos"
+                        type="number"
+                      >
+                      </v-text-field>
+                    </v-col>
+                    <v-col>
+                      <v-btn
+                        :disabled="isEmpty"
+                        @click="
+                          addEx(steps + 1, selectedEx, repetitions, seconds)
+                        "
+                      >
+                        +
+                      </v-btn>
+                    </v-col>
+                  </v-row>
+                </v-container>
               </v-container>
             </template>
             <v-row>
