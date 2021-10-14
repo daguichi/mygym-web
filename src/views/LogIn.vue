@@ -2,6 +2,7 @@
   <div>
     <div class="fondo">
       <v-container>
+        <v-btn @click="console">CONSOLE</v-btn>
         <v-row>
           <v-col md="4">
             <v-row align="center" justify="center">
@@ -88,7 +89,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters} from "vuex";
 import { Credentials } from "../api/user";
 import router from "../router/index";
 export default {
@@ -114,8 +115,14 @@ export default {
       $user: (state) => state.user,
     }),
     ...mapState("security", {$token: state => state.token}),
+    ...mapGetters("security", {$isLoggedIn: 'isLoggedIn'})
   },
   methods: {
+    console() {
+      console.log(this.$user);
+      console.log(this.$isLoggedIn);
+      console.log(this.$token)
+    },
     ...mapActions("security", {
       $getCurrentUser: "getCurrentUser",
       $login: "login",
@@ -131,7 +138,7 @@ export default {
       try {
         const credentials = new Credentials(this.username, this.password);
         await this.$login({ credentials, rememberMe: true });
-        await this.getCurrentUser();
+        await this.$getCurrentUser();
         this.clearResult();
       } catch (e) {
         this.setResult(e);
@@ -146,15 +153,13 @@ export default {
       await this.$logout();
       this.clearResult();
     },
-    async getCurrentUser() {
-      await this.$getCurrentUser();
-      this.setResult(this.$user);
-    },
+   
 
     abort() {
       this.controller.abort();
     },
   },
+
  
 };
 </script>

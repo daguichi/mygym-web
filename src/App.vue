@@ -24,6 +24,7 @@ export default {
   },
   async created() {
     this.initialize();
+    await this.getCurrentUser();
   }
 };
 </script>
