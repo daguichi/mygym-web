@@ -37,7 +37,7 @@
                   }"
                 >
                   <v-list-item-icon>
-                    <v-icon>{{ item.icon }}</v-icon>
+                    <v-icon color="#6262f8">{{ item.icon }}</v-icon>
                   </v-list-item-icon>
 
                   <v-list-item-content>
@@ -46,7 +46,7 @@
                 </v-list-item>
               </v-list>
             </v-sheet>
-            <router-link to="/"><v-btn dark class="logout" @click="logout" >logout</v-btn></router-link>
+            <router-link to="/"><v-btn color ="red" outlined class="logout" @click="logout" >logout</v-btn></router-link>
           </v-col>
 
           <!-- columna derecha -->

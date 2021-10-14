@@ -25,7 +25,7 @@
               outlined
               auto-grow
               :rules="rules.desc"
-              label="Descripcion"
+              label="Descripcion*"
             ></v-textarea>
           </v-row>
           <v-row class="pa-2">
