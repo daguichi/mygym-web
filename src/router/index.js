@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import CreateRoutine from "../views/CreateRoutine";
 import LogIn from "../views/LogIn";
 import NotFound from "../views/NotFound";
 import Profile from "../views/Profile";
@@ -41,11 +40,6 @@ const routes = [
     path: "/routines",
     name: "Routines",
     component: Routines,
-  },
-  {
-    path: "/createRoutine",
-    name: CreateRoutine,
-    component: CreateRoutine,
   },
   {
     path: "/profile/",

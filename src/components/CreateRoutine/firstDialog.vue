@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="createRoutineDialog" persistent max-width="600px">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn color="primary" dark v-bind="attrs" v-on="on">
+      <v-btn color="primary" dark v-bind="attrs" v-on="on" @click="fetch">
         Rutina
       </v-btn>
     </template>
@@ -194,9 +194,9 @@ export default {
     cancelRoutine() {
       this.createRoutineDialog = false;
     },
-  },
-  async created() {
-    this.$getExercises();
+    async fetch() {
+      await this.$getExercises();
+    }
   },
 };
 </script>
