@@ -1,29 +1,23 @@
 <template>
-  <div>
-    <v-main class="grey lighten-3">
-      <v-container>
-        <v-row>
-          <!-- columna izquierda -->
-          <v-col cols="3">
-            <v-sheet rounded="lg">
-              <v-list>
-                <v-list-item>
-                  <v-list-item-avatar>
-                    <v-img
-                      contain
-                      :src="$user.avatarUrl"
-                    ></v-img>
-                  </v-list-item-avatar>
-                  <v-list-item-content>
-                    <v-list-item-title class="text-h6">
-                      {{ $user.username }}
-                    </v-list-item-title>
-                    <v-list-item-subtitle>{{
-                      $user.email
-                    }}</v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
+  <v-main class="grey lighten-3 fill-height">
+    <v-container>
+      <v-row>
+        <!-- columna izquierda -->
+        <v-col cols="3">
+          <v-sheet rounded="lg">
+            <v-list>
+              <v-list-item>
+                <v-list-item-avatar>
+                  <v-img contain :src="$user.avatarUrl"></v-img>
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title class="text-h6">
+                    {{ $user.username }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle>{{ $user.email }}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
 
             <v-divider></v-divider>
 
@@ -40,21 +34,25 @@
                   <v-icon color="#6262f8">{{ item.icon }}</v-icon>
                 </v-list-item-icon>
 
-                  <v-list-item-content>
-                    <v-list-item-title>{{ item.title }}</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
-            </v-sheet>
-            <router-link class="router" to="/"><v-btn color ="red" outlined class="logout" @click="logout" ><v-icon class="logouticon">mdi-logout-variant</v-icon> Cerrar sesión</v-btn></router-link>
-          </v-col>
+                <v-list-item-content>
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-sheet>
+          <router-link class="router" to="/"
+            ><v-btn color="red" outlined class="logout" @click="logout"
+              ><v-icon class="logouticon">mdi-logout-variant</v-icon> Cerrar
+              sesión</v-btn
+            ></router-link
+          >
+        </v-col>
 
         <!-- columna derecha -->
         <router-view :key="$route.path" />
       </v-row>
     </v-container>
   </v-main>
-  </div>
 </template>
 
 <script>
@@ -79,13 +77,13 @@ export default {
   },
   methods: {
     ...mapActions("security", {
-      $logout: "logout"
+      $logout: "logout",
     }),
 
     async logout() {
       await this.$logout();
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -93,10 +91,10 @@ export default {
 .logout {
   margin-top: 40px;
 }
-.logouticon{
+.logouticon {
   padding-right: 20px;
 }
-.router{
-  text-decoration: none
+.router {
+  text-decoration: none;
 }
 </style>

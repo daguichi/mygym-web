@@ -6,90 +6,78 @@
         <v-row align="center" justify="center">
           <v-col></v-col>
           <v-col>
-              <v-text-field
-                v-model="nombre"
-                label="Nombre"
-                 
-              ></v-text-field>
+            <v-text-field
+              v-model="nombre"
+              label="Nombre*"
+              :rules="rules.name"
+            ></v-text-field>
           </v-col>
           <v-col></v-col>
         </v-row>
         <v-row align="center" justify="center">
           <v-col></v-col>
           <v-col>
-              <v-text-field
+            <v-text-field
               v-model="apellido"
-              label="Apellido"
-               
-              ></v-text-field>
+              label="Apellido*"
+              :rules="rules.surname"
+            ></v-text-field>
           </v-col>
           <v-col></v-col>
         </v-row>
         <v-row align="center" justify="center">
           <v-col></v-col>
-          
+
           <v-col>
-              <v-autocomplete
-            
-            v-model="genero"
-       
-            :items="this.generos.map(genero => genero.show)"
-            label="Género"
-            placeholder="Seleccione"
-             
-          ></v-autocomplete>
+            <v-autocomplete
+              v-model="genero"
+              :items="this.generos.map((genero) => genero.show)"
+              label="Género*"
+              placeholder="Seleccione"
+            ></v-autocomplete>
           </v-col>
-          
+
           <v-col></v-col>
         </v-row>
         <v-row align="center" justify="center">
           <v-col></v-col>
           <v-col>
-              <v-text-field
+            <v-text-field
               v-model="telefono"
-              label="Teléfono"
-               
-              ></v-text-field>
+              label="Teléfono*"
+              :rules="rules.phone"
+            ></v-text-field>
           </v-col>
           <v-col></v-col>
         </v-row>
         <v-row align="center" justify="center">
           <v-col></v-col>
           <v-col>
-              <v-text-field
+            <v-text-field
               v-model="avatarUrl"
-              label="Avatar (ingrese URL)"
-               
-              ></v-text-field>
+              label="Avatar (ingrese URL)*"
+              :rules="rules.avatar"
+            ></v-text-field>
           </v-col>
           <v-col></v-col>
         </v-row>
         <v-row align="center" justify="center">
           <v-col></v-col>
           <v-col>
-             <v-btn
-                @click="save"
-                depressed
-                color="primary"
+            <v-btn :disabled="validForm" @click="save" depressed color="primary"
               ><v-icon class="save">mdi-content-save</v-icon>
-                Guardar
-              </v-btn>
+              Guardar
+            </v-btn>
           </v-col>
           <v-col></v-col>
         </v-row>
       </v-container>
     </v-sheet>
-    <v-snackbar
-        v-model="snackbar"
-        color="success"
-    ><v-icon class="save">mdi-check</v-icon>
+    <v-snackbar v-model="snackbar" color="success"
+      ><v-icon class="save">mdi-check</v-icon>
       Perfil editado correctamente
       <template v-slot:action="{ attrs }">
-        <v-btn
-            text
-            v-bind="attrs"
-            @click="snackbar = false"
-        >
+        <v-btn text v-bind="attrs" @click="snackbar = false">
           Cerrar
         </v-btn>
       </template>
@@ -103,6 +91,12 @@ import { mapState, mapActions } from "vuex";
 
 export default {
   data: () => ({
+    rules: {
+      name: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+      surname: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+      phone: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+      avatar: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+    },
     snackbar: false,
     nombre: "",
     apellido: "",
@@ -110,55 +104,56 @@ export default {
     avatarUrl: "",
     genero: "",
     generos: [
-        { show: "Hombre", value: "male" },
-        { show: "Mujer", value: "female" },
-        { show: "Otro", value: "other" },
-      ],
+      { show: "Hombre", value: "male" },
+      { show: "Mujer", value: "female" },
+      { show: "Otro", value: "other" },
+    ],
   }),
   computed: {
     ...mapState("security", {
       $user: (state) => state.user,
     }),
+    validForm() {
+      return (
+        this.nombre === "" ||
+        this.apellido === "" ||
+        this.telefono === "" ||
+        this.avatar === ""
+      );
+    },
   },
   methods: {
     ...mapActions("security", {
-      $modifyUser: "modifyUser"
+      $modifyUser: "modifyUser",
     }),
     async save() {
       let toSaveGenero = "";
-      if(this.genero == "Hombre")
-        toSaveGenero = "male";
-      else if(this.genero == "Mujer")
-       toSaveGenero = "female";
-      else 
-        toSaveGenero = "other";
+      if (this.genero == "Hombre") toSaveGenero = "male";
+      else if (this.genero == "Mujer") toSaveGenero = "female";
+      else toSaveGenero = "other";
       let newUser = {
-          firstName: this.nombre,
-          lastName: this.apellido,
-          gender:  toSaveGenero ,
-          phone :  this.telefono ,
-          avatarUrl :  this.avatarUrl ,
-      }
-      
+        firstName: this.nombre,
+        lastName: this.apellido,
+        gender: toSaveGenero,
+        phone: this.telefono,
+        avatarUrl: this.avatarUrl,
+      };
+
       await this.$modifyUser(newUser);
       this.snackbar = true;
-      this.$router.push("/profile/miperfil")
-   },
-    
+      this.$router.push("/profile/miperfil");
+    },
   },
   created() {
     this.nombre = this.$user.firstName;
     this.apellido = this.$user.lastName;
     this.genero = this.$user.gender;
     this.telefono = this.$user.phone;
-    this.avatarUrl = this.$user.avatarUrl
-    if(this.$user.gender == "male")
-      this.genero = "Hombre";
-    else if(this.$user.gender == "female")
-      this.genero = "Mujer";
-    else 
-      this.genero = "Otro";
-  }
+    this.avatarUrl = this.$user.avatarUrl;
+    if (this.$user.gender == "male") this.genero = "Hombre";
+    else if (this.$user.gender == "female") this.genero = "Mujer";
+    else this.genero = "Otro";
+  },
 };
 </script>
 
