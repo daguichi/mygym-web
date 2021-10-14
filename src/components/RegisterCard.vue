@@ -21,6 +21,7 @@
                     elevation="2"
                     color="black"
                     dense
+                    :rules="rules.name"
                     filled
                     rounded
                     placeholderColor="#aaa"
@@ -38,6 +39,7 @@
                     placeholder="Correo electrónico*"
                     elevation="2"
                     color="black"
+                    :rules="rules.mail"
                     dense
                     filled
                     rounded
@@ -76,7 +78,7 @@
                   <v-text-field
                     v-model="password2"
                     :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                    :rules="[rules.required, rules.min]"
+                    :rules="[rules.required, rules.min, rules.passMatch]"
                     :type="show1 ? 'text' : 'password'"
                     name="input-10-1"
                     placeholder="Confirmar contraseña*"
@@ -103,6 +105,7 @@
                     dark
                     x-large
                     rounded
+                    :disabled="validFields"
                     >REGISTRARSE
                   </v-btn>
                 </v-row>
@@ -134,12 +137,30 @@ export default {
       controller: null,
       rules: {
         required: (value) => !!value || "Requerido.",
+        name: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+        mail: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+
         min: (v) => v.length >= 8 || "Minimo 8 caracteres",
         emailMatch: () => `The email and password you entered don't match`,
+        passMatch: () =>
+          this.password1 === this.password2 ||
+          "las contraseñas deben coincidir",
       },
     };
   },
   computed: {
+    validFields() {
+      if (
+        this.username === "" ||
+        this.email === "" ||
+        this.password1 != this.password2 ||
+        this.password1 === "" ||
+        this.password1.length < 8
+      ) {
+        return true;
+      }
+      return false;
+    },
     ...mapState("security", {
       $user: (state) => state.user,
     }),
