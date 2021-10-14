@@ -9,8 +9,8 @@
         
         <v-card-title
           >{{ rutina.name }} <v-spacer></v-spacer>
-          <v-btn @click="close" >
-            <v-icon dark>mdi-close</v-icon>
+          <v-btn @click="close" color="#6262f8" outlined>
+            <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-card-title>
         <v-divider></v-divider>
