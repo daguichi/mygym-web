@@ -51,11 +51,11 @@
                     <v-text-field
                       v-model="cycleRepetitions[0]"
                       hide-details
-                      single-line
                       rounded
                       outlined
                       type="number"
-                      label="repeticiones"
+                      min="1"
+                      label="repeticiones del ciclo"
                       item-text="show"
                     >
                     </v-text-field>
@@ -92,11 +92,10 @@
                   <v-col>
                     <v-text-field
                       v-model="repetitions"
-                      hide-details
-                      single-line
                       rounded
                       outlined
                       type="number"
+                      min="0"
                       label="repeticiones"
                       item-text="show"
                     >
@@ -105,11 +104,11 @@
                     <v-text-field
                       v-model="seconds"
                       hide-details
-                      single-line
                       rounded
                       outlined
                       label="segundos"
                       type="number"
+                      min="0"
                     >
                     </v-text-field>
                   </v-col>
@@ -127,7 +126,11 @@
             </template>
             <v-row>
               <v-col>
-                <v-btn color="#6262f8" outlined @click="createRoutineDialogStep2 = false">
+                <v-btn
+                  color="#6262f8"
+                  outlined
+                  @click="createRoutineDialogStep2 = false"
+                >
                   Cancelar
                 </v-btn>
               </v-col>
@@ -149,11 +152,11 @@
                   <v-text-field
                     v-model="cycleRepetitions[n + 0]"
                     hide-details
-                    single-line
                     rounded
                     outlined
                     type="number"
-                    label="repeticiones"
+                    min="1"
+                    label="repeticiones del ciclo"
                     item-text="show"
                   >
                   </v-text-field>
@@ -184,6 +187,7 @@
                       :items="getExerciseNames(exercises)"
                       label="elija el ejercicio"
                       rounded
+                      @change="onChange"
                       outlined
                     ></v-select>
                   </v-col>
@@ -191,10 +195,10 @@
                     <v-text-field
                       v-model="repetitions"
                       hide-details
-                      single-line
                       rounded
                       outlined
                       type="number"
+                      min="0"
                       label="repeticiones"
                       item-text="show"
                     >
@@ -203,16 +207,17 @@
                     <v-text-field
                       v-model="seconds"
                       hide-details
-                      single-line
                       rounded
                       outlined
                       label="segundos"
+                      min="0"
                       type="number"
                     >
                     </v-text-field>
                   </v-col>
                   <v-col>
                     <v-btn
+                      :disabled="isEmpty"
                       @click="addEx(n + 0, selectedEx, repetitions, seconds)"
                     >
                       +
@@ -246,11 +251,11 @@
                   <v-text-field
                     v-model="cycleRepetitions[steps + 1]"
                     hide-details
-                    single-line
                     rounded
                     outlined
                     type="number"
-                    label="repeticiones"
+                    min="1"
+                    label="repeticiones del ciclo"
                     item-text="show"
                   >
                   </v-text-field>
@@ -281,6 +286,7 @@
                       :items="getExerciseNames(exercises)"
                       label="elija el ejercicio"
                       rounded
+                      @change="onChange"
                       outlined
                     ></v-select>
                   </v-col>
@@ -288,10 +294,10 @@
                     <v-text-field
                       v-model="repetitions"
                       hide-details
-                      single-line
                       rounded
                       outlined
                       type="number"
+                      min="0"
                       label="repeticiones"
                       item-text="show"
                     >
@@ -300,9 +306,9 @@
                     <v-text-field
                       v-model="seconds"
                       hide-details
-                      single-line
                       rounded
                       outlined
+                      min="0"
                       label="segundos"
                       type="number"
                     >
@@ -310,6 +316,7 @@
                   </v-col>
                   <v-col>
                     <v-btn
+                      :disabled="isEmpty"
                       @click="
                         addEx(steps + 1, selectedEx, repetitions, seconds)
                       "
@@ -322,7 +329,9 @@
             </template>
             <v-row>
               <v-col>
-                <v-btn color="#6262f8" outlined @click="e1 = steps - 1"> Anterior </v-btn>
+                <v-btn color="#6262f8" outlined @click="e1 = steps - 1">
+                  Anterior
+                </v-btn>
               </v-col>
               <v-col>
                 <v-btn color="primary" @click="save"> Guardar </v-btn>
@@ -354,12 +363,12 @@ export default {
       createRoutineDialogStep2: false,
       selectedExercises: [[], [], [], [], [], []],
       selectedEx: "-",
-      repetitions: 0,
-      seconds: 0,
+      repetitions: 1,
+      seconds: 1,
       cycles: [],
       cycleName: [],
       cycleDetail: [],
-      cycleRepetitions: [0, 0, 0, 0, 0, 0],
+      cycleRepetitions: [1, 1, 1, 1, 1, 1],
     };
   },
   computed: {
@@ -378,6 +387,9 @@ export default {
     onChange() {
       if (this.isEmpty) {
         this.isEmpty = !this.isEmpty;
+      }
+      if (this.selectedEx === 0) {
+        this.isEmpty = false;
       }
     },
     ...mapActions("exercises", { $getExercises: "getAll" }),
@@ -407,6 +419,8 @@ export default {
         duration: seconds,
         order: this.selectedExercises[cycle].length,
       });
+      this.selectedEx = 0;
+      this.isEmpty = !this.isEmpty;
     },
     getExerciseNames() {
       let res = [];
