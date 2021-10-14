@@ -46,7 +46,7 @@
                 </v-list-item>
               </v-list>
             </v-sheet>
-            <router-link to="/"><v-btn color ="red" outlined class="logout" @click="logout" >logout</v-btn></router-link>
+            <router-link class="router" to="/"><v-btn color ="red" outlined class="logout" @click="logout" >Cerrar sesión</v-btn></router-link>
           </v-col>
 
           <!-- columna derecha -->
@@ -86,5 +86,8 @@ export default {
 <style scoped>
 .logout{
   margin-top: 40px;
+}
+.router{
+  text-decoration: none
 }
 </style>
