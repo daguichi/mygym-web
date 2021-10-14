@@ -203,6 +203,9 @@ export default {
     },
     cancelRoutine() {
       this.createRoutineDialog = false;
+      this.nameRoutine = "";
+      this.detailRoutine = "";
+      this.diff = "rookie";
     },
     async fetch() {
       await this.$getExercises();

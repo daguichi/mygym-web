@@ -15,9 +15,7 @@
             show-arrows
           >
             <v-slide-item class="pl-3" v-for="r in routines" :key="r.id">
-              <RoutineCard
-              v-bind:routine="r"
-            />
+              <RoutineCard v-bind:routine="r" />
             </v-slide-item>
           </v-slide-group>
           <br /><br />
@@ -33,6 +31,7 @@ import RoutineCard from "../components/RoutineCard";
 import Create from "../components/Create";
 import store from "@/store/modules/routines.js";
 import { mapState, mapActions } from "vuex";
+//import CardExercise from "../components/cardExercise.vue";
 //import {CategoryApi} from '../api/category'
 
 export default {
@@ -46,7 +45,7 @@ export default {
   components: { RoutineCard, Create },
   computed: {
     ...mapState("security", {
-      user: state => state.user,
+      user: (state) => state.user,
     }),
     ...mapState("category", {
       categories: (state) => state.categories,
@@ -71,7 +70,6 @@ export default {
 </script>
 
 <style scoped>
-
 .botom-line {
   border-bottom: 5px solid #6262f8;
   height: 100%;
@@ -79,5 +77,4 @@ export default {
   padding: 0 80px; /* or how longer you want */
   padding-bottom: 10px;
 }
-
 </style>
