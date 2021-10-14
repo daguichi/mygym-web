@@ -8,38 +8,16 @@
       </v-row>
       <h1>Mis rutinas favoritas</h1>
       <div v-if="this.favs.length > 0">
-        <v-card elevation="24" max-width="444" class="mx-auto">
-        <v-system-bar lights-out></v-system-bar>
-        <v-carousel
-          :continuous="false"
-          :cycle="cycle"
-          :show-arrows="false"
-          hide-delimiter-background
-          delimiter-icon="mdi-minus"
-          height="300"
-        >
+        <v-carousel dark height="300">
           <v-carousel-item v-for="fav in this.favs"
             :key="fav.id">
-
+          
             <RoutineCard
               v-bind:routine="fav"
             />
-            <v-list two-line>
-              <v-list-item>
-                <v-list-item-avatar>
-                  <v-img
-                    src="https://cdn.vuetifyjs.com/images/john.png"
-                  ></v-img>
-                </v-list-item-avatar>
-                <v-list-item-content>
-                  <v-list-item-title>John Leider</v-list-item-title>
-                  <v-list-item-subtitle>Author</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
+            
           </v-carousel-item>
         </v-carousel>
-      </v-card>
       </div>
       <div v-else>
         <v-row justify="space-around" align="center"
