@@ -2,7 +2,7 @@
   <div>
     <v-card
       class="rounded-xl imagen mx-auto"
-      max-width="330"
+      width="330"
       height="220"
       outlined
       color="blue lighten-3"
@@ -34,9 +34,9 @@
           </v-card-actions>
         </div>
 
-        <v-avatar class="ma-6" size="150" tile>
+        <!-- <v-avatar class="ma-6" size="150" tile>
           <v-img class="rounded-xl" :src="this.routine.metadata"></v-img>
-        </v-avatar>
+        </v-avatar> -->
       </div>
     </v-card>
   </div>

@@ -53,12 +53,13 @@
                   <v-col>
                     <v-text-field
                       v-model="cycleRepetitions[0]"
-                      :rules="rules.reps"
+                      :rules="[rules.reps, rules.maxReps]"
+                      oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
                       hide-details
                       rounded
                       outlined
                       type="number"
-                      max="100"
+                      max="99"
                       min="1"
                       onkeypress="return event.charCode >= 49"
                       label="repeticiones del ciclo"
@@ -101,12 +102,13 @@
                   <v-col>
                     <v-text-field
                       v-model="repetitions"
-                      :rules="rules.exReps"
+                      :rules="[rules.reps, rules.maxReps]"
+                      oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
                       rounded
                       outlined
                       type="number"
                       min="1"
-                      max="100"
+                      max="99"
                       onkeypress="return event.charCode >= 49"
                       label="repeticiones"
                       item-text="show"
@@ -115,14 +117,15 @@
                   ><v-col>
                     <v-text-field
                       v-model="seconds"
-                      :rules="rules.exSecs"
+                      :rules="[rules.exSecs, rules.maxSecs]"
+                      oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
                       hide-details
                       rounded
                       outlined
                       label="segundos"
                       type="number"
                       min="1"
-                      max="100"
+                      max="999"
                       onkeypress="return event.charCode >= 49"
                     >
                     </v-text-field>
@@ -170,8 +173,10 @@
                       outlined
                       type="number"
                       min="1"
-                      max="100"
+                      max="99"
                       onkeypress="return event.charCode >= 49"
+                      :rules="[rules.reps, rules.maxReps]"
+                      oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
                       label="repeticiones del ciclo"
                       item-text="show"
                     >
@@ -218,7 +223,9 @@
                         outlined
                         type="number"
                         min="1"
-                        max="100"
+                        max="99"
+                        :rules="[rules.reps, rules.maxReps]"
+                        oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
                         onkeypress="return event.charCode >= 49"
                         label="repeticiones"
                         item-text="show"
@@ -228,11 +235,13 @@
                       <v-text-field
                         v-model="seconds"
                         hide-details
+                        :rules="[rules.exSecs, rules.maxSecs]"
+                        oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
                         rounded
                         outlined
                         label="segundos"
                         min="1"
-                        max="100"
+                        max="999"
                         onkeypress="return event.charCode >= 49"
                         type="number"
                       >
@@ -284,7 +293,9 @@
                       outlined
                       type="number"
                       min="1"
-                      max="100"
+                      max="99"
+                      :rules="[rules.reps, rules.maxReps]"
+                      oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
                       onkeypress="return event.charCode >= 49"
                       label="repeticiones del ciclo"
                       item-text="show"
@@ -331,7 +342,9 @@
                         outlined
                         type="number"
                         min="1"
-                        max="100"
+                        max="99"
+                        :rules="[rules.reps, rules.maxReps]"
+                        oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
                         onkeypress="return event.charCode >= 49"
                         label="repeticiones"
                         item-text="show"
@@ -344,9 +357,11 @@
                         rounded
                         outlined
                         min="1"
+                        :rules="[rules.exSecs, rules.maxSecs]"
+                        oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
                         onkeypress="return event.charCode >= 49"
                         label="segundos"
-                        max="100"
+                        max="999"
                         type="number"
                       >
                       </v-text-field>
@@ -433,9 +448,11 @@ export default {
         reps: [
           (val) => val >= 1 || (val || "").length > 0 || "Campo obligatorio",
         ],
+        maxReps: [(val) => val >= 1 || val > 99 || "numero maximo 99"],
         exReps: [
           (val) => val >= 1 || (val || "").length > 0 || "Campo obligatorio",
         ],
+        maxSecs: [(val) => val >= 1 || val > 999 || "numero maximo 999"],
         exSecs: [
           (val) => val >= 1 || (val || "").length > 0 || "Campo obligatorio",
         ],

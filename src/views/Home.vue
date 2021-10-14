@@ -77,7 +77,7 @@ export default {
 
   margin-bottom: 10px;
   padding: 0 40px; /* or how longer you want */
-  width: 20%;
+  width: 20em;
   padding-bottom: 10px;
 }
 .texto {
