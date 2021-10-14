@@ -13,7 +13,7 @@ import Verification from "../views/Verification";
 import FichaTecnica from "../components/profile/FichaTecnica";
 import MisRutinas from "../components/profile/MisRutinas";
 import Historial from "../components/profile/Historial";
-
+import MisEjercicios from "../components/profile/MisEjercicios"
 
 Vue.use(VueRouter);
 
@@ -57,6 +57,11 @@ const routes = [
         path: "fichatecnica",
         name: "Ficha tecnica",
         component: FichaTecnica,
+      },
+      {
+        path: "misejercicios",
+        name: "Mis ejercicios",
+        component: MisEjercicios,
       },
       {
         path: "misrutinas",
