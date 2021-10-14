@@ -103,12 +103,12 @@ export default {
   },
   props: { exercise: Object },
   methods: {
-    ...mapActions("exercises", { $delete: "delete", $getMines: "getMines" }),
+    ...mapActions("exercises", { $deleteExercise: "delete", $getMines: "getMines" }),
     onClose() {
       this.dialog = false;
     },
     async deleteEx() {
-      await this.$delete(this.exercise);
+      await this.$deleteExercise(this.exercise);
       await this.$getMines();
       this.confirmSnack = false;
     },
