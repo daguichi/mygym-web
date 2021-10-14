@@ -4,7 +4,7 @@
       class="rounded-xl imagen mx-auto"
       max-width="430"
       outlined
-      color="blue lighten-3"
+      color="light-blue accent-2"
     >
       <div>
         <div>
@@ -54,22 +54,42 @@
           </v-row>
         </div>
       </div>
+      <v-snackbar v-model="snackbar">
+        ¿Está seguro de que desea borrar el ejercicio?
+        <template v-slot:action="{ attrs }">
+          <v-btn text dark v-bind="attrs" @click="deleteEx">
+            Si
+          </v-btn>
+        </template>
+      </v-snackbar>
     </v-card>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "ExerciseCard",
   data() {
     return {
+      snackbar: false,
       dialog: false,
     };
   },
   props: { exercise: Object },
   methods: {
+    ...mapActions("exercises", { $delete: "delete", $getMines: "getMines" }),
     onClose() {
       this.dialog = false;
+    },
+    async deleteEx() {
+      await this.$delete(this.exercise);
+      await this.$getMines();
+      this.snackbar = false;
+    },
+    confirm() {
+      this.snackbar = true;
     },
   },
 };

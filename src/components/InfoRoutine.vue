@@ -15,12 +15,14 @@
     <v-card flat>
       <v-card-title
         >{{ rutina.name }} 
+    
         <v-btn @click="close" color="#6262f8" outlined>
           <v-icon>mdi-pencil</v-icon>
         </v-btn>
         <v-btn @click="close" color="#6262f8" outlined>
           <v-icon>mdi-delete</v-icon>
         </v-btn>
+
         <v-btn @click="close" color="#6262f8" outlined>
           <v-icon>mdi-close</v-icon>
         </v-btn>
@@ -71,6 +73,21 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
+      <v-snackbar
+          v-model="snackbar"
+      >
+        ¿Está seguro de que desea borrar la rutina?
+        <template v-slot:action="{ attrs }">
+          <v-btn
+              text
+              dark
+              v-bind="attrs"
+              @click="deleteRoutine"
+          >
+            Si
+          </v-btn>
+        </template>
+      </v-snackbar>
     </v-card>
   </v-dialog>
 </template>
@@ -79,6 +96,7 @@
 import { mapActions, mapState } from "vuex";
 export default {
   data: () => ({
+    snackbar: false,
     dialog: false,
     cycleExercises: [[], [], [], [], [], []],
   }),
@@ -116,10 +134,20 @@ export default {
         return "Experto";
       }
     },
+    ...mapActions("routines", {$deleteRoutine: "delete", $getMines: "getMines"}),
     ...mapActions("cycle", { $getCycles: "getAll" }),
     ...mapActions("cycleExercise", { $getCycleExercises: "getAll" }),
     close() {
       this.dialog = false;
+    },
+    confirm() {
+      this.snackbar = true;
+    },
+    async deleteRoutine() {
+      await this.$deleteRoutine(this.rutina);
+      await this.$getMines();
+      this.snackbar = false;
+      close();
     },
     async getCycles() {
       await this.$getCycles(this.rutina.id);
