@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card
-      class="mx-auto my-12"
+      class="mx-auto my-12 rounded-xl imagen"
       width="300"
       color="blue lighten-3"
       elevation="2"
@@ -39,7 +39,6 @@
           ></v-text-field>
         </v-card-title>
         <v-card-text>
-          
           <v-autocomplete
             v-model="type"
             :items="this.tipos.map((tipo) => tipo.show)"
@@ -58,7 +57,7 @@
           ><v-btn color="deep-purple" text @click="confirm">
             <v-icon>mdi-delete</v-icon>
           </v-btn>
-          <v-btn v-if="edit" color="blue darken-4" @click="save" >GUARDAR</v-btn>
+          <v-btn v-if="edit" color="blue darken-4" @click="save">GUARDAR</v-btn>
           <v-btn color="deep-purple " text @click="edit = !edit"
             ><v-icon> mdi-pencil</v-icon></v-btn
           ></v-row
@@ -108,22 +107,29 @@ export default {
       error: false,
       dialog: false,
       edit: false,
-      tipos: [{show: 'Descanso', value: 'rest'}, {show: 'Ejercicio', value: 'exercise'}],
+      tipos: [
+        { show: "Descanso", value: "rest" },
+        { show: "Ejercicio", value: "exercise" },
+      ],
       rules: {
         name: (val) => (val || "").length > 0 || "Campo obligatorio",
-        detail: (val) =>  (val || "").length > 0 || "Campo obligatorio",
+        detail: (val) => (val || "").length > 0 || "Campo obligatorio",
       },
     };
   },
   computed: {
     showType() {
       if (this.exercise.type === "exercise") return "Ejercicio";
-        return "Descanso";
-    }
+      return "Descanso";
+    },
   },
   props: { exercise: Object },
   methods: {
-    ...mapActions("exercises", {$delete: "delete", $getMines: "getMines", $modifyExercise: "modify"}),
+    ...mapActions("exercises", {
+      $delete: "delete",
+      $getMines: "getMines",
+      $modifyExercise: "modify",
+    }),
     onClose() {
       this.dialog = false;
     },
@@ -165,13 +171,22 @@ export default {
 
 <style scoped>
 .imagen {
-  background: rgb(76, 68, 207);
+  background: rgb(193, 193, 204);
   background: linear-gradient(
     43deg,
-    rgba(76, 68, 207, 1) 0%,
-    rgba(154, 67, 180, 1) 60%,
-    rgba(122, 92, 175, 1) 93%
+    rgba(193, 193, 204, 1) 0%,
+    rgba(138, 196, 196, 1) 60%,
+    rgba(76, 181, 203, 1) 93%
   );
+  /* 
+  NICE PINK 
+   background: rgb(193, 193, 204);
+  background: linear-gradient(
+    43deg,
+    rgba(193, 193, 204, 1) 0%,
+    rgba(211, 140, 232, 1) 60%,
+    rgba(158, 114, 236, 1) 93%
+  ); */
 }
 .titulo {
   margin-left: 50%;
