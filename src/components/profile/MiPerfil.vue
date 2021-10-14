@@ -33,8 +33,8 @@
             
             v-model="genero"
        
-            :items="this.generos.map(genero => genero.value)"
-            label="Genero"
+            :items="this.generos.map(genero => genero.show)"
+            label="Género"
             placeholder="Seleccione"
              
           ></v-autocomplete>
@@ -68,22 +68,32 @@
           <v-col></v-col>
           <v-col>
              <v-btn
-                class="mx-2"
-                fab
-                dark
-                large
-                color="cyan"
                 @click="save"
-              >
-                <v-icon dark>
-                  mdi-content-save
-                </v-icon>
+                depressed
+                color="primary"
+              ><v-icon class="save">mdi-content-save</v-icon>
+                Guardar
               </v-btn>
           </v-col>
           <v-col></v-col>
         </v-row>
       </v-container>
     </v-sheet>
+    <v-snackbar
+        v-model="snackbar"
+        color="success"
+    ><v-icon class="save">mdi-check</v-icon>
+      Perfil editado correctamente
+      <template v-slot:action="{ attrs }">
+        <v-btn
+            text
+            v-bind="attrs"
+            @click="snackbar = false"
+        >
+          Cerrar
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-col>
 </template>
 
@@ -93,6 +103,7 @@ import { mapState, mapActions } from "vuex";
 
 export default {
   data: () => ({
+    snackbar: false,
     nombre: "",
     apellido: "",
     telefono: "",
@@ -114,16 +125,23 @@ export default {
       $modifyUser: "modifyUser"
     }),
     async save() {
+      let toSaveGenero = "";
+      if(this.genero == "Hombre")
+        toSaveGenero = "male";
+      else if(this.genero == "Mujer")
+       toSaveGenero = "female";
+      else 
+        toSaveGenero = "other";
       let newUser = {
           firstName: this.nombre,
           lastName: this.apellido,
-          gender:  this.genero ,
+          gender:  toSaveGenero ,
           phone :  this.telefono ,
           avatarUrl :  this.avatarUrl ,
       }
       
       await this.$modifyUser(newUser);
-      console.log(this.$user)
+      this.snackbar = true;
    },
     
   },
@@ -134,14 +152,17 @@ export default {
     this.telefono = this.$user.phone;
     this.avatarUrl = this.$user.avatarUrl
     if(this.$user.gender == "male")
-      this.genero = "male";
+      this.genero = "Hombre";
     else if(this.$user.gender == "female")
-      this.genero = "female";
+      this.genero = "Mujer";
     else 
-      this.genero = "other";
+      this.genero = "Otro";
   }
 };
 </script>
 
-<style>
+<style scoped>
+.save {
+  margin-right: 10px;
+}
 </style>
