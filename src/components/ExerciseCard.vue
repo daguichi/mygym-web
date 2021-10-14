@@ -3,19 +3,55 @@
     <v-card
       class="rounded-xl imagen mx-auto"
       max-width="430"
-      height="220"
       outlined
       color="blue lighten-3"
     >
-      <div class="d-flex flex-no-wrap justify-space-between">
+      <div>
         <div>
-          <v-card-title
-            class="text-h6"
-            align="center"
-            v-text="exercise.name"
-          ></v-card-title>
-
-          <v-row align="left">Detalle: {{ exercise.detail }}</v-row>
+          <v-row align="center" justify="center">
+            <v-col>
+              <v-text-field
+                :value="exercise.name"
+                label="nombre"
+                outlined
+                readonly
+                rounded
+                class="ma-5 pt-2"
+              ></v-text-field>
+            </v-col>
+            <v-col>
+              <v-icon>
+                mdi-delete
+              </v-icon>
+            </v-col>
+            <v-col>
+              <v-icon>
+                mdi-file-edit-outline
+              </v-icon>
+            </v-col>
+          </v-row>
+          <v-row align="center" justify="center" class="font-italic">
+            <v-col>
+              <v-text-field
+                :value="exercise.detail"
+                label="detalle"
+                outlined
+                readonly
+                rounded
+                class=" pt-2 pl-2"
+              ></v-text-field>
+            </v-col>
+            <v-col
+              ><v-text-field
+                :value="exercise.type"
+                label="tipo"
+                outlined
+                readonly
+                rounded
+                class=" pt-2 pr-2"
+              ></v-text-field
+            ></v-col>
+          </v-row>
         </div>
       </div>
     </v-card>
@@ -23,7 +59,6 @@
 </template>
 
 <script>
-
 export default {
   name: "ExerciseCard",
   data() {
@@ -37,19 +72,21 @@ export default {
       this.dialog = false;
     },
   },
-  
 };
 </script>
 
 <style scoped>
 .imagen {
-  background: rgb(55, 43, 255);
+  background: rgb(76, 68, 207);
   background: linear-gradient(
     43deg,
-    rgba(55, 43, 255, 1) 0%,
-    rgba(28, 109, 173, 1) 58%,
-    rgba(0, 212, 255, 1) 100%
+    rgba(76, 68, 207, 1) 0%,
+    rgba(154, 67, 180, 1) 60%,
+    rgba(122, 92, 175, 1) 93%
   );
+}
+.titulo {
+  margin-left: 50%;
 }
 
 .microText {
