@@ -1,46 +1,43 @@
 <template>
   <div>
     <v-card
-      class="rounded-xl imagen mx-auto "
+      class="rounded-xl imagen mx-auto"
       max-width="430"
       outlined
       color="light-blue accent-2"
     >
       <div>
-        <div>
-          <v-row align="center" justify="center">
-            <v-col cols="7">
-              <v-text-field
-                :value="exercise.name"
-                label="nombre"
-                outlined
-                readonly
-                rounded
-                class="pl-3 pt-5"
-              ></v-text-field>
-            </v-col>
-            <v-col>
-              <v-icon @click="confirm" large>
-                mdi-delete
-              </v-icon>
-            </v-col>
-            <v-col>
-              <v-icon large>
-                mdi-file-edit-outline
-              </v-icon>
-            </v-col>
-          </v-row>
-          <v-row align="center" justify="center" class="font-italic">
-            <v-col>
-              <v-textarea
-                outlined
-                readonly
-                class="pl-2"
-                name="input-7-4"
-                label="Descripción"
-                :value="exercise.detail"
-              ></v-textarea>
-              <!-- <v-text-field
+        <v-row align="center" justify="space-around" >
+          <v-col cols="7">
+            <h2 v-if="!edit">{{ exercise.name }}</h2>
+            <v-text-field
+              v-else
+              :value="exercise.name"
+              label="nombre"
+              outlined
+              readonly
+              rounded
+              class="pl-3 pt-5"
+            ></v-text-field>
+          </v-col>
+          <v-col>
+            <v-icon @click="confirm" large> mdi-delete </v-icon>
+          </v-col>
+          <v-col>
+            <v-icon @click="edit = !edit" large> mdi-file-edit-outline </v-icon>
+          </v-col>
+        </v-row>
+        <v-row align="center" justify="center" class="font-italic">
+          <v-col>
+            <v-textarea
+              outlined
+              readonly
+              class="pl-2"
+              name="input-7-4"
+              label="Descripción"
+              :value="exercise.detail"
+            ></v-textarea>
+            <!-- <v-text-field
                 :value="exercise.detail"
                 label="detalle"
                 outlined
@@ -48,26 +45,42 @@
                 rounded
                 class="mb-3 pl-2"
               ></v-text-field> -->
-            </v-col>
-            <v-col
-              ><v-text-field
-                :value="exercise.type"
-                label="tipo"
-                outlined
-                readonly
-                rounded
-                class="mb-3 pr-2"
-              ></v-text-field
-            ></v-col>
-          </v-row>
-        </div>
+          </v-col>
+          <v-col
+            ><v-text-field
+              :value="exercise.type"
+              label="tipo"
+              outlined
+              readonly
+              rounded
+              class="mb-3 pr-2"
+            ></v-text-field
+          ></v-col>
+        </v-row>
       </div>
-      <v-snackbar v-model="snackbar">
+
+      <v-snackbar v-model="confirmSnack">
         ¿Está seguro de que desea borrar el ejercicio?
         <template v-slot:action="{ attrs }">
-          <v-btn text dark v-bind="attrs" @click="deleteEx">
-            Si
+          <v-btn text dark v-bind="attrs" @click="deleteEx"> Si </v-btn>
+          <v-btn text dark v-bind="attrs" @click="confirmSnack = false"> No </v-btn>
+        </template>
+      </v-snackbar>
+      
+      <v-snackbar v-model="error" color="error">
+        Complete los campos obligatorios
+        <template v-slot:action="{ attrs }">
+          <v-btn text v-bind="attrs" @click="error = false">
+            Cerrar
           </v-btn>
+        </template>
+      </v-snackbar>
+      
+      <v-snackbar v-model="success" color="success"
+        ><v-icon class="save">mdi-check</v-icon>
+        Se ha modificado el ejerciico correctamente
+        <template v-slot:action="{ attrs }">
+          <v-btn text v-bind="attrs" @click="success = false"> Cerrar </v-btn>
         </template>
       </v-snackbar>
     </v-card>
@@ -81,8 +94,11 @@ export default {
   name: "ExerciseCard",
   data() {
     return {
-      snackbar: false,
+      confirmSnack: false,
+      success: false,
+      error: false,
       dialog: false,
+      edit: false,
     };
   },
   props: { exercise: Object },
@@ -94,11 +110,14 @@ export default {
     async deleteEx() {
       await this.$delete(this.exercise);
       await this.$getMines();
-      this.snackbar = false;
+      this.confirmSnack = false;
     },
     confirm() {
-      this.snackbar = true;
+      this.confirmSnack = true;
     },
+    modifySuccess() {
+
+    }
   },
 };
 </script>
