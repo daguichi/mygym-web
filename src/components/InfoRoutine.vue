@@ -15,12 +15,14 @@
     <v-card flat>
       <v-card-title
         >{{ rutina.name }} 
-        <v-btn color="#6262f8" outlined>
+    
+        <v-btn @click="close" color="#6262f8" outlined>
           <v-icon>mdi-pencil</v-icon>
         </v-btn>
-        <v-btn @click="confirm" color="#6262f8" outlined>
+        <v-btn @click="close" color="#6262f8" outlined>
           <v-icon>mdi-delete</v-icon>
         </v-btn>
+
         <v-btn @click="close" color="#6262f8" outlined>
           <v-icon>mdi-close</v-icon>
         </v-btn>
