@@ -23,8 +23,11 @@
           <v-card-actions class="mt-4">
             <v-container>
               <v-row class="justify-center">
-                <v-btn icon class="mr-2"
-                  ><v-icon color="primary" x-large rounded dark
+                <v-btn icon class="mr-2" @click="notFaved = !notFaved"
+                  ><v-icon v-if="notFaved" color="primary" x-large rounded dark
+                    >mdi-heart-outline</v-icon
+                  >
+                  <v-icon v-else color="primary" x-large rounded dark
                     >mdi-heart</v-icon
                   >
                 </v-btn>
@@ -50,6 +53,7 @@ export default {
   name: "RoutineCard",
   data() {
     return {
+      notFaved: true,
       dialog: false,
     };
   },
