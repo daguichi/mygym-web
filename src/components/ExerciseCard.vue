@@ -35,6 +35,8 @@
           <v-text-field
             v-model="name"
             label="Nombre*"
+            maxlength="20"
+            counter
             :rules="this.rules.name"
           ></v-text-field>
         </v-card-title>
@@ -48,6 +50,8 @@
           <v-text-field
             v-model="detail"
             label="Descripcion*"
+            maxlength="25"
+            counter
             :rules="this.rules.detail"
           ></v-text-field>
         </v-card-text>

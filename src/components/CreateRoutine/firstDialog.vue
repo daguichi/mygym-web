@@ -28,7 +28,7 @@
               auto-grow
               :rules="rules.desc"
               label="Descripcion*"
-              maxlength="200"
+              maxlength="100"
               counter
             ></v-textarea>
           </v-row>
@@ -37,7 +37,7 @@
               <v-select
                 v-model="diff"
                 :items="dificultad"
-                label="Dificultad"
+                label="Dificultad*"
                 outlined
                 rounded
                 dense
@@ -53,7 +53,7 @@
               <v-select
                 v-model="steps"
                 :items="[1, 2, 3, 4]"
-                label="Numero de ciclos"
+                label="Numero de ciclos*"
                 rounded
                 outlined
               ></v-select>
@@ -110,14 +110,8 @@ export default {
       cycles: [],
       selectedExercises: [[], [], [], [], [], []],
       rules: {
-        name: [
-          (val) =>
-            val === undefined || (val || "").length > 0 || "Campo obligatorio",
-        ],
-        desc: [
-          (val) =>
-            val === undefined || (val || "").length > 0 || "Campo obligatorio",
-        ],
+        name: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+        desc: [(val) => (val || "").length > 0 || "Campo obligatorio"],
       },
     };
   },

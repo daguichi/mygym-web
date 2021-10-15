@@ -16,7 +16,7 @@
     <v-card class="rounded-xl" width="100%" height="600px">
       <v-stepper v-model="e1" min-height="100%">
         <v-stepper-header>
-          <v-stepper-step :complete="e1 > 0" step="0" editable>
+          <v-stepper-step :complete="e1 > 0" step="0">
             Calentamiento
           </v-stepper-step>
 
@@ -25,12 +25,11 @@
             :key="n"
             :complete="e1 > n"
             :step="n"
-            editable
           >
             {{ n }}º Ciclo
           </v-stepper-step>
 
-          <v-stepper-step :complete="e1 > steps + 1" :step="steps + 1" editable>
+          <v-stepper-step :complete="e1 > steps + 1" :step="steps + 1">
             Enfriamiento
           </v-stepper-step>
         </v-stepper-header>
@@ -44,17 +43,16 @@
                   <v-col>
                     <v-text-field
                       v-model="cycleName[0]"
-                      :rules="rules.name"
-                      label="Nombre del ciclo"
+                      label="Nombre del ciclo*"
                       maxlength="25"
                       counter
+                      :rules="rules.name"
                     ></v-text-field>
                   </v-col>
                   <v-col>
                     <v-text-field
                       v-model="cycleRepetitions[0]"
-                      :rules="[rules.reps, rules.maxReps]"
-                      oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
+                      oninput="if(Number(this.value) > Number(this.max)) this.value = this.max; if(Number(this.value) < Number(this.min)) this.value = this.min"
                       hide-details
                       rounded
                       outlined
@@ -75,7 +73,7 @@
                   dense
                   outlined
                   auto-grow
-                  label="Descripcion"
+                  label="Descripcion*"
                   maxlength="200"
                   counter
                 ></v-textarea>
@@ -93,7 +91,7 @@
                     <v-select
                       v-model="selectedEx"
                       :items="getExerciseNames(exercises)"
-                      label="elija el ejercicio"
+                      label="elija el ejercicio*"
                       rounded
                       @change="onChange"
                       outlined
@@ -101,13 +99,13 @@
                   </v-col>
                   <v-col>
                     <v-text-field
+                      v-if="isExercise(selectedEx)"
                       v-model="repetitions"
-                      :rules="[rules.reps, rules.maxReps]"
-                      oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
+                      oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;if(Number(this.value) <= Number(this.min)) this.value = this.min"
                       rounded
                       outlined
                       type="number"
-                      min="1"
+                      min="0"
                       max="99"
                       onkeypress="return event.charCode >= 48"
                       label="repeticiones"
@@ -117,14 +115,13 @@
                   ><v-col>
                     <v-text-field
                       v-model="seconds"
-                      :rules="[rules.exSecs, rules.maxSecs]"
-                      oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
+                      oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;if(Number(this.value) <= Number(this.min)) this.value = this.min"
                       hide-details
                       rounded
                       outlined
                       label="segundos"
                       type="number"
-                      min="1"
+                      min="0"
                       max="999"
                       onkeypress="return event.charCode >= 48"
                     >
@@ -175,8 +172,7 @@
                       min="1"
                       max="99"
                       onkeypress="return event.charCode >= 48"
-                      :rules="[rules.reps, rules.maxReps]"
-                      oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
+                      oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;if(Number(this.value) <= Number(this.min)) this.value = this.min"
                       label="repeticiones del ciclo"
                       item-text="show"
                     >
@@ -189,7 +185,7 @@
                   dense
                   outlined
                   auto-grow
-                  label="Descripcion"
+                  label="Descripcion*"
                   maxlength="25"
                   counter
                 ></v-textarea>
@@ -208,7 +204,7 @@
                       <v-select
                         v-model="selectedEx"
                         :items="getExerciseNames(exercises)"
-                        label="elija el ejercicio"
+                        label="elija el ejercicio*"
                         maxlength="25"
                         rounded
                         @change="onChange"
@@ -222,10 +218,9 @@
                         rounded
                         outlined
                         type="number"
-                        min="1"
+                        min="0"
                         max="99"
-                        :rules="[rules.reps, rules.maxReps]"
-                        oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
+                        oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;if(Number(this.value) <= Number(this.min)) this.value = this.min"
                         onkeypress="return event.charCode >= 48"
                         label="repeticiones"
                         item-text="show"
@@ -235,12 +230,11 @@
                       <v-text-field
                         v-model="seconds"
                         hide-details
-                        :rules="[rules.exSecs, rules.maxSecs]"
-                        oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
+                        oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;if(Number(this.value) <= Number(this.min)) this.value = this.min"
                         rounded
                         outlined
                         label="segundos"
-                        min="1"
+                        min="0"
                         max="999"
                         onkeypress="return event.charCode >= 48"
                         type="number"
@@ -292,10 +286,9 @@
                       rounded
                       outlined
                       type="number"
-                      min="1"
+                      min="0"
                       max="99"
-                      :rules="[rules.reps, rules.maxReps]"
-                      oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
+                      oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;if(Number(this.value) <= Number(this.min)) this.value = this.min"
                       onkeypress="return event.charCode >= 48"
                       label="repeticiones del ciclo"
                       item-text="show"
@@ -309,7 +302,7 @@
                   dense
                   outlined
                   auto-grow
-                  label="Descripcion"
+                  label="Descripcion*"
                   maxlength="25"
                   counter
                 ></v-textarea>
@@ -328,7 +321,7 @@
                       <v-select
                         v-model="selectedEx"
                         :items="getExerciseNames(exercises)"
-                        label="elija el ejercicio"
+                        label="elija el ejercicio*"
                         rounded
                         @change="onChange"
                         outlined
@@ -341,10 +334,9 @@
                         rounded
                         outlined
                         type="number"
-                        min="1"
+                        min="0"
                         max="99"
-                        :rules="[rules.reps, rules.maxReps]"
-                        oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
+                        oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;if(Number(this.value) <= Number(this.min)) this.value = this.min"
                         onkeypress="return event.charCode >= 48"
                         label="repeticiones"
                         item-text="show"
@@ -356,9 +348,8 @@
                         hide-details
                         rounded
                         outlined
-                        min="1"
-                        :rules="[rules.exSecs, rules.maxSecs]"
-                        oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
+                        min="0"
+                        oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;if(Number(this.value) <= Number(this.min)) this.value = this.min"
                         onkeypress="return event.charCode >= 48"
                         label="segundos"
                         max="999"
@@ -437,25 +428,13 @@ export default {
   data() {
     return {
       rules: {
-        name: [
-          (val) =>
-            val === undefined || (val || "").length > 0 || "Campo obligatorio",
-        ],
-        detail: [
-          (val) =>
-            val === undefined || (val || "").length > 0 || "Campo obligatorio",
-        ],
+        name: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+        detail: [(val) => (val || "").length > 0 || "Campo obligatorio"],
         reps: [
-          (val) => val >= 1 || (val || "").length > 0 || "Campo obligatorio",
+          () => (this.repetitions || "").length > 0 || "Campo obligatorio",
         ],
-        maxReps: [(val) => val >= 1 || val > 99 || "numero maximo 99"],
-        exReps: [
-          (val) => val >= 1 || (val || "").length > 0 || "Campo obligatorio",
-        ],
-        maxSecs: [(val) => val >= 1 || val > 999 || "numero maximo 999"],
-        exSecs: [
-          (val) => val >= 1 || (val || "").length > 0 || "Campo obligatorio",
-        ],
+        exReps: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+        exSecs: [(val) => (val || "").length > 0 || "Campo obligatorio"],
       },
       isEmpty: true,
       continueFail: false,
@@ -600,6 +579,20 @@ export default {
         undefined,
       ];
       this.cycleRepetitions = [1, 1, 1, 1, 1, 1];
+    },
+    isExercise(ex) {
+      for (let i = 0; i < this.exercises.length; i++) {
+        console.log(this.exercises[i]);
+        if (
+          (this.exercises[i].name === ex &&
+            this.exercises[i].type === "exercise") ||
+          ex === "-"
+        ) {
+          console.log("retorno true");
+          return true;
+        }
+      }
+      return false;
     },
   },
   async created() {
