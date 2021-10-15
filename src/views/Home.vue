@@ -5,6 +5,7 @@
         <v-col>
           <h1 class="pt-5 texto">{{ seccion.title }}</h1>
           <div class="botom-line"></div>
+
           <v-container>
             <div v-if="seccion.type === 'rutina'">
               <div v-if="seccion.arr.length > 0">
@@ -23,6 +24,10 @@
                     <RoutineCard v-bind:routine="r" />
                   </v-slide-item>
                 </v-slide-group>
+                <br />
+                <br />
+                <br />
+                <v-divider />
               </div>
               <div v-else>
                 <v-row>
@@ -34,7 +39,7 @@
                       No hay rutinas en esta sección
                     </h3>
                     <h5 class="mb-2 mt-2" v-if="seccion.title == 'Destacados'">
-                      Lo sentimos, las rutinas destacas no están disponibles
+                      Lo sentimos, las rutinas destacadas no están disponibles
                       todavía
                     </h5>
                     <h5 v-else>
@@ -43,8 +48,16 @@
                     </h5>
                   </v-col>
                 </v-row>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <v-divider />
               </div>
             </div>
+
             <div v-else-if="seccion.type === 'ejercicio'">
               <div v-if="seccion.descansos.length > 0">
                 <h2>Descansos</h2>
