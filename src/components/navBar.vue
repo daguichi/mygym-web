@@ -4,14 +4,13 @@
       <!-- aca arriba podemos agregarle la siguiente cosa pero queda muy grueso al principio:  shrink-on-scroll-->
       <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
       <v-row align="center" justify="space-around">
-        <router-link to="/home" style="text-decoration: none">
-          <v-img
-            :src="require('../assets/MyGymLogo2.png')"
-            max-height="100"
-            max-width="140"
-          ></v-img>
-          <v-spacer></v-spacer>
-        </router-link>
+        <v-img
+          :src="require('../assets/MyGymLogo2.png')"
+          @click="toHome"
+          max-height="100"
+          max-width="140"
+        ></v-img>
+
         <router-link to="/home" style="text-decoration: none">
           <v-btn
             color="#6262f8"
@@ -20,7 +19,7 @@
             flat
             rounded
             x-large
-            class="darkBackground"
+            class="darkBackground "
           >
             Inicio
             <v-icon> right mdi-home</v-icon>
@@ -69,16 +68,10 @@
           </v-btn>
         </router-link>
 
-        <router-link
-          :to="{ name: 'Mi perfil' }"
-          style="text-decoration: none"
-        >
-          <v-btn  class="white--text" x-large rounded color="#6262f8">
+        <router-link :to="{ name: 'Mi perfil' }" style="text-decoration: none">
+          <v-btn class="white--text" x-large rounded color="#6262f8">
             <v-avatar size="44">
-              <img
-                :src="user.avatarUrl"
-                
-              />
+              <img :src="user.avatarUrl" />
             </v-avatar>
 
             {{ user.username }}
@@ -97,20 +90,28 @@ export default {
   props: {
     actualPage: String,
   },
+  methods: {
+    toHome() {
+      this.$router.push({ name: "Home" });
+    },
+  },
   computed: {
     ...mapState("security", {
       user: (state) => state.user,
     }),
-    
   },
 };
 </script>
 
 <style scoped>
 .darkBackground {
-  background-color: #518a83;
+  background-color: #6262f8;
 }
 .v-avatar {
   margin-right: 15px;
+}
+.router-link-active {
+  background-color: #84c5c0;
+  border-radius: 30px;
 }
 </style>
