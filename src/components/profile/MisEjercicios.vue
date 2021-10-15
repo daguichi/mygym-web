@@ -2,11 +2,11 @@
   <v-col>
     <v-sheet max-height="100vh" rounded="lg">
       <h1 class="pa-6 font-weight-bold">Mis ejercicios</h1>
-      <v-container v-if="this.myExercises.length > 0">
+      <v-container v-if="this.exs.length > 0">
         <v-carousel dark height="470">
           <v-carousel-item
             class="mx-auto"
-            v-for="my in this.myExercises"
+            v-for="my in this.exs"
             :key="my.id"
           >
             <ExerciseCard v-bind:exercise="my" />
@@ -40,19 +40,18 @@ import ExerciseCard from "@/components/ExerciseCard";
 export default {
   components: { ExerciseCard },
   methods: {
-    ...mapActions("exercises", { $getMines: "getMines" }),
+    ...mapActions("exercises", {  $getAll: "getAll"}),
   },
 
   computed: {
     ...mapState("exercises", {
-      myExercises: (state) => state.myExercises,
       exs: (state) => state.exercises,
     }),
   },
 
   async created() {
-    await this.$getMines();
-    console.log(this.myExercises);
+    await this.$getAll();
+    console.log(this.exs)
   },
 };
 </script>

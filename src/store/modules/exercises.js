@@ -1,10 +1,9 @@
 import {ExerciseApi} from "../../api/exercise"
-import {UserApi} from "../../api/user"
+
 export default {
     namespaced: true,
     state: {
         exercises: [],
-        myExercises: []
     },
     getters: {
         findIndex(state) {
@@ -64,18 +63,6 @@ export default {
             const result = await ExerciseApi.getAll(controller)
             commit('replaceAll', result.content)
             return result.content
-        },
-        async getMines({commit}, controller) {
-            const result = await ExerciseApi.getAll(controller);
-            const user = await UserApi.get();
-            let res = [];
-            result.content.forEach((exercise) => {
-                if(exercise.metadata.id === user.id)
-                    res.push(exercise)
-            })
-            console.log('en getMines', res)
-            commit('replaceMines', res)
-            return res;
         },
     },
 }
