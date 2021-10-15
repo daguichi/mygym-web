@@ -8,7 +8,7 @@
           <v-col>
             <v-text-field
               v-model="nombre"
-              label="Nombre*"
+              label="Nombres*"
               :rules="rules.name"
             ></v-text-field>
           </v-col>
@@ -114,12 +114,14 @@ export default {
       $user: (state) => state.user,
     }),
     validForm() {
-      return (
+      if (
         this.nombre === "" ||
         this.apellido === "" ||
         this.telefono === "" ||
         this.avatar === ""
-      );
+      )
+        return true;
+      return false;
     },
   },
   methods: {
@@ -141,15 +143,16 @@ export default {
 
       await this.$modifyUser(newUser);
       this.snackbar = true;
-      this.$router.push("/profile/miperfil");
+      await 2;
+      this.$router.go();
     },
   },
   created() {
-    this.nombre = this.$user.firstName;
-    this.apellido = this.$user.lastName;
-    this.genero = this.$user.gender;
-    this.telefono = this.$user.phone;
-    this.avatarUrl = this.$user.avatarUrl;
+    if (this.$user.firstName != null) this.nombre = this.$user.firstName;
+    if (this.$user.lastName != null) this.apellido = this.$user.lastName;
+    if (this.$user.gender != null) this.genero = this.$user.gender;
+    if (this.$user.phone != null) this.telefono = this.$user.phone;
+    if (this.$user.avatarUrl != null) this.avatarUrl = this.$user.avatarUrl;
     if (this.$user.gender == "male") this.genero = "Hombre";
     else if (this.$user.gender == "female") this.genero = "Mujer";
     else this.genero = "Otro";

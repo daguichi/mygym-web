@@ -169,6 +169,7 @@ export default {
       this.success = true;
       this.edit = !this.edit;
       await this.$getMines();
+      await 2;
       this.$router.go();
     },
   },
