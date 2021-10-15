@@ -199,35 +199,34 @@ export default {
       );
 
       try {
-        await this.$register({ credentials, rememberMe: true })
-        
+        await this.$register(credentials);
       } catch (error) {
         this.error = true;
-          if (error.code === 2) {
-            if (
-              error.details[0].includes("email") ||
-              error.details[0].includes("username")
-            ) {
-              this.errorDetail = "No puede usar este usuario o email";
-              this.email = null;
-              this.username = null;
-            }
+        if (error.code === 2) {
+          if (
+            error.details[0].includes("email") ||
+            error.details[0].includes("username")
+          ) {
+            this.errorDetail = "No puede usar este usuario o email";
+            this.email = null;
+            this.username = null;
           }
-          if (error.code === 2) {
-            if (
-              error.details[0].includes("email") ||
-              error.details[0].includes("username")
-            ) {
-              this.errorDetail = "No puede usar este usuario o email";
-              this.email = null;
-              this.username = null;
-            }
+        }
+        if (error.code === 2) {
+          if (
+            error.details[0].includes("email") ||
+            error.details[0].includes("username")
+          ) {
+            this.errorDetail = "No puede usar este usuario o email";
+            this.email = null;
+            this.username = null;
           }
-          console.log("al final del catch");
-          return;
+        }
+        console.log("al final del catch");
+        return;
       }
-      
-        router.push("Verification");
+
+      router.push("Verification");
     },
   },
 };

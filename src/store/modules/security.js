@@ -55,10 +55,8 @@ export default {
       dispatch("removeToken");
     },
 
-    async register({ dispatch }, { credentials, rememberMe }) {
+    async register(context, credentials) {
       await UserApi.register(credentials);
-      console.log(rememberMe);
-      dispatch();
     },
 
     async getCurrentUser({ state, commit }) {

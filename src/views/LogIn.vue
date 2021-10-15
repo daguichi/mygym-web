@@ -12,7 +12,8 @@
         >
 
         <v-row class="mt-14">
-          <v-col md="4">
+          <v-col md="4"
+            >
             <v-row align="center pt-6" justify="center">
               <v-img
                 class="border1"
@@ -137,7 +138,6 @@ export default {
         await this.$login({ credentials, rememberMe: true });
         await this.$getCurrentUser();
         this.clearResult();
-        
       } catch (error) {
         this.error = true;
         if (error.code === 4) {
