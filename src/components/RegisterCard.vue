@@ -1,5 +1,14 @@
 <template>
   <v-container>
+    <v-alert
+      type="error"
+      v-if="this.error"
+      width="100%"
+      dismissible
+      @click="this.error = false"
+      >{{ this.errorDetail }}</v-alert
+    >
+
     <v-row>
       <v-col>
         <v-row justify="center" align="center">
@@ -126,6 +135,8 @@ export default {
   name: "RegisterCard",
   data() {
     return {
+      error: false,
+      errorDetail: "Error inesperado.",
       show1: false,
       show2: true,
       show3: false,
@@ -184,10 +195,38 @@ export default {
       const credentials = new RegisterCredentials(
         this.username,
         this.password1,
-        this.email,
+        this.email
       );
-      this.$register({ credentials, rememberMe: true });
-      router.push("Verification");
+
+      this.$register({ credentials, rememberMe: true })
+        .then(() => {
+          router.push("Verification");
+        })
+        .catch((error) => {
+          this.error = true;
+          if (error.code === 2) {
+            if (
+              error.details[0].includes("email") ||
+              error.details[0].includes("username")
+            ) {
+              this.errorDetail = "No puede usar este usuario o email";
+              this.email = null;
+              this.username = null;
+            }
+          }
+          if (error.code === 2) {
+            if (
+              error.details[0].includes("email") ||
+              error.details[0].includes("username")
+            ) {
+              this.errorDetail = "No puede usar este usuario o email";
+              this.email = null;
+              this.username = null;
+            }
+          }
+          console.log("al final del catch");
+          return;
+        });
     },
   },
 };
