@@ -9,7 +9,10 @@
         v-bind="attrs"
         v-on="on"
       >
-        <v-icon x-large>mdi-information</v-icon>
+        <v-icon @click="showInfo = !showInfo" v-if="showInfo" x-large
+          >mdi-information-outline</v-icon
+        >
+        <v-icon v-else x-large> mdi-information</v-icon>
       </v-btn>
     </template>
     <v-card flat>
@@ -21,10 +24,23 @@
           <v-btn @click="confirm" color="#6262f8" outlined>
             <v-icon>mdi-delete</v-icon>
           </v-btn>
-          <v-btn @click="close" color="#6262f8" outlined>
+          <v-btn
+            @click="
+              close();
+              showInfo = !showInfo;
+            "
+            color="#6262f8"
+            outlined
+          >
             <v-icon>mdi-close</v-icon>
           </v-btn>
-          <v-btn v-if="edit" @click="save" color="#6262f8" class="ml-10" outlined>
+          <v-btn
+            v-if="edit"
+            @click="save"
+            color="#6262f8"
+            class="ml-10"
+            outlined
+          >
             GUARDAR <v-icon>mdi-content-save</v-icon>
           </v-btn>
         </v-card-title></v-row
@@ -44,21 +60,25 @@
       </div>
       <div v-else>
         <v-card-title class="black--text">
-          <v-text-field v-model="name" label="Nombre de la rutina"></v-text-field>
+          <v-text-field
+            v-model="name"
+            label="Nombre de la rutina"
+          ></v-text-field>
         </v-card-title>
         <v-card-text
-          ><v-text-field v-model="detail" label="Descripcion"></v-text-field
-        >
-        <v-row>
-          <v-col></v-col>
-          <v-col><v-autocomplete
-            :items="this.dificultad.map((dif) => dif.show)"
-          v-model="difficulty"
-          label="Dificultad"
-          placeholder="Seleccione"
-        ></v-autocomplete></v-col>
-          <v-col></v-col>
-        </v-row>
+          ><v-text-field v-model="detail" label="Descripcion"></v-text-field>
+          <v-row>
+            <v-col></v-col>
+            <v-col
+              ><v-autocomplete
+                :items="this.dificultad.map((dif) => dif.show)"
+                v-model="difficulty"
+                label="Dificultad"
+                placeholder="Seleccione"
+              ></v-autocomplete
+            ></v-col>
+            <v-col></v-col>
+          </v-row>
         </v-card-text>
       </div>
 
@@ -109,7 +129,7 @@
                   <v-col></v-col>
                 </v-row>
 
-                <template v-for="(ejs,j) in cycleExercises[i]">
+                <template v-for="(ejs, j) in cycleExercises[i]">
                   <v-card small class="mt-1" :key="ejs.exercise.id">
                     <v-row>
                       <v-col>
@@ -120,16 +140,19 @@
                       <v-col>
                         <v-card-text>
                           Duración:
-                          <v-text-field 
-                          type="number"
-                          v-model="exDur[i][j]"
+                          <v-text-field
+                            type="number"
+                            v-model="exDur[i][j]"
                           ></v-text-field>
                         </v-card-text>
                       </v-col>
                       <v-col>
                         <v-card-text>
                           Repeticiones:
-                          <v-text-field type="number" v-model="exReps[i][j]"></v-text-field>
+                          <v-text-field
+                            type="number"
+                            v-model="exReps[i][j]"
+                          ></v-text-field>
                         </v-card-text>
                       </v-col>
                     </v-row>
@@ -157,22 +180,23 @@ export default {
   data: () => ({
     loading: true,
     edit: false,
+    showInfo: true,
     snackbar: false,
     dialog: false,
     cycleExercises: [[], [], [], [], [], []],
     dificultad: [
-        { show: "Novato", value: "rookie" },
-        { show: "Principiante", value: "beginner" },
-        { show: "Intermedio", value: "intermediate" },
-        { show: "Avanzado", value: "advanced" },
-        { show: "Experto", value: "expert" },
-      ],
+      { show: "Novato", value: "rookie" },
+      { show: "Principiante", value: "beginner" },
+      { show: "Intermedio", value: "intermediate" },
+      { show: "Avanzado", value: "advanced" },
+      { show: "Experto", value: "expert" },
+    ],
     name: "",
     detail: "",
     difficulty: "",
     cycleReps: [],
     exReps: [[], [], [], [], [], []],
-    exDur: [[], [], [], [], [], []]
+    exDur: [[], [], [], [], [], []],
   }),
   props: {
     rutina: Object,
@@ -188,10 +212,10 @@ export default {
     },
   },
   methods: {
-    cancelActionRut: function () {
+    cancelActionRut: function() {
       this.$store.dispatch("changeCardID"); //es como un flag que avisa un cambio de estado
     },
-    translateDifficulty: function (difficulty) {
+    translateDifficulty: function(difficulty) {
       if (difficulty == "rookie") {
         return "Novato";
       }
@@ -228,10 +252,13 @@ export default {
     ...mapActions("routines", {
       $deleteRoutine: "delete",
       $getMines: "getMines",
-      $modifyRoutine: "modify"
+      $modifyRoutine: "modify",
     }),
     ...mapActions("cycle", { $getCycles: "getAll", $modifyCycle: "modify" }),
-    ...mapActions("cycleExercise", { $getCycleExercises: "getAll", $modifyCycleExercise: "modify" }),
+    ...mapActions("cycleExercise", {
+      $getCycleExercises: "getAll",
+      $modifyCycleExercise: "modify",
+    }),
     close() {
       this.dialog = false;
     },
@@ -248,14 +275,15 @@ export default {
       this.detail = this.rutina.detail;
       this.difficulty = this.translateDifficulty(this.rutina.difficulty);
       await this.$getCycles(this.rutina.id);
-      
-      
+
       for (let i = 0; i < this.ciclos.length; i++) {
-        this.cycleExercises[i] = await this.$getCycleExercises(this.ciclos[i].id);
-        this.cycleReps[i] = this.ciclos[i].repetitions
-        for(let j = 0; j < this.cycleExercises[i].length; j++) {
-          this.exReps[i][j] =  this.cycleExercises[i][j].repetitions;
-          this.exDur[i][j] =  this.cycleExercises[i][j].duration;
+        this.cycleExercises[i] = await this.$getCycleExercises(
+          this.ciclos[i].id
+        );
+        this.cycleReps[i] = this.ciclos[i].repetitions;
+        for (let j = 0; j < this.cycleExercises[i].length; j++) {
+          this.exReps[i][j] = this.cycleExercises[i][j].repetitions;
+          this.exDur[i][j] = this.cycleExercises[i][j].duration;
         }
       }
       this.loading = false;
@@ -268,11 +296,14 @@ export default {
         difficulty: this.difficulty,
         metadata: this.rutina.metadata,
         isPublic: this.rutina.isPublic,
-      }
-      console.log(this.ciclos)
+      };
+      console.log(this.ciclos);
       console.log(this.ciclos.length);
-      await this.$modifyRoutine({routineId: this.rutina.id, routine: newRoutine});
-      
+      await this.$modifyRoutine({
+        routineId: this.rutina.id,
+        routine: newRoutine,
+      });
+
       /*
       for(let i = 0; i < this.ciclos.length; i++) {
         let newCycle = {
@@ -296,7 +327,7 @@ export default {
       }
       this.edit = !this.edit;
       */
-    }
+    },
   },
 };
 </script>
