@@ -13,7 +13,7 @@
             <v-text-field
               v-model="nameRoutine"
               label="Nombre*"
-              maxlength="25"
+              maxlength="20"
               counter
               :rules="rules.name"
               required

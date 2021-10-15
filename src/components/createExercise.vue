@@ -129,7 +129,9 @@ export default {
     },
   },
   methods: {
-    ...mapActions("exercises", { $createExercise: "create" }),
+    ...mapActions("exercises", {
+      $createExercise: "create",
+    }),
     ...mapActions("security", { $getUser: "getCurrentUser" }),
     async save() {
       let user = await this.$getUser();

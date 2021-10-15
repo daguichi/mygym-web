@@ -44,7 +44,7 @@
                     <v-text-field
                       v-model="cycleName[0]"
                       label="Nombre del ciclo*"
-                      maxlength="25"
+                      maxlength="20"
                       counter
                       :rules="rules.name"
                     ></v-text-field>
@@ -53,12 +53,12 @@
                     <v-text-field
                       v-model="cycleRepetitions[0]"
                       oninput="if(Number(this.value) > Number(this.max)) this.value = this.max; if(Number(this.value) < Number(this.min)) this.value = this.min"
+                      max="99"
+                      min="1"
                       hide-details
                       rounded
                       outlined
                       type="number"
-                      max="99"
-                      min="1"
                       onkeypress="return event.charCode >= 48"
                       label="repeticiones del ciclo"
                       item-text="show"
@@ -158,7 +158,7 @@
                     <v-text-field
                       v-model="cycleName[n + 0]"
                       label="Nombre del ciclo"
-                      maxlength="25"
+                      maxlength="20"
                       counter
                     ></v-text-field>
                   </v-col>
@@ -186,7 +186,7 @@
                   outlined
                   auto-grow
                   label="Descripcion*"
-                  maxlength="25"
+                  maxlength="100"
                   counter
                 ></v-textarea>
                 <v-container>
@@ -205,7 +205,7 @@
                         v-model="selectedEx"
                         :items="getExerciseNames(exercises)"
                         label="elija el ejercicio*"
-                        maxlength="25"
+                        maxlength="20"
                         rounded
                         @change="onChange"
                         outlined
@@ -223,6 +223,7 @@
                         oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;if(Number(this.value) <= Number(this.min)) this.value = this.min"
                         onkeypress="return event.charCode >= 48"
                         label="repeticiones"
+                        v-if="isExercise(selectedEx)"
                         item-text="show"
                       >
                       </v-text-field> </v-col
@@ -275,7 +276,7 @@
                     <v-text-field
                       v-model="cycleName[steps + 1]"
                       label="Nombre del ciclo"
-                      maxlength="25"
+                      maxlength="20"
                       counter
                     ></v-text-field>
                   </v-col>
@@ -303,7 +304,7 @@
                   outlined
                   auto-grow
                   label="Descripcion*"
-                  maxlength="25"
+                  maxlength="100"
                   counter
                 ></v-textarea>
                 <v-container>
@@ -339,6 +340,7 @@
                         oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;if(Number(this.value) <= Number(this.min)) this.value = this.min"
                         onkeypress="return event.charCode >= 48"
                         label="repeticiones"
+                        v-if="isExercise(selectedEx)"
                         item-text="show"
                       >
                       </v-text-field> </v-col

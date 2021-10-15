@@ -35,7 +35,7 @@
           <v-text-field
             v-model="name"
             label="Nombre*"
-            maxlength="20"
+            maxlength="25"
             counter
             :rules="this.rules.name"
           ></v-text-field>
@@ -163,7 +163,7 @@ export default {
       this.success = true;
       this.edit = !this.edit;
       await this.$getMines();
-      this.$router.push("/profile/misejercicios");
+      this.$router.go();
     },
   },
   created() {

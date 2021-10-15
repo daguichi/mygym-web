@@ -1,87 +1,53 @@
 <template>
-  <div>
-    <br/>
+  <v-main class="grey lighten-3 fill-height">
     <v-container>
       <v-row align="center" justify="center">
-        <v-col></v-col>
-        <v-col class="options">
-          <v-btn elevation="2" outlined rounded x-large block class="primary text" color="#6262f8"> Todas </v-btn>
-        </v-col>
-        <v-col class="options" >
-          <v-btn elevation="2" rounded x-large outlined block class="primary text" color="#6262f8"> Mis rutinas </v-btn>
-        </v-col>   
-        <v-col></v-col>
-      </v-row>
-      <v-row align="center" justify="center">
-        <v-col cols="4">
-            <v-text-field
-                    :append-icon="'mdi-filter'"
-                    placeholder="Buscar"
-                    background-color="rgb(244, 249, 252)"
-                    elevation="2"
-                    color="black"
-                    dense
-                    filled
-                    rounded
-                    placeholderColor="#aaa"
-                    textAlign="left"
-                    textColor="#333"
-                    truncate="{false}"
-                    value=""
-                    x-large
-                  ></v-text-field>
-        </v-col>
+        <h1 class="mb-6">Todas las rutinas</h1>
       </v-row>
       <v-row :v-if="!loading">
-        <v-col cols="3"  v-for="cat in categories" :key="cat.id">
-          <category-card class="card" :title="cat.name" imgUrl= https://cdn.vuetifyjs.com/images/cards/sunshine.jpg></category-card>
-        </v-col> 
+        <v-col md="3" v-for="r in this.routines" :key="r.id">
+          <RoutineCard v-bind:routine="r" />
+        </v-col>
       </v-row>
     </v-container>
-  </div>
+  </v-main>
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex'
-import CategoryCard from '../components/CategoryCard.vue';
+import { mapState, mapActions } from "vuex";
+import RoutineCard from "../components/RoutineCard.vue";
 
 export default {
   name: "Routines",
   data() {
     return {
       loading: false,
-    }
+    };
   },
-  components: {CategoryCard},
+  components: { RoutineCard },
   methods: {
-    ...mapActions('exercises', ['fetchExercises']),
-    ...mapActions('category', { $getAll: 'getAll'}),
+    ...mapActions("routines", { $getAll: "getAll" }),
   },
   computed: {
-    ...mapState('exercises', {
-        exercises: state => state.exercises
-    }),
-    ...mapState('category', {
-        categories: state => state.categories
+    ...mapState("routines", {
+      routines: (state) => state.routines,
     }),
   },
-  
+
   async created() {
     this.loading = true;
-    let cat = await this.$getAll();
+    await this.$getAll();
     this.loading = false;
-    console.log(cat);
-  }
-
+  },
 };
 </script>
 
 <style scoped>
-.options{
+.options {
   padding: 50px 30px 30px;
 }
 .primary {
-  background-color: #92D9D3;
+  background-color: #92d9d3;
 }
 
 .card {

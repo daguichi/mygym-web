@@ -7,40 +7,33 @@
       outlined
       color="blue lighten-3"
     >
-      <div class="d-flex flex-no-wrap justify-space-between">
-        <div>
-          <v-card-title
-            class="text-h6"
-            align="center"
-            v-text="routine.name"
-          ></v-card-title>
+      <v-row justify="center" class="card-title mt-4">
+        <v-card-title
+          class="text-h6"
+          align="center"
+          v-text="routine.name"
+        ></v-card-title>
+      </v-row>
+      <v-card-subtitle class="font-italic font-weight-bold ">
+        rutina creada por: {{ routine.user.username }}
+      </v-card-subtitle>
 
-          <v-card-subtitle class="font-italic font-weight-thin microText"
-            >rutina creada por: {{ routine.user.username }}</v-card-subtitle
-          >
-
-          <v-icon v-for="n in routine.score" :key="n">mdi-star</v-icon>
-          <v-card-actions class="mt-4">
-            <v-container>
-              <v-row class="justify-center">
-                <v-btn icon class="mr-2" @click="fav"
-                  ><v-icon v-if="favved" color="primary" x-large rounded dark
-                    >mdi-heart</v-icon
-                  >
-                  <v-icon v-else color="primary" x-large rounded dark
-                    >mdi-heart-outline</v-icon
-                  >
-                </v-btn>
-                <info-routine v-bind:rutina="routine"></info-routine>
-              </v-row>
-            </v-container>
-          </v-card-actions>
-        </div>
-
-        <!-- <v-avatar class="ma-6" size="150" tile>
-          <v-img class="rounded-xl" :src="this.routine.metadata"></v-img>
-        </v-avatar> -->
-      </div>
+      <v-icon v-for="n in routine.score" :key="n">mdi-star</v-icon>
+      <v-card-actions class="mt-4">
+        <v-container>
+          <v-row class="justify-center">
+            <v-btn icon class="mr-2 pr-5" @click="fav"
+              ><v-icon v-if="favved" color="primary" x-large rounded dark
+                >mdi-heart</v-icon
+              >
+              <v-icon v-else color="primary" x-large rounded dark
+                >mdi-heart-outline</v-icon
+              >
+            </v-btn>
+            <info-routine v-bind:rutina="routine"></info-routine>
+          </v-row>
+        </v-container>
+      </v-card-actions>
     </v-card>
   </div>
 </template>
@@ -115,7 +108,9 @@ export default {
     rgba(0, 212, 255, 1) 100%
   );
 }
-
+.card-title {
+  text-align: center;
+}
 .microText {
   font-size: 0.65em;
 }
