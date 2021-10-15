@@ -115,8 +115,8 @@ export default {
         { show: "Ejercicio", value: "exercise" },
       ],
       rules: {
-        name: (val) => (val || "").length > 0 || "Campo obligatorio",
-        detail: (val) => (val || "").length > 0 || "Campo obligatorio",
+        name: [(val) => (val || "").length > 0 || "Campo obligatorio"],
+        detail: [(val) => (val || "").length > 0 || "Campo obligatorio"],
       },
     };
   },
@@ -129,7 +129,7 @@ export default {
   props: { exercise: Object },
   methods: {
     ...mapActions("exercises", {
-      $delete: "delete",
+      $deleteExercise: "delete",
       $getMines: "getMines",
       $modifyExercise: "modify",
     }),
@@ -137,7 +137,7 @@ export default {
       this.dialog = false;
     },
     async deleteEx() {
-      await this.$delete(this.exercise);
+      await this.$deleteExercise(this.exercise);
       await this.$getMines();
       this.confirmSnack = false;
     },

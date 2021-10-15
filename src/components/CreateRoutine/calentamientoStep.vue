@@ -61,7 +61,7 @@
                       type="number"
                       max="99"
                       min="1"
-                      onkeypress="return event.charCode >= 49"
+                      onkeypress="return event.charCode >= 48"
                       label="repeticiones del ciclo"
                       item-text="show"
                     >
@@ -109,7 +109,7 @@
                       type="number"
                       min="1"
                       max="99"
-                      onkeypress="return event.charCode >= 49"
+                      onkeypress="return event.charCode >= 48"
                       label="repeticiones"
                       item-text="show"
                     >
@@ -126,7 +126,7 @@
                       type="number"
                       min="1"
                       max="999"
-                      onkeypress="return event.charCode >= 49"
+                      onkeypress="return event.charCode >= 48"
                     >
                     </v-text-field>
                   </v-col>
@@ -174,7 +174,7 @@
                       type="number"
                       min="1"
                       max="99"
-                      onkeypress="return event.charCode >= 49"
+                      onkeypress="return event.charCode >= 48"
                       :rules="[rules.reps, rules.maxReps]"
                       oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
                       label="repeticiones del ciclo"
@@ -226,7 +226,7 @@
                         max="99"
                         :rules="[rules.reps, rules.maxReps]"
                         oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
-                        onkeypress="return event.charCode >= 49"
+                        onkeypress="return event.charCode >= 48"
                         label="repeticiones"
                         item-text="show"
                       >
@@ -242,7 +242,7 @@
                         label="segundos"
                         min="1"
                         max="999"
-                        onkeypress="return event.charCode >= 49"
+                        onkeypress="return event.charCode >= 48"
                         type="number"
                       >
                       </v-text-field>
@@ -296,7 +296,7 @@
                       max="99"
                       :rules="[rules.reps, rules.maxReps]"
                       oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
-                      onkeypress="return event.charCode >= 49"
+                      onkeypress="return event.charCode >= 48"
                       label="repeticiones del ciclo"
                       item-text="show"
                     >
@@ -345,7 +345,7 @@
                         max="99"
                         :rules="[rules.reps, rules.maxReps]"
                         oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
-                        onkeypress="return event.charCode >= 49"
+                        onkeypress="return event.charCode >= 48"
                         label="repeticiones"
                         item-text="show"
                       >
@@ -359,7 +359,7 @@
                         min="1"
                         :rules="[rules.exSecs, rules.maxSecs]"
                         oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
-                        onkeypress="return event.charCode >= 49"
+                        onkeypress="return event.charCode >= 48"
                         label="segundos"
                         max="999"
                         type="number"
