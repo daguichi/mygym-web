@@ -18,10 +18,10 @@
     <v-card flat>
       <v-row justify="space-around" align="center"
         ><v-card-title>
-          <v-btn color="#6262f8" outlined @click="edit = !edit">
+          <v-btn v-if="permission" color="#6262f8" outlined @click="edit = !edit">
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
-          <v-btn @click="confirm" color="#6262f8" outlined>
+          <v-btn v-if="permission" @click="confirm" color="#6262f8" outlined>
             <v-icon>mdi-delete</v-icon>
           </v-btn>
           <v-btn
@@ -189,6 +189,7 @@ export default {
     showInfo: true,
     snackbar: false,
     dialog: false,
+    permission: false,
     cycleExercises: [[], [], [], [], [], []],
     dificultad: [
       { show: "Novato", value: "rookie" },
@@ -210,6 +211,7 @@ export default {
   computed: {
     ...mapState("cycle", { ciclos: (state) => state.cycle }),
     ...mapState("routines", { routines: state => state.routines }),
+    ...mapState("security", { user: state => state.user }),
     isPrivate() {
       if (!this.showUsername) {
         return !this.rutina.isPublic;
@@ -219,6 +221,9 @@ export default {
     },
   },
   methods: {
+    canEdit() {
+      return this.user.id === this.rutina.user.id;
+    },
     cancelActionRut: function() {
       this.$store.dispatch("changeCardID"); //es como un flag que avisa un cambio de estado
     },
@@ -332,5 +337,9 @@ export default {
       this.edit = !this.edit;
     },
   },
+  created() {
+    console.log('puede editar', this.canEdit())
+    this.permission = this.canEdit();
+  }
 };
 </script>
