@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div>
     <div class="fondo">
       <v-container>
@@ -137,7 +137,7 @@ export default {
         await this.$login({ credentials, rememberMe: true });
         await this.$getCurrentUser();
         this.clearResult();
-        router.push("Verification");
+        
       } catch (error) {
         this.error = true;
         if (error.code === 4) {

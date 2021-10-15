@@ -198,12 +198,11 @@ export default {
         this.email
       );
 
-      this.$register({ credentials, rememberMe: true })
-        .then(() => {
-          router.push("Verification");
-        })
-        .catch((error) => {
-          this.error = true;
+      try {
+        await this.$register({ credentials, rememberMe: true })
+        
+      } catch (error) {
+        this.error = true;
           if (error.code === 2) {
             if (
               error.details[0].includes("email") ||
@@ -226,7 +225,9 @@ export default {
           }
           console.log("al final del catch");
           return;
-        });
+      }
+      
+        router.push("Verification");
     },
   },
 };
