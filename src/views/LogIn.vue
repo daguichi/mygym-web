@@ -2,6 +2,15 @@
   <div>
     <div class="fondo">
       <v-container>
+        <v-alert
+          type="error"
+          v-if="this.error"
+          width="100%"
+          dismissible
+          @click="this.error = false"
+          >{{ this.errorDetail }}</v-alert
+        >
+
         <v-row class="mt-14">
           <v-col md="4">
             <v-row align="center pt-6" justify="center">
@@ -15,7 +24,7 @@
           </v-col>
           <v-spacer></v-spacer>
           <v-col md="4">
-            <v-container class="border2 ">
+            <v-container class="border2">
               <v-row>
                 <v-text-field
                   v-model="username"
@@ -32,7 +41,6 @@
                   value=""
                   outlined
                   x-large
-                  :error-messages="result"
                 ></v-text-field>
               </v-row>
               <v-row>
@@ -56,7 +64,6 @@
                   value=""
                   outlined
                   x-large
-                  :error-messages="result"
                 ></v-text-field>
               </v-row>
               <v-row class="text-center" justify="center">
@@ -99,7 +106,8 @@ export default {
       show4: false,
       username: "",
       password: "",
-      result: null,
+      error: null,
+      result: "Error inesperado",
       controller: null,
       rules: {
         required: (value) => !!value || "Requerido.",
@@ -120,9 +128,6 @@ export default {
       $login: "login",
       $logout: "logout",
     }),
-    setResult() {
-      this.result = "credenciales invalidas, intente de nuevo";
-    },
     clearResult() {
       this.result = null;
     },
@@ -132,9 +137,16 @@ export default {
         await this.$login({ credentials, rememberMe: true });
         await this.$getCurrentUser();
         this.clearResult();
-      } catch (e) {
-        this.setResult(e);
-        console.log(e);
+        router.push("Verification");
+      } catch (error) {
+        this.error = true;
+        if (error.code === 4) {
+          this.errorDetail = "Credenciales incorrectas";
+          this.email = null;
+          this.username = null;
+        }
+
+        console.log("al final del catch");
         return;
       }
 
