@@ -42,7 +42,10 @@
             outlined
           >
             GUARDAR <v-icon>mdi-content-save</v-icon>
+            
           </v-btn>
+          <v-btn  @click="console" color="#6262f8" class="ml-10" outlined>
+            CONSOLE </v-btn>
         </v-card-title></v-row
       >
 
@@ -206,6 +209,7 @@ export default {
   },
   computed: {
     ...mapState("cycle", { ciclos: (state) => state.cycle }),
+    ...mapState("routines", { routines: state => state.routines }),
     isPrivate() {
       if (!this.showUsername) {
         return !this.rutina.isPublic;
@@ -254,6 +258,7 @@ export default {
     },
     ...mapActions("routines", {
       $deleteRoutine: "delete",
+      $getAllRoutines: "getAll",
       $getMines: "getMines",
       $modifyRoutine: "modify",
     }),
