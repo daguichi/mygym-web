@@ -2,9 +2,9 @@
   <div>
     <div class="fondo">
       <v-container>
-        <v-row>
+        <v-row class="mt-14">
           <v-col md="4">
-            <v-row align="center" justify="center">
+            <v-row align="center pt-6" justify="center">
               <v-img
                 class="border1"
                 max-height="250"
@@ -13,9 +13,9 @@
               ></v-img>
             </v-row>
           </v-col>
-          <v-col />
+          <v-spacer></v-spacer>
           <v-col md="4">
-            <v-container class="border2">
+            <v-container class="border2 ">
               <v-row>
                 <v-text-field
                   v-model="username"
@@ -23,7 +23,6 @@
                   placeholder="Usuario*"
                   elevation="2"
                   color="black"
-                  
                   filled
                   rounded
                   placeholderColor="#aaa"
@@ -48,7 +47,6 @@
                   background-color="#e7e7e8"
                   elevation="2"
                   color="black"
-                  
                   filled
                   rounded
                   placeholderColor="#aaa"
@@ -88,7 +86,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters} from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 import { Credentials } from "../api/user";
 import router from "../router/index";
 export default {
@@ -113,11 +111,10 @@ export default {
     ...mapState("security", {
       $user: (state) => state.user,
     }),
-    ...mapState("security", {$token: state => state.token}),
-    ...mapGetters("security", {$isLoggedIn: 'isLoggedIn'})
+    ...mapState("security", { $token: (state) => state.token }),
+    ...mapGetters("security", { $isLoggedIn: "isLoggedIn" }),
   },
   methods: {
-  
     ...mapActions("security", {
       $getCurrentUser: "getCurrentUser",
       $login: "login",
@@ -148,14 +145,11 @@ export default {
       await this.$logout();
       this.clearResult();
     },
-   
 
     abort() {
       this.controller.abort();
     },
   },
-
- 
 };
 </script>
 

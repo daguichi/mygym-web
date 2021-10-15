@@ -59,9 +59,12 @@
           </v-btn>
           <v-btn v-if="edit" color="blue darken-4" @click="save">GUARDAR</v-btn>
           <v-btn color="deep-purple " text @click="edit = !edit"
-            ><v-icon> mdi-pencil</v-icon></v-btn
-          ></v-row
-        >
+            ><v-icon v-if="!edit" rounded color="deep-purple " v>
+              mdi-pencil-outline</v-icon
+            >
+            <v-icon v-else rounded outlined> mdi-pencil</v-icon>
+          </v-btn>
+        </v-row>
       </v-card-actions>
 
       <v-snackbar v-model="confirmSnack">
