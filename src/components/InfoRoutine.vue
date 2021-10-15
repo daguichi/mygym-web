@@ -50,6 +50,15 @@
           >
             GUARDAR <v-icon>mdi-content-save</v-icon>
           </v-btn>
+          <v-snackbar v-model="snackbar2" color="success"
+            ><v-icon>mdi-check</v-icon>
+            Rutina editada correctamente
+            <template v-slot:action="{ attrs }">
+              <v-btn text v-bind="attrs" @click="close">
+                Cerrar
+              </v-btn>
+            </template>
+          </v-snackbar>
         </v-card-title></v-row
       >
 
@@ -215,6 +224,7 @@ export default {
     edit: false,
     showInfo: true,
     snackbar: false,
+    snackbar2: false,
     dialog: false,
     permission: false,
     cycleExercises: [[], [], [], [], [], []],
@@ -375,6 +385,7 @@ export default {
         }
       }
       this.edit = !this.edit;
+      this.snackbar2 = true;
       this.$router.go();
     },
   },

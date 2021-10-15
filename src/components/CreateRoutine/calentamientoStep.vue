@@ -142,7 +142,7 @@
             <v-row>
               <v-col>
                 <v-btn color="#6262f8" outlined @click="cancel">
-                  Cancelar
+                  Anterior
                 </v-btn>
               </v-col>
               <v-col>

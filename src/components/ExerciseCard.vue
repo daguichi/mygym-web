@@ -61,7 +61,13 @@
           ><v-btn color="deep-purple" text @click="confirm">
             <v-icon>mdi-delete</v-icon>
           </v-btn>
-          <v-btn v-if="edit" color="blue darken-4" @click="save">GUARDAR</v-btn>
+          <v-btn
+            :disabled="name === '' || detail === ''"
+            v-if="edit"
+            color="blue darken-4"
+            @click="save"
+            >GUARDAR</v-btn
+          >
           <v-btn color="deep-purple " text @click="edit = !edit"
             ><v-icon v-if="!edit" rounded color="deep-purple " v>
               mdi-pencil-outline</v-icon
@@ -89,7 +95,7 @@
       </v-snackbar>
 
       <v-snackbar v-model="success" color="success"
-        ><v-icon class="save">mdi-check</v-icon>
+        ><v-icon>mdi-check</v-icon>
         Se ha modificado el ejerciico correctamente
         <template v-slot:action="{ attrs }">
           <v-btn text v-bind="attrs" @click="success = false"> Cerrar </v-btn>
@@ -169,7 +175,6 @@ export default {
   created() {
     this.name = this.exercise.name;
     this.detail = this.exercise.detail;
-    console.log(this.detail);
     if (this.exercise.type == "exercise") this.type = "Ejercicio";
     else this.type = "Descanso";
   },
