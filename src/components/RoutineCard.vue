@@ -22,7 +22,7 @@
       <v-card-actions class="mt-4">
         <v-container>
           <v-row class="justify-center">
-            <v-btn icon class="mr-2 mr-5" @click="fav"
+            <v-btn icon class="mr-2 pr-5" @click="fav"
               ><v-icon v-if="favved" color="primary" x-large rounded dark
                 >mdi-heart</v-icon
               >
