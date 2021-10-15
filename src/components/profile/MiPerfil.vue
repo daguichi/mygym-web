@@ -55,8 +55,7 @@
           <v-col>
             <v-text-field
               v-model="avatarUrl"
-              label="Avatar (ingrese URL)*"
-              :rules="rules.avatar"
+              label="Avatar (ingrese URL)"
             ></v-text-field>
           </v-col>
           <v-col></v-col>
