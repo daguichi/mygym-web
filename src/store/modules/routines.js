@@ -11,7 +11,6 @@ export default {
   getters: {
     findIndex(state) {
       return (routine) => {
-        console.log(routine);
         return state.routines.findIndex((item) => item.id === routine.id);
       };
     },
@@ -76,16 +75,19 @@ export default {
     },
     async getFavs({ commit }, controller) {
       const result = await RoutineApi.getFavs(controller);
-      console.log(result);
       commit("replaceFavs", result.content);
       return result.content;
     },
-    async markFav({ getters, commit }, routineId, controller) {
-      const result = await RoutineApi.markFav(routineId, controller);
-      if (!getters.findFav(result)) commit("pushFav", result);
-      return result;
+    async markFav({ getters, commit }, routineId) {
+      await RoutineApi.markFav(routineId);
+      if (!getters.findIndex(routineId)) commit("push", routineId);
+      return routineId;
     },
-
+    async unmarkFav({ getters, commit }, routineId) {
+      await RoutineApi.unmarkFav(routineId);
+      const index = getters.findIndex(routineId);
+      if (index >= 0) commit("splice", index);
+    },
     async getMines({ commit }, controller) {
       const result = await RoutineApi.getMines(controller);
       commit("replaceMines", result);
