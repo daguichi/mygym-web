@@ -24,9 +24,9 @@
           <v-btn @click="close" color="#6262f8" outlined>
             <v-icon>mdi-close</v-icon>
           </v-btn>
-          <v-btn v-if="edit" @click="save" color="#6262f8" class="ml-10" outlined>
-            GUARDAR <v-icon>mdi-content-save</v-icon>
-          </v-btn>
+          <v-btn  @click="console" color="#6262f8" class="ml-10" outlined>
+            CONSOLE </v-btn>
+          
         </v-card-title></v-row
       >
 
@@ -153,6 +153,9 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import { RoutineApi } from "../api/routines"
+import { CycleApi } from "../api/cycle"
+import { CycleExerciseApi } from "../api/cycleExercise"
 export default {
   data: () => ({
     loading: true,
@@ -263,40 +266,39 @@ export default {
     async save() {
       this.difficulty = this.traslateDifficulty(this.difficulty);
       let newRoutine = {
+        id: this.rutina.id,
         name: this.name,
         detail: this.detail,
         difficulty: this.difficulty,
         metadata: this.rutina.metadata,
         isPublic: this.rutina.isPublic,
       }
-      console.log(this.ciclos)
-      console.log(this.ciclos.length);
-      await this.$modifyRoutine({routineId: this.rutina.id, routine: newRoutine});
-      
-      /*
+      await RoutineApi.modify(newRoutine);
       for(let i = 0; i < this.ciclos.length; i++) {
         let newCycle = {
           name: this.ciclos[i].name,
           detail: this.ciclos[i].detail,
           type: this.ciclos[i].type,
           order:  this.ciclos[i].order,
-          repetitions:  this.cycleReps[i],
+          repetitions:  parseInt(this.cycleReps[i]),
           metadata: null
         }
-        console.log(newCycle);
-        await this.$modifyCycle({routineId: this.rutina.id, cycleId: this.ciclos[i].id, cycle: newCycle});
+        
+        await CycleApi.modify(this.rutina.id, this.ciclos[i].id, newCycle);
         for(let j = 0; j < this.cycleExercises[i].length; j++) {
           let newEx = {
             order:  this.cycleExercises[i][j].order,
-            repetitions: parseInt(this.cycleExercises[i][j].repetitions),
-            duration: parseInt(this.cycleExercises[i][j].duration)
+            repetitions: parseInt(this.exReps[i][j]),
+            duration: parseInt(this.exDur[i][j])
           }
-          await this.$modifyCycleExercise({cycleId: this.ciclos[i].id, exerciseId: this.cycleExercises[i][j].id, cycleExercise: newEx });
+          console.log(this.cycleExercises[i][j])
+          console.log('antes del modify', i, j, this.cycleExercises[i][j].exercise.id)
+          await CycleExerciseApi.modify(this.ciclos[i].id, this.cycleExercises[i][j].exercise.id, newEx);
         }
       }
       this.edit = !this.edit;
-      */
-    }
+      
+    },
   },
 };
 </script>

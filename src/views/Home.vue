@@ -62,6 +62,7 @@ export default {
       { title: "Mis rutinas", arr: store.misrutinas },
       { title: "Historial", arr: store.historial },
     ];
+    console.log(this.routines);
   },
   methods: {
     ...mapActions("category", { $createCategory: "create" }),
