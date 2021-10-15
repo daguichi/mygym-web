@@ -44,8 +44,6 @@
             GUARDAR <v-icon>mdi-content-save</v-icon>
             
           </v-btn>
-          <v-btn  @click="console" color="#6262f8" class="ml-10" outlined>
-            CONSOLE </v-btn>
         </v-card-title></v-row
       >
 

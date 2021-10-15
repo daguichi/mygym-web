@@ -9,7 +9,7 @@
     <div v-if="this.favs.length > 0">
       <v-carousel dark height="300">
         <v-carousel-item v-for="fav in this.favs" :key="fav.id">
-          <RoutineCard v-bind:routine="fav" />
+          <RoutineCard @refreshCarousel="onRefresh" v-bind:routine="fav" />
         </v-carousel-item>
       </v-carousel>
     </div>
@@ -39,6 +39,9 @@ export default {
   methods: {
     goBack() {
       return this.$router.go(-1);
+    },
+    async onRefresh() {
+      await this.$getFavs();
     },
     ...mapActions("routines", { $getFavs: "getFavs" }),
   },

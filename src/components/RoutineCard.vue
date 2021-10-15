@@ -25,10 +25,10 @@
               <v-row class="justify-center">
                 <v-btn icon class="mr-2" @click="fav"
                   ><v-icon v-if="favved" color="primary" x-large rounded dark
-                    >mdi-heart-outline</v-icon
+                    >mdi-heart</v-icon
                   >
                   <v-icon v-else color="primary" x-large rounded dark
-                    >mdi-heart</v-icon
+                    >mdi-heart-outline</v-icon
                   >
                 </v-btn>
                 <info-routine v-bind:rutina="routine"></info-routine>
@@ -81,27 +81,26 @@ export default {
     },
     async fav() {
       if (!this.favved) {
-        this.$markFav(this.routine.id)
+        this.$markFav(this.routine.id);
         this.favved = true;
-      }
-      else {
+      } else {
         this.$unmarkFav(this.routine.id);
         this.favved = false;
       }
       this.$getFavs();
-    }
+      if (this.$router.currentRoute.name === "Favorites") {
+        this.$emit("refreshCarousel");
+      }
+    },
   },
   computed: {
     ...mapState("security", { $user: (state) => state.user }),
     ...mapState("routines", { favs: (state) => state.favs }),
-    
   },
   components: { infoRoutine },
   async created() {
     await this.$getFavs();
-    // console.log("en created de routine card", this.favs);
-    // this.isFav();
-    // console.log(this.routine.id, "es fav", this.favved);
+    this.isFav();
   },
 };
 </script>
