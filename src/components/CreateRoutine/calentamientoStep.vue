@@ -82,18 +82,19 @@
                   v-for="exercise in selectedExercises[0]"
                   :key="exercise.order"
                 >
-                  {{ exercise.name }} - segundos:{{ exercise.duration }} -
-                  repeticiones:{{ exercise.repetitions }}
+                  <ex-in-routine :nombre="exercise.name" :cant="exercise.repetitions" :tiempo="exercise.duration" :exercise="exercise" id=0 @notify="onNotify">
+                  </ex-in-routine>
+                  
                 </v-row>
 
                 <v-row>
                   <v-col>
                     <v-select
                       v-model="selectedEx"
-                      :items="getExerciseNames(exercises)"
+                      :items="exercisesNames[0]"
                       label="elija el ejercicio*"
                       rounded
-                      @change="onChange"
+                      @change="onChange(0)"
                       outlined
                     ></v-select>
                   </v-col>
@@ -130,7 +131,7 @@
                   <v-col>
                     <!-- el boton queda deshabilitado si no se selecciono ninguna opcion -->
                     <v-btn
-                      :disabled="isEmpty"
+                      :disabled="isEmpty || repeated"
                       @click="addEx(0, selectedEx, repetitions, seconds)"
                     >
                       +
@@ -157,9 +158,11 @@
                   <v-col>
                     <v-text-field
                       v-model="cycleName[n + 0]"
-                      label="Nombre del ciclo"
+                      label="Nombre del ciclo*"
                       maxlength="20"
                       counter
+                      :rules="rules.name"
+
                     ></v-text-field>
                   </v-col>
                   <v-col>
@@ -186,7 +189,8 @@
                   outlined
                   auto-grow
                   label="Descripcion*"
-                  maxlength="100"
+                  :rules="rules.detail"
+                  maxlength="200"
                   counter
                 ></v-textarea>
                 <v-container>
@@ -195,19 +199,19 @@
                     v-for="exercise in selectedExercises[n + 0]"
                     :key="exercise.order"
                   >
-                    {{ exercise.name }} - segundos:{{ exercise.duration }} -
-                    repeticiones:{{ exercise.repetitions }}
+                    <ex-in-routine :nombre="exercise.name" :cant="exercise.repetitions" :tiempo="exercise.duration" :exercise="exercise" :id=n @notify="onNotify">
+                  </ex-in-routine>
                   </v-row>
 
                   <v-row>
                     <v-col>
                       <v-select
                         v-model="selectedEx"
-                        :items="getExerciseNames(exercises)"
+                        :items="exercisesNames[n+0]"
                         label="elija el ejercicio*"
                         maxlength="20"
                         rounded
-                        @change="onChange"
+                        @change="onChange(n+0)"
                         outlined
                       ></v-select>
                     </v-col>
@@ -244,7 +248,7 @@
                     </v-col>
                     <v-col>
                       <v-btn
-                        :disabled="isEmpty"
+                        :disabled="isEmpty || repeated"
                         @click="addEx(n + 0, selectedEx, repetitions, seconds)"
                       >
                         +
@@ -275,9 +279,11 @@
                   <v-col>
                     <v-text-field
                       v-model="cycleName[steps + 1]"
-                      label="Nombre del ciclo"
+                      label="Nombre del ciclo*"
                       maxlength="20"
                       counter
+                      :rules="rules.name"
+
                     ></v-text-field>
                   </v-col>
                   <v-col>
@@ -304,7 +310,9 @@
                   outlined
                   auto-grow
                   label="Descripcion*"
-                  maxlength="100"
+                      :rules="rules.detail"
+
+                  maxlength="200"
                   counter
                 ></v-textarea>
                 <v-container>
@@ -313,18 +321,18 @@
                     v-for="exercise in selectedExercises[steps + 1]"
                     :key="exercise.order"
                   >
-                    {{ exercise.name }} - segundos:{{ exercise.duration }} -
-                    repeticiones:{{ exercise.repetitions }}
+                    <ex-in-routine :nombre="exercise.name" :cant="exercise.repetitions" :tiempo="exercise.duration" :exercise="exercise" :id="steps+1" @notify="onNotify">
+                  </ex-in-routine>
                   </v-row>
 
                   <v-row>
                     <v-col>
                       <v-select
                         v-model="selectedEx"
-                        :items="getExerciseNames(exercises)"
+                        :items="exercisesNames[steps+1]"
                         label="elija el ejercicio*"
                         rounded
-                        @change="onChange"
+                        @change="onChange(steps+1)"
                         outlined
                       ></v-select>
                     </v-col>
@@ -361,7 +369,7 @@
                     </v-col>
                     <v-col>
                       <v-btn
-                        :disabled="isEmpty"
+                        :disabled="isEmpty || repeated"
                         @click="
                           addEx(steps + 1, selectedEx, repetitions, seconds)
                         "
@@ -418,8 +426,9 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import exInRoutine from "../exInRoutine.vue";
 export default {
-  components: {},
+  components: {exInRoutine},
   name: "calentamientoStep",
   props: {
     title: String,
@@ -429,6 +438,8 @@ export default {
   },
   data() {
     return {
+      exercisesNames: [[],[], [], [] ,[] ,[]],
+      repeated: false,
       rules: {
         name: [(val) => (val || "").length > 0 || "Campo obligatorio"],
         detail: [(val) => (val || "").length > 0 || "Campo obligatorio"],
@@ -465,14 +476,25 @@ export default {
         return false;
       }
     },
+    names(i) {
+      return this.exercisesNames[i];
+    }
   },
   methods: {
-    onChange() {
+    onChange(i) {
       if (this.isEmpty) {
         this.isEmpty = !this.isEmpty;
       }
       if (this.selectedEx === 0) {
         this.isEmpty = false;
+      }
+      this.repeated = false;
+      for(let j = 0; j < this.selectedExercises[i].length; j++) {
+        console.log(this.selectedExercises[i][j]);
+        if(this.selectedEx === this.selectedExercises[i][j].name) {
+          console.log("entre al if");
+          this.repeated = true;
+        }
       }
     },
     cancel() {
@@ -596,9 +618,21 @@ export default {
       }
       return false;
     },
+    onNotify(exercise,i) {
+      for(let j = 0; j < this.selectedExercises[i].length; j++) {
+        if(exercise.order === this.selectedExercises[i][j].order) {
+          this.selectedExercises[i].splice(j, j+1)
+          this.repeated = false;
+        }
+      }
+    }
   },
   async created() {
     this.$getExercises();
+    for(let i = 0; i < 6; i++) {
+      this.exercisesNames[i] = this.getExerciseNames();
+      console.log(this.exercisesNames)
+    }
   },
 };
 </script>
