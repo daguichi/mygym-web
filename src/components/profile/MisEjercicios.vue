@@ -51,7 +51,6 @@ export default {
 
   async created() {
     await this.$getAll();
-    console.log(this.exs)
   },
 };
 </script>

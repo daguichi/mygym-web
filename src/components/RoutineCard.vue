@@ -65,8 +65,6 @@ export default {
     },
     isFav() {
       this.favs.forEach((fav) => {
-        // console.log("pasando por rutina", fav.id);
-        // console.log("viendo el argumento.id", this.routine.id);
         if (fav.id === this.routine.id) {
           this.favved = true;
         }

@@ -222,7 +222,6 @@ export default {
             this.username = null;
           }
         }
-        console.log("al final del catch");
         return;
       }
 

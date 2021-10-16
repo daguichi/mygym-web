@@ -146,11 +146,9 @@ export default {
           this.username = null;
         }
 
-        console.log("al final del catch");
         return;
       }
 
-      console.log(this.$user);
       router.push("Home");
     },
     async logout() {

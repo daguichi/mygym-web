@@ -28,9 +28,6 @@ export default {
     },
     actions: {
         async create({getters, commit}, {cycleId, exerciseId, cycleExercise}) {
-            console.log(cycleId)
-            console.log(exerciseId)
-            console.log(cycleExercise)
             const result = await CycleExerciseApi.add(cycleId, exerciseId, cycleExercise, null)
             if (!getters.findIndex(result))
                 commit('push', result)

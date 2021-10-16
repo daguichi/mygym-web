@@ -28,9 +28,6 @@ export default {
     },
     actions: {
         async create({getters, commit}, {cycle, routineId}) {
-            console.log("aca en el store de ciclos");
-            console.log(cycle);
-            console.log(routineId);
             const result = await CycleApi.add(routineId, cycle, null)
             if (!getters.findIndex(result))
                 commit('push', result)

@@ -490,9 +490,7 @@ export default {
       }
       this.repeated = false;
       for(let j = 0; j < this.selectedExercises[i].length; j++) {
-        console.log(this.selectedExercises[i][j]);
         if(this.selectedEx === this.selectedExercises[i][j].name) {
-          console.log("entre al if");
           this.repeated = true;
         }
       }
@@ -606,13 +604,11 @@ export default {
     },
     isExercise(ex) {
       for (let i = 0; i < this.exercises.length; i++) {
-        console.log(this.exercises[i]);
         if (
           (this.exercises[i].name === ex &&
             this.exercises[i].type === "exercise") ||
           ex === "-"
         ) {
-          console.log("retorno true");
           return true;
         }
       }
@@ -631,7 +627,6 @@ export default {
     this.$getExercises();
     for(let i = 0; i < 6; i++) {
       this.exercisesNames[i] = this.getExerciseNames();
-      console.log(this.exercisesNames)
     }
   },
 };

@@ -370,13 +370,7 @@ export default {
             repetitions: parseInt(this.exReps[i][j]),
             duration: parseInt(this.exDur[i][j]),
           };
-          console.log(this.cycleExercises[i][j]);
-          console.log(
-            "antes del modify",
-            i,
-            j,
-            this.cycleExercises[i][j].exercise.id
-          );
+          
           await CycleExerciseApi.modify(
             this.ciclos[i].id,
             this.cycleExercises[i][j].exercise.id,
@@ -390,7 +384,6 @@ export default {
     },
   },
   created() {
-    console.log("puede editar", this.canEdit());
     this.permission = this.canEdit();
   },
 };

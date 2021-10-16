@@ -52,7 +52,6 @@ export default {
   },
   async created() {
     await this.$getFavs();
-    console.log(this.favs);
   },
 };
 </script>

@@ -172,7 +172,6 @@ export default {
     await this.$getMines();
     let restArray = this.exercises.filter((ex) => ex.type === "rest");
     let activosArray = this.exercises.filter((ex) => ex.type === "exercise");
-    console.log(restArray, activosArray);
     this.secciones = [
       { title: "Destacados", type: "rutina", arr: this.destacados },
       { title: "Mis rutinas", type: "rutina", arr: this.myRoutines },
@@ -184,7 +183,6 @@ export default {
         activos: activosArray,
       },
     ];
-    console.log(this.routines);
   },
   methods: {
     ...mapActions("exercises", { $getAllEx: "getAll" }),
